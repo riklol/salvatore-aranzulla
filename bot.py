@@ -3,6 +3,7 @@ import discord
 import requests
 
 
+# non avevo voglia di fare un enviroment file con il token così l'ho messo direttamente qui
 TOKEN = "ODM0NDU5NDU5NDA0NDMxNDkw.YIBM7g.wTCbevovCVNDU8QqVcj4gmYYJ0c"
 
 client = discord.Client()
@@ -10,7 +11,7 @@ client = discord.Client()
 
 @client.event
 async def on_ready():
-    print("We have logged in as {0.user}".format(client))
+    print("{0.user} è loggato e online".format(client))
 
 
 @client.event
