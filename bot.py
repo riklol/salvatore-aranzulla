@@ -218,7 +218,7 @@ async def on_message(message):
     # help comandi
     elif message.content.startswith("!comandi"):
         await message.channel.send(
-            "Ecco i comandi disponibili (per ora): \n\n**Bot**\n- !bot_pic --> immagine profilo del bot\n- !bot_imgs [topic] [n] --> mostra n immagini casuali (max 9) relative al topic scelto\n- !bot_imgs list --> lista topic disponibili\n\n**Manga**\n- !manga [sito] [nome manga] --> cerca manga\n- !manga_help --> lista siti disponibili\n\n**Overwatch**\n- !ov_eroi [nome eroe] --> cerca eroe\n- !ov_eroi lista --> lista eroi\n\n**Google**\n- !googla [query] --> effettua ricerca su Google\n- !cerca [sito] --> cerca il sito specifico su Google"
+            "Ecco i comandi disponibili (per ora): \n\n**Bot**\n- !bot_pic --> immagine profilo del bot\n\n**Immagini**\n- !imgs [topic] [n] --> mostra n immagini casuali (max 9) relative al topic scelto\n- !img lista --> lista topic disponibili\n\n**Manga**\n- !manga [sito] [nome manga] --> cerca manga\n- !manga_help --> lista siti disponibili\n\n**Overwatch**\n- !ov_eroi [nome eroe] --> cerca eroe\n- !ov_eroi lista --> lista eroi\n\n**Google**\n- !googla [query] --> effettua ricerca su Google\n- !cerca [sito] --> cerca il sito specifico su Google"
         )
         print(
             "visualizzata lista comandi alle "
@@ -234,8 +234,8 @@ async def on_message(message):
         await message.channel.send(file=discord.File("image.png"))
 
     # mostra immagine casuale relativa ad un topic
-    elif message.content.startswith("!bot_imgs "):
-        topic_num = message.content[10:]
+    elif message.content.startswith("!imgs "):
+        topic_num = message.content[6:]
         topic_num = topic_num.replace(" ", "")
         # numero immagini da visualizzare
         numero = topic_num[-1]
@@ -254,6 +254,16 @@ async def on_message(message):
                 file=discord.File(f"imgs/{topic.lower()}/{n[i]}")
             )
         print(f"inviate {int(numero)} foto di {topic}")
+
+    # lista dei topic x le immagini
+    elif message.content.startswith("!img lista"):
+        await message.channel.send("Ecco i topic disponibili:")
+        await message.channel.send("Overwatch")
+        await message.channel.send("Minecraft (non ancora)")
+        await message.channel.send("Hollow Knight (non ancora)")
+        await message.channel.send("Pokemon (non ancora)")
+        await message.channel.send("Neko (non ancora)")
+
 
 
 lista_eroi = [
