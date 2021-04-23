@@ -3,6 +3,8 @@
 # in futuro probabilmente lo farò
 import discord
 import datetime
+import random
+import os
 
 
 TOKEN = "ODM0NDU5NDU5NDA0NDMxNDkw.YIBM7g.wTCbevovCVNDU8QqVcj4gmYYJ0c"
@@ -18,7 +20,7 @@ async def on_ready():
 @client.event
 async def on_message(message):
 
-#RICKROLL
+    # RICKROLL
 
     # no rickroll
     if message.content.startswith("!play https://www.youtube.com/watch?v=dQw4w9WgXcQ"):
@@ -36,7 +38,7 @@ async def on_message(message):
         )
         return
 
-#GOOGLE
+    # GOOGLE
 
     # cerca su Google (pagina principale)
     elif message.content.startswith("!googla "):
@@ -67,7 +69,7 @@ async def on_message(message):
         )
         return
 
-# MANGA
+    # MANGA
 
     # cerca manga
     elif message.content.startswith("!manga "):
@@ -182,7 +184,7 @@ async def on_message(message):
         print("aiuto manga alle " + datetime.datetime.now().strftime("%H:%M:%S"))
         return
 
-#OVERWATCH
+    # OVERWATCH
 
     # eroi overwatch
     elif message.content.startswith("!ov_eroi "):
@@ -211,18 +213,47 @@ async def on_message(message):
         )
         return
 
-#HELP
+    # HELP
 
     # help comandi
     elif message.content.startswith("!comandi"):
         await message.channel.send(
-            "Ecco i comandi disponibili (per ora): \n\n**Manga**\n- !manga [sito] [nome manga] --> cerca manga\n- !manga_help --> lista siti disponibili\n\n**Overwatch**\n- !ov_eroi [nome eroe] --> cerca eroe\n- !ov_eroi lista --> lista eroi\n\n**Google**\n- !googla [query]--> effettua ricerca su Google\n- !cerca [sito] --> cerca il sito specifico su Google"
+            "Ecco i comandi disponibili (per ora): \n\n**Bot**\n- !bot_pic --> immagine profilo del bot\n- !bot_imgs [topic] [n] --> mostra n immagini casuali (max 9) relative al topic scelto\n- !bot_imgs list --> lista topic disponibili\n\n**Manga**\n- !manga [sito] [nome manga] --> cerca manga\n- !manga_help --> lista siti disponibili\n\n**Overwatch**\n- !ov_eroi [nome eroe] --> cerca eroe\n- !ov_eroi lista --> lista eroi\n\n**Google**\n- !googla [query] --> effettua ricerca su Google\n- !cerca [sito] --> cerca il sito specifico su Google"
         )
         print(
             "visualizzata lista comandi alle "
             + datetime.datetime.now().strftime("%H:%M:%S")
         )
         return
+
+    # IMMAGINI
+
+    # mostra foto profilo
+    elif message.content.startswith("!bot_pic"):
+        await message.channel.send("Ecco la mia immagine profilo")
+        await message.channel.send(file=discord.File("image.png"))
+
+    # mostra immagine casuale relativa ad un topic
+    elif message.content.startswith("!bot_imgs "):
+        topic_num = message.content[10:]
+        topic_num = topic_num.replace(" ", "")
+        # numero immagini da visualizzare
+        numero = topic_num[-1]
+        if not topic_num[-2:] in lista_numeri_img:
+            await message.channel.send("Posso inviare al massimo 9 immagini")
+            return
+        # topic da visualizzare
+        topic = topic_num[:-1]
+        # lista con i nomi dei file nella cartella del topic
+        list_file = os.listdir(f"imgs/{topic.lower()}")
+        # immagine casuale
+        n = random.choices(list_file, k=int(numero))
+        # cambia cartella nel topic e invia le foto nella lista
+        for i in range(len(n)):
+            await message.channel.send(
+                file=discord.File(f"imgs/{topic.lower()}/{n[i]}")
+            )
+        print(f"inviate {int(numero)} foto di {topic}")
 
 
 lista_eroi = [
@@ -259,6 +290,8 @@ lista_eroi = [
     "Zarya",
     "Zenyatta",
 ]
+
+lista_numeri_img = ["h1", "h2", "h3", "h4", "h5", "h6", "h7", "h8" "h9"]
 
 
 client.run(TOKEN)
