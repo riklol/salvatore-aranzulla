@@ -7,9 +7,15 @@ import random
 import os
 
 
-TOKEN = "EH VOOOLEVI!!!"
+TOKEN = "EH VOOOLEVI"
 
 client = discord.Client()
+
+# cancella la schedule a mezzanotte
+if datetime.datetime.now().strftime("%H:%M:%S") == "24:00:00":
+    schedule_fl_w_2 = open("schedule.txt", "w")
+    schedule_fl_w_2.write("")
+    schedule_fl_w_2.close()
 
 
 @client.event
@@ -22,7 +28,7 @@ async def on_message(message):
 
     nome = message.author.name
 
-# RICKROLL
+    # RICKROLL
 
     # no rickroll
     if (
@@ -35,11 +41,12 @@ async def on_message(message):
         await message.channel.send("Non mi RickRollerai hahaha")
         await message.channel.send(file=discord.File("imgs/ET.jpg"))
         print(
-            "{nome} ha effettuato un tentativo di rickroll alle " + datetime.datetime.now().strftime("%H:%M:%S")
+            "{nome} ha effettuato un tentativo di rickroll alle "
+            + datetime.datetime.now().strftime("%H:%M:%S")
         )
         return
 
-# GOOGLE
+    # GOOGLE
 
     # cerca su Google (pagina principale)
     elif message.content.startswith("!googla "):
@@ -70,7 +77,7 @@ async def on_message(message):
         )
         return
 
-# HELP
+    # HELP
 
     # help comandi
     elif message.content.startswith("!comandi"):
@@ -83,15 +90,18 @@ async def on_message(message):
         )
         return
 
-# BOT
+    # BOT
 
     # mostra foto profilo
     elif message.content.startswith("!bot_pic"):
         await message.channel.send("Ecco la mia immagine profilo")
         await message.channel.send(file=discord.File("image.png"))
-        print(f"{nome} ha visualizzato l'immagine profilo del bot alle " + datetime.datetime.now().strftime("%H:%M:%S"))
+        print(
+            f"{nome} ha visualizzato l'immagine profilo del bot alle "
+            + datetime.datetime.now().strftime("%H:%M:%S")
+        )
 
-# SCHEDULE
+    # SCHEDULE
 
     # prenota quando online
     elif message.content.startswith("!prenota "):
@@ -138,9 +148,6 @@ async def on_message(message):
         schedule = schedule_fl_r.readlines()
         schedule_fl_r.close()
 
-        print(schedule)
-        print(f"{nome}: {ora}\n")
-
         # controlla che l'orario che si vuole rimuovere esista
         if f"{nome}: {ora}\n" not in schedule:
             await message.channel.send(
@@ -168,7 +175,9 @@ async def on_message(message):
         schedule_fl_r2 = open("schedule.txt", "r")
         schedule = schedule_fl_r2.readlines()
         if schedule == []:
-            await message.channel.send("Attualmente non ci sono prenotazioni.\nPer prenotarti per un orario digita **!prenota [ora]**")
+            await message.channel.send(
+                "Attualmente non ci sono prenotazioni.\nPer prenotarti per un orario digita **!prenota [ora]**"
+            )
         schedule.sort()
         try:
             schedule.remove("\n")
@@ -177,7 +186,10 @@ async def on_message(message):
         schedule_fl_r2.close()
         for prenotazione in schedule:
             await message.channel.send(prenotazione)
-        print(f"{nome} ha visualizzato la schedule alle " + datetime.datetime.now().strftime("%H:%M:%S"))
+        print(
+            f"{nome} ha visualizzato la schedule alle "
+            + datetime.datetime.now().strftime("%H:%M:%S")
+        )
         return
 
 
