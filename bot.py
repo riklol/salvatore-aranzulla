@@ -177,7 +177,7 @@ async def on_message(message):
         schedule_fl_r2.close()
         for prenotazione in schedule:
             await message.channel.send(prenotazione)
-        print(f"{nome} ha visualizzato la schedule alle {ora}")
+        print(f"{nome} ha visualizzato la schedule alle " + datetime.datetime.now().strftime("%H:%M:%S"))
         return
 
 
