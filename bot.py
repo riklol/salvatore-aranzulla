@@ -7,7 +7,7 @@ import random
 import os
 
 
-TOKEN = "ODM0NDU5NDU5NDA0NDMxNDkw.YIBM7g.wTCbevovCVNDU8QqVcj4gmYYJ0c"
+TOKEN = "EH VOOOLEVI!!!"
 
 client = discord.Client()
 
@@ -19,6 +19,8 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
+
+    nome = message.author.name
 
 # RICKROLL
 #sdsdaaaazzzzzzzzzzzzzzzzzzzzzzzz
@@ -34,7 +36,7 @@ async def on_message(message):
         await message.channel.send("Non mi RickRollerai hahaha")
         await message.channel.send(file=discord.File("imgs/ET.jpg"))
         print(
-            "tentativo di rickroll alle " + datetime.datetime.now().strftime("%H:%M:%S")
+            "{nome} ha effettuato un tentativo di rickroll alle " + datetime.datetime.now().strftime("%H:%M:%S")
         )
         return
 
@@ -49,7 +51,7 @@ async def on_message(message):
         query = query.replace(" ", "+")
         await message.channel.send(f"https://google.com/search?q={query.lower()}")
         print(
-            f"ricerca generica su Google ({query}) alle "
+            f"{nome} ha effettuato una ricerca generica su Google ({query}) alle "
             + datetime.datetime.now().strftime("%H:%M:%S")
         )
         return
@@ -64,7 +66,7 @@ async def on_message(message):
         url = "https://"
         await message.channel.send(url + query.lower())
         print(
-            f"ricerca specifica su Google ({query}) alle "
+            f"{nome} ha effettuato una ricerca specifica su Google ({query}) alle "
             + datetime.datetime.now().strftime("%H:%M:%S")
         )
         return
@@ -77,7 +79,7 @@ async def on_message(message):
             "Ecco i comandi disponibili (per ora): \n\n**Bot**\n- !bot_pic --> immagine profilo del bot\n\n**Google**\n- !googla [query] --> effettua ricerca su Google\n- !cerca [sito] --> cerca il sito specifico su Google\n\n**Avviso Online**\n- !prenota [ora] --> prenotati per un orario\n- !annulla_prn [ora] --> annulla prenotazione\n- !schedule --> visualizza elenco prenotazioni"
         )
         print(
-            "visualizzata lista comandi alle "
+            f"{nome} ha visualizzato la lista comandi alle "
             + datetime.datetime.now().strftime("%H:%M:%S")
         )
         return
@@ -88,6 +90,7 @@ async def on_message(message):
     elif message.content.startswith("!bot_pic"):
         await message.channel.send("Ecco la mia immagine profilo")
         await message.channel.send(file=discord.File("image.png"))
+        print(f"{nome} ha visualizzato l'immagine profilo del bot alle " + datetime.datetime.now().strftime("%H:%M:%S"))
 
 # SCHEDULE
 
@@ -101,7 +104,6 @@ async def on_message(message):
                 "Il formato dell'ora non è corretto.\n(deve essere **[ore]:[minuti (con anche secondi)]**)"
             )
             return
-        nome = message.author.name
 
         schedule_fl_r = open("schedule.txt", "r")
         schedule = schedule_fl_r.readlines()
@@ -120,6 +122,7 @@ async def on_message(message):
         await message.channel.send(
             "Ho registrato la prenotazione.\nDigita **!schedule** per visualizzare l'elenco delle prenotazioni."
         )
+        print(f"{nome} ha prenotato una sessione alle {ora}")
         return
 
     # rimuovi prenotazione
@@ -131,7 +134,6 @@ async def on_message(message):
                 "Il formato dell'ora non è corretto.\n (deve essere **[ore]:[minuti (con anche secondi)]**)"
             )
             return
-        nome = message.author.name
 
         schedule_fl_r = open("schedule.txt", "r")
         schedule = schedule_fl_r.readlines()
@@ -159,6 +161,7 @@ async def on_message(message):
         await message.channel.send(
             "Prenotazione rimossa.\nDigita **!schedule** per visualizzare l'elenco delle prenotazioni."
         )
+        print(f"{nome} ha annullato una sessione alle {ora}")
         return
 
     # mostra schedule
@@ -175,6 +178,7 @@ async def on_message(message):
         schedule_fl_r2.close()
         for prenotazione in schedule:
             await message.channel.send(prenotazione)
+        print(f"{nome} ha visualizzato la schedule alle {ora}")
         return
 
 
