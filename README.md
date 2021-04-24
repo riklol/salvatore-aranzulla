@@ -1,0 +1,2 @@
+# Shadow-Ruler
+discord bot
