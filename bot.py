@@ -3,11 +3,13 @@
 # in futuro probabilmente lo farò
 import discord
 import datetime
-import random
+from dotenv import load_dotenv
 import os
 
 
-TOKEN = "EH VOOOLEVI"
+load_dotenv()
+
+TOKEN = os.environ.get("TOKEN")
 
 client = discord.Client()
 
