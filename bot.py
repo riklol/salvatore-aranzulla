@@ -27,7 +27,7 @@ async def on_message(message):
         "dQw4w9WgXcQ" in message.content
         or "oHg5SJYRHA0" in message.content
         or "j5a0jTc9S10" in message.content
-        or "!play never gonna give you up" in message.content.lower()
+        or "never gonna give you up" in message.content.lower()
     ):
         await message.delete()
         await message.channel.send("Non mi RickRollerai hahaha")
