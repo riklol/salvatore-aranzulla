@@ -7,7 +7,7 @@ import random
 import os
 
 
-TOKEN = "ODM0NDU5NDU5NDA0NDMxNDkw.YIBM7g.wTCbevovCVNDU8QqVcj4gmYYJ0c"
+TOKEN = "EH VOOOLEVI!!!"
 
 client = discord.Client()
 
