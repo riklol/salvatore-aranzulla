@@ -1,11 +1,11 @@
 # bot.py
 # potrei ottimizzare tutto con delle funzioni ma al momento non ne ho voglia
 # in futuro probabilmente lo farò
-import discord
 import datetime
-from dotenv import load_dotenv
 import os
 
+import discord
+from dotenv import load_dotenv
 
 load_dotenv()
 
