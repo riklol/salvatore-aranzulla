@@ -21,6 +21,7 @@ async def on_ready():
 async def on_message(message):
 
 # RICKROLL
+#sdsdaaaa
 
     # no rickroll
     if (
