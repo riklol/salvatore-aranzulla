@@ -20,25 +20,24 @@ async def on_ready():
 @client.event
 async def on_message(message):
 
-    # RICKROLL
+# RICKROLL
 
     # no rickroll
-    if message.content.startswith("!play https://www.youtube.com/watch?v=dQw4w9WgXcQ"):
+    if (
+        "dQw4w9WgXcQ" in message.content
+        or "oHg5SJYRHA0" in message.content
+        or "j5a0jTc9S10" in message.content
+        or "!play never gonna give you up" in message.content.lower()
+    ):
+        await message.delete()
         await message.channel.send("Non mi RickRollerai hahaha")
+        await message.channel.send(file=discord.File("imgs/ET.jpg"))
         print(
             "tentativo di rickroll alle " + datetime.datetime.now().strftime("%H:%M:%S")
         )
         return
 
-    # no rickroll
-    elif message.content.startswith("https://www.youtube.com/watch?v=dQw4w9WgXcQ"):
-        await message.channel.send("Non mi RickRollerai hahaha")
-        print(
-            "tentativo di rickroll alle " + datetime.datetime.now().strftime("%H:%M:%S")
-        )
-        return
-
-    # GOOGLE
+# GOOGLE
 
     # cerca su Google (pagina principale)
     elif message.content.startswith("!googla "):
@@ -69,156 +68,12 @@ async def on_message(message):
         )
         return
 
-    # MANGA
-
-    # cerca manga
-    elif message.content.startswith("!manga "):
-
-        pre_query = message.content[7:9]
-        query = message.content[10:]
-        query = query.replace(" ", "-")
-
-        # cerca su AsuraScans
-        if pre_query == "as":
-            sito = "AsuraScans"
-            url = "https://www.asurascans.com/comics/"
-            await message.channel.send(
-                f"Ecco cosa ho trovato per {query} in {sito}: " + (url + query.lower())
-            )
-            await message.channel.send(
-                "Se il manga cercato non è disponibile consiglio di cambiare sito"
-            )
-            await message.channel.send(
-                "per vedere una lista dei siti disponibili digita **" "!manga_help" "**"
-            )
-            print(
-                f"ricerca manga ({query}) su AsuraScans alle "
-                + datetime.datetime.now().strftime("%H:%M:%S")
-            )
-            return
-
-        # cerca su LeviatanScans
-        elif pre_query == "lv":
-            sito = "LeviatanScans"
-            url = "https://leviatanscans.com/lcomic/manga/"
-            await message.channel.send(
-                f"Ecco cosa ho trovato per {query} in {sito}: " + (url + query.lower())
-            )
-            await message.channel.send(
-                "Se il manga cercato non è disponibile consiglio di cambiare sito"
-            )
-            await message.channel.send(
-                "per vedere una lista dei siti disponibili digita **" "!manga_help" "**"
-            )
-            print(
-                f"ricerca manga ({query}) su LeviatanScans alle "
-                + datetime.datetime.now().strftime("%H:%M:%S")
-            )
-            return
-
-        # cerca su WebtoonScan
-        elif pre_query == "ws":
-            sito = "WebtoonScan"
-            url = "https://webtoonscan.com/manhwa/"
-            await message.channel.send(
-                f"Ecco cosa ho trovato per {query} in {sito}: " + (url + query.lower())
-            )
-            await message.channel.send(
-                "Se il manga cercato non è disponibile consiglio di cambiare sito"
-            )
-            await message.channel.send(
-                "per vedere una lista dei siti disponibili digita **" "!manga_help" "**"
-            )
-            print(
-                f"ricerca manga su ({query}) WebtoonScan alle "
-                + datetime.datetime.now().strftime("%H:%M:%S")
-            )
-            return
-
-        # cerca su IsekaiScan
-        elif pre_query == "is":
-            sito = "IsekaiScan"
-            url = "https://isekaiscan.com/manga/"
-            await message.channel.send(
-                f"Ecco cosa ho trovato per {query} in {sito}: " + (url + query.lower())
-            )
-            await message.channel.send(
-                "Se il manga cercato non è disponibile consiglio di cambiare sito"
-            )
-            await message.channel.send(
-                "per vedere una lista dei siti disponibili digita **" "!manga_help" "**"
-            )
-            print(
-                f"ricerca manga ({query}) su WebtoonScan alle "
-                + datetime.datetime.now().strftime("%H:%M:%S")
-            )
-            return
-
-        # cerca su MangaSekai
-        elif pre_query == "ms":
-            sito = "MangaSekai"
-            url = "https://mangasekai.altervista.org/manga/"
-            await message.channel.send(
-                f"Ecco cosa ho trovato per {query} in {sito}: " + (url + query.lower())
-            )
-            await message.channel.send(
-                "Se il manga cercato non è disponibile consiglio di cambiare sito"
-            )
-            await message.channel.send(
-                "per vedere una lista dei siti disponibili digita **" "!manga_help" "**"
-            )
-            print(
-                f"ricerca manga ({query}) su WebtoonScan alle "
-                + datetime.datetime.now().strftime("%H:%M:%S")
-            )
-            return
-
-    # lista manga
-    elif message.content.startswith("!manga_help"):
-        await message.channel.send("Ecco i siti disponibili:")
-        await message.channel.send("AsuraScans (**as**)")
-        await message.channel.send("LeviatanScans (**lv**)")
-        await message.channel.send("WebtoonScan (**ws**)")
-        await message.channel.send("IsekaiScan (**is**)")
-        await message.channel.send("MangaSekai (**ms**)")
-        print("aiuto manga alle " + datetime.datetime.now().strftime("%H:%M:%S"))
-        return
-
-    # OVERWATCH
-
-    # eroi overwatch
-    elif message.content.startswith("!ov_eroi "):
-        query = message.content[9:]
-
-        if query == "lista":
-            await message.channel.send(
-                "Ecco la lista degli eroi di Overwatch (ci metterò un po' e potresti vedere degli stickers):"
-            )
-
-            for eroe in lista_eroi:
-                await message.channel.send(eroe)
-            print(
-                "lista eroi Overwatch alle "
-                + datetime.datetime.now().strftime("%H:%M:%S")
-            )
-            return
-
-        url = "https://playoverwatch.com/it-it/heroes/"
-        await message.channel.send(
-            f"Ecco cosa ho trovato per {query}: " + (url + query.lower())
-        )
-        print(
-            f"ricerca eroe ({query}) su Overwatch alle "
-            + datetime.datetime.now().strftime("%H:%M:%S")
-        )
-        return
-
-    # HELP
+# HELP
 
     # help comandi
     elif message.content.startswith("!comandi"):
         await message.channel.send(
-            "Ecco i comandi disponibili (per ora): \n\n**Bot**\n- !bot_pic --> immagine profilo del bot\n\n**Immagini**\n- !imgs [topic] [n] --> mostra n immagini casuali (max 9) relative al topic scelto\n- !img lista --> lista topic disponibili\n\n**Manga**\n- !manga [sito] [nome manga] --> cerca manga\n- !manga_help --> lista siti disponibili\n\n**Overwatch**\n- !ov_eroi [nome eroe] --> cerca eroe\n- !ov_eroi lista --> lista eroi\n\n**Google**\n- !googla [query] --> effettua ricerca su Google\n- !cerca [sito] --> cerca il sito specifico su Google"
+            "Ecco i comandi disponibili (per ora): \n\n**Bot**\n- !bot_pic --> immagine profilo del bot\n\n**Google**\n- !googla [query] --> effettua ricerca su Google\n- !cerca [sito] --> cerca il sito specifico su Google\n\n**Avviso Online**\n- !prenota [ora] --> prenotati per un orario\n- !annulla_prn [ora] --> annulla prenotazione\n- !schedule --> visualizza elenco prenotazioni"
         )
         print(
             "visualizzata lista comandi alle "
@@ -226,82 +81,100 @@ async def on_message(message):
         )
         return
 
-    # IMMAGINI
+# BOT
 
     # mostra foto profilo
     elif message.content.startswith("!bot_pic"):
         await message.channel.send("Ecco la mia immagine profilo")
         await message.channel.send(file=discord.File("image.png"))
 
-    # mostra immagine casuale relativa ad un topic
-    elif message.content.startswith("!imgs "):
-        topic_num = message.content[6:]
-        topic_num = topic_num.replace(" ", "")
-        # numero immagini da visualizzare
-        numero = topic_num[-1]
-        if not topic_num[-2:] in lista_numeri_img:
-            await message.channel.send("Posso inviare al massimo 9 immagini")
-            return
-        # topic da visualizzare
-        topic = topic_num[:-1]
-        # lista con i nomi dei file nella cartella del topic
-        list_file = os.listdir(f"imgs/{topic.lower()}")
-        # immagine casuale
-        n = random.choices(list_file, k=int(numero))
-        # cambia cartella nel topic e invia le foto nella lista
-        for i in range(len(n)):
+# SCHEDULE
+
+    # prenota quando online
+    elif message.content.startswith("!prenota "):
+
+        ora = message.content[9:]
+
+        if len(ora[-4:]) != 4:
             await message.channel.send(
-                file=discord.File(f"imgs/{topic.lower()}/{n[i]}")
+                "Il formato dell'ora non è corretto.\n(deve essere **[ore]:[minuti (con anche secondi)]**)"
             )
-        print(f"inviate {int(numero)} foto di {topic}")
+            return
+        nome = message.author.name
 
-    # lista dei topic x le immagini
-    elif message.content.startswith("!img lista"):
-        await message.channel.send("Ecco i topic disponibili:")
-        await message.channel.send("Overwatch")
-        await message.channel.send("Minecraft (non ancora)")
-        await message.channel.send("Hollow Knight (non ancora)")
-        await message.channel.send("Pokemon (non ancora)")
-        await message.channel.send("Neko (non ancora)")
+        schedule_fl_r = open("schedule.txt", "r")
+        schedule = schedule_fl_r.readlines()
+        schedule.sort()
+        schedule_fl_r.close()
 
+        # controlla che non ci siano orari duplicati
+        if f"{nome}: {ora}\n" in schedule:
+            await message.channel.send(f"{nome} ti sei già segnato per quell'orario!")
+            return
 
+        # appende il nome e l'ora nel file
+        schedule_fl_w = open("schedule.txt", "a")
+        schedule_fl_w.write(f"{nome}: {ora}\n")
+        schedule_fl_w.close()
+        await message.channel.send(
+            "Ho registrato la prenotazione.\nDigita **!schedule** per visualizzare l'elenco delle prenotazioni."
+        )
+        return
 
-lista_eroi = [
-    "Ana",
-    "Ashe",
-    "Baptiste",
-    "Bastion",
-    "Brigitte",
-    "D.VA",
-    "Doomfist",
-    "Echo",
-    "Genji",
-    "Hanzo",
-    "Junkrat",
-    "Lucio",
-    "McCree",
-    "Mei",
-    "Mercy",
-    "Moira",
-    "Orisa",
-    "Pharah",
-    "Reaper",
-    "Reinhardt",
-    "Roadhog",
-    "Sigma",
-    "Soldato-76",
-    "Sombra",
-    "Symmetra",
-    "Torbjorn",
-    "Tracer",
-    "Widowmaker",
-    "Winston",
-    "Wrecking Ball",
-    "Zarya",
-    "Zenyatta",
-]
+    # rimuovi prenotazione
+    elif message.content.startswith("!annulla_prn "):
 
-lista_numeri_img = ["h1", "h2", "h3", "h4", "h5", "h6", "h7", "h8" "h9"]
+        ora = message.content[13:]
+        if len(ora[-4:]) != 4:
+            await message.channel.send(
+                "Il formato dell'ora non è corretto.\n (deve essere **[ore]:[minuti (con anche secondi)]**)"
+            )
+            return
+        nome = message.author.name
+
+        schedule_fl_r = open("schedule.txt", "r")
+        schedule = schedule_fl_r.readlines()
+        schedule_fl_r.close()
+
+        print(schedule)
+        print(f"{nome}: {ora}\n")
+
+        # controlla che l'orario che si vuole rimuovere esista
+        if f"{nome}: {ora}\n" not in schedule:
+            await message.channel.send(
+                f"{nome} non ti sei mai prenotato per quest'orario!"
+            )
+            return
+
+        # elimina la prenotazione
+        schedule.remove(f"{nome}: {ora}\n")
+        print(schedule)
+
+        # riscrive nel file le altre prenotazioni
+        schedule_fl_w = open("schedule.txt", "w")
+        for prenotazione in schedule:
+            schedule_fl_w.write(prenotazione)
+        schedule_fl_w.close()
+        await message.channel.send(
+            "Prenotazione rimossa.\nDigita **!schedule** per visualizzare l'elenco delle prenotazioni."
+        )
+        return
+
+    # mostra schedule
+    elif message.content.startswith("!schedule"):
+        schedule_fl_r2 = open("schedule.txt", "r")
+        schedule = schedule_fl_r2.readlines()
+        if schedule == []:
+            await message.channel.send("Attualmente non ci sono prenotazioni.\nPer prenotarti per un orario digita **!prenota [ora]**")
+        schedule.sort()
+        try:
+            schedule.remove("\n")
+        except ValueError:
+            pass
+        schedule_fl_r2.close()
+        for prenotazione in schedule:
+            await message.channel.send(prenotazione)
+        return
 
 
 client.run(TOKEN)
