@@ -23,7 +23,6 @@ async def on_message(message):
     nome = message.author.name
 
 # RICKROLL
-#sdsdaaaazzzzzzzzzzzzzzzzzzzzzzzz
 
     # no rickroll
     if (
