@@ -5,6 +5,7 @@
 
 ## Installare le dipendenze:
 ### `pip install -r requirements.txt`
+[![Screenshot-32.png](https://i.postimg.cc/k5Y9mKts/Screenshot-32.png)](https://postimg.cc/qtKWctw6)
 
 ## - Visualizzare i comandi del bot in chat di Discord:
 ### `!comandi`
