@@ -141,6 +141,8 @@ async def on_message(message):
     # rimuovi prenotazione
     elif message.content.startswith("!annulla_prn "):
 
+        ora = message.content[13:]
+
         try:
             # esclude il ":"
             controlla_ora_1 = int(ora[-4])
@@ -151,7 +153,6 @@ async def on_message(message):
             )
             return
 
-        ora = message.content[13:]
         if len(ora[-4:]) != 4:
             await message.channel.send(
                 "Il formato dell'ora non è corretto.\n (deve essere **[ore]:[minuti (con anche secondi)]**)"
