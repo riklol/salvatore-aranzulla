@@ -102,7 +102,9 @@ async def on_message(message):
 
         ora = message.content[9:]
 
-        if not int(ora[-4]):
+        try:
+            controlla_ora = int(ora[-4:])
+        except ValueError:
             await message.channel.send(
                 "L'orario deve essere un numero"
             )
