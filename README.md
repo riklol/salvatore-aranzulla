@@ -7,6 +7,6 @@
 ### `pip install -r requirements.txt`
 [![Screenshot-32.png](https://i.postimg.cc/k5Y9mKts/Screenshot-32.png)](https://postimg.cc/qtKWctw6)
 
-## - Visualizzare i comandi del bot in chat di Discord:
+## Visualizzare i comandi del bot in chat di Discord:
 ### `!comandi`
 [![Screenshot-31.png](https://i.postimg.cc/zGcNKq2G/Screenshot-31.png)](https://postimg.cc/MnVg8J8C)
