@@ -44,8 +44,7 @@ async def on_message(message):
         await message.delete()
         await message.channel.send("Non mi RickRollerai hahaha")
         await message.channel.send(file=discord.File("imgs/ET.jpg"))
-        print(
-            f"{nome} ha effettuato un tentativo di rickroll alle {orario}")
+        print(f"{nome} ha effettuato un tentativo di rickroll alle {orario}")
         return
 
     # GOOGLE
@@ -59,7 +58,8 @@ async def on_message(message):
         query = query.replace(" ", "+")
         await message.channel.send(f"https://google.com/search?q={query.lower()}")
         print(
-            f"{nome} ha effettuato una ricerca generica su Google ({query}) alle {orario}")
+            f"{nome} ha effettuato una ricerca generica su Google ({query}) alle {orario}"
+        )
         return
 
     # cerca su Google (nome sito)
@@ -72,7 +72,8 @@ async def on_message(message):
         url = "https://"
         await message.channel.send(url + query.lower())
         print(
-            f"{nome} ha effettuato una ricerca specifica su Google ({query}) alle {orario}")
+            f"{nome} ha effettuato una ricerca specifica su Google ({query}) alle {orario}"
+        )
         return
 
     # HELP
@@ -82,8 +83,7 @@ async def on_message(message):
         await message.channel.send(
             "Ecco i comandi disponibili (per ora): \n\n**Bot**\n- !bot_pic --> immagine profilo del bot\n\n**Google**\n- !googla [query] --> effettua ricerca su Google\n- !cerca [sito] --> cerca il sito specifico su Google\n\n**Avvisa quando online**\n- !prenota [ora] --> prenotati per un orario\n- !annulla_prn [ora] --> annulla prenotazione\n- !schedule --> visualizza elenco prenotazioni"
         )
-        print(
-            f"{nome} ha visualizzato la lista comandi alle {orario}")
+        print(f"{nome} ha visualizzato la lista comandi alle {orario}")
         return
 
     # BOT
@@ -92,8 +92,7 @@ async def on_message(message):
     if message.content.startswith("!bot_pic"):
         await message.channel.send("Ecco la mia immagine profilo")
         await message.channel.send(file=discord.File("image.png"))
-        print(
-            f"{nome} ha visualizzato l'immagine profilo del bot alle {orario}")
+        print(f"{nome} ha visualizzato l'immagine profilo del bot alle {orario}")
 
     # SCHEDULE
 
@@ -107,9 +106,7 @@ async def on_message(message):
             controlla_ora_1 = int(ora[-4])
             controlla_ora_2 = int(ora[-2:])
         except ValueError:
-            await message.channel.send(
-                "L'orario deve essere un numero"
-            )
+            await message.channel.send("L'orario deve essere un numero")
             return
 
         if len(ora[-4:]) != 4:
@@ -148,9 +145,7 @@ async def on_message(message):
             controlla_ora_1 = int(ora[-4])
             controlla_ora_2 = int(ora[-2:])
         except ValueError:
-            await message.channel.send(
-                "L'orario deve essere un numero"
-            )
+            await message.channel.send("L'orario deve essere un numero")
             return
 
         if len(ora[-4:]) != 4:
@@ -200,8 +195,7 @@ async def on_message(message):
         schedule_fl_r2.close()
         for prenotazione in schedule:
             await message.channel.send(prenotazione)
-        print(
-            f"{nome} ha visualizzato la schedule alle {orario}")
+        print(f"{nome} ha visualizzato la schedule alle {orario}")
         return
 
 
