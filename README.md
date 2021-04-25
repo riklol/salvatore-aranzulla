@@ -11,4 +11,4 @@
 ### `!comandi`
 [![Screenshot-31.png](https://i.postimg.cc/zGcNKq2G/Screenshot-31.png)](https://postimg.cc/MnVg8J8C)
 
-## Il bot è hostato da DanyB0 e Alesasr01 (ogni tanto). Qualche volta potrebbe andare offline :sweat_smile:
+## Il bot è hostato da [DanyB0](https://github.com/DanyB0) e [Alesar1](https://github.com/Alesar1) (ogni tanto). Qualche volta potrebbe andare offline :sweat_smile:
