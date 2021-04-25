@@ -51,7 +51,7 @@ async def on_message(message):
     # GOOGLE
 
     # cerca su Google (pagina principale)
-    elif message.content.startswith("!googla "):
+    if message.content.startswith("!googla "):
         query = message.content[8:]
         if "." in query:
             await message.channel.send("Forse il comando che vuoi usare è **!cerca**")
@@ -63,7 +63,7 @@ async def on_message(message):
         return
 
     # cerca su Google (nome sito)
-    elif message.content.startswith("!cerca "):
+    if message.content.startswith("!cerca "):
         query = message.content[7:]
         if "." not in query:
             await message.channel.send("Forse il comando che vuoi usare è **!googla**")
@@ -78,7 +78,7 @@ async def on_message(message):
     # HELP
 
     # help comandi
-    elif message.content.startswith("!comandi"):
+    if message.content.startswith("!comandi"):
         await message.channel.send(
             "Ecco i comandi disponibili (per ora): \n\n**Bot**\n- !bot_pic --> immagine profilo del bot\n\n**Google**\n- !googla [query] --> effettua ricerca su Google\n- !cerca [sito] --> cerca il sito specifico su Google\n\n**Avvisa quando online**\n- !prenota [ora] --> prenotati per un orario\n- !annulla_prn [ora] --> annulla prenotazione\n- !schedule --> visualizza elenco prenotazioni"
         )
@@ -89,7 +89,7 @@ async def on_message(message):
     # BOT
 
     # mostra foto profilo
-    elif message.content.startswith("!bot_pic"):
+    if message.content.startswith("!bot_pic"):
         await message.channel.send("Ecco la mia immagine profilo")
         await message.channel.send(file=discord.File("image.png"))
         print(
@@ -98,7 +98,7 @@ async def on_message(message):
     # SCHEDULE
 
     # prenota sessione online
-    elif message.content.startswith("!prenota "):
+    if message.content.startswith("!prenota "):
 
         ora = message.content[9:]
 
@@ -139,7 +139,7 @@ async def on_message(message):
         return
 
     # rimuovi prenotazione
-    elif message.content.startswith("!annulla_prn "):
+    if message.content.startswith("!annulla_prn "):
 
         ora = message.content[13:]
 
@@ -185,7 +185,7 @@ async def on_message(message):
         return
 
     # mostra schedule
-    elif message.content.startswith("!schedule"):
+    if message.content.startswith("!schedule"):
         schedule_fl_r2 = open("schedule.txt", "r")
         schedule = schedule_fl_r2.readlines()
         if schedule == []:
