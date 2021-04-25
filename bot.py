@@ -103,6 +103,7 @@ async def on_message(message):
         ora = message.content[9:]
 
         try:
+            # esclude il ":"
             controlla_ora_1 = int(ora[-4])
             controlla_ora_2 = int(ora[-2:])
         except ValueError:
@@ -140,6 +141,16 @@ async def on_message(message):
     # rimuovi prenotazione
     elif message.content.startswith("!annulla_prn "):
 
+        try:
+            # esclude il ":"
+            controlla_ora_1 = int(ora[-4])
+            controlla_ora_2 = int(ora[-2:])
+        except ValueError:
+            await message.channel.send(
+                "L'orario deve essere un numero"
+            )
+            return
+
         ora = message.content[13:]
         if len(ora[-4:]) != 4:
             await message.channel.send(
@@ -160,7 +171,6 @@ async def on_message(message):
 
         # elimina la prenotazione
         schedule.remove(f"{nome}: {ora}\n")
-        print(schedule)
 
         # riscrive nel file le altre prenotazioni
         schedule_fl_w = open("schedule.txt", "w")
