@@ -3,9 +3,9 @@
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 # Bot per il server Discord di Gianlucazz0
 
+## Installare le dipendenze:
+### `pip install -r requirements.txt`
+
 ## - Visualizzare i comandi del bot in chat di Discord:
 ### `!comandi`
 [![Screenshot-31.png](https://i.postimg.cc/zGcNKq2G/Screenshot-31.png)](https://postimg.cc/MnVg8J8C)
-
-## Installare le dipendenze:
-### `pip install -r requirements.txt`
