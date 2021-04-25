@@ -97,10 +97,16 @@ async def on_message(message):
 
     # SCHEDULE
 
-    # prenota quando online
+    # prenota sessione online
     elif message.content.startswith("!prenota "):
 
         ora = message.content[9:]
+
+        if not int(ora[-4]):
+            await message.channel.send(
+                "L'orario deve essere un numero"
+            )
+            return
 
         if len(ora[-4:]) != 4:
             await message.channel.send(
