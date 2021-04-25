@@ -1,7 +1,6 @@
 # #Shadow-Ruler
 [![CodeFactor](https://www.codefactor.io/repository/github/danyb0/shadow-ruler/badge)](https://www.codefactor.io/repository/github/danyb0/shadow-ruler)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-# Bot per il server Discord di Gianlucazz0
 
 # Setup locale
 ## Installare le dipendenze:
