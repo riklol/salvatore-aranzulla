@@ -4,8 +4,10 @@
 
 #
 # Setup locale
+* ### Installare Python:
+   * ## [Clicca qui per installare Python](https://www.python.org)
 * ### Installare le dipendenze:
-    * ### `pip install -r requirements.txt`
+   * ### `pip install -r requirements.txt`
       [![Screenshot-32.png](https://i.postimg.cc/k5Y9mKts/Screenshot-32.png)](https://postimg.cc/qtKWctw6)
 * ### Creare un file chiamato `schedule.txt` e salvarlo nella cartella del bot
 
