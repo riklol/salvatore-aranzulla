@@ -2,7 +2,7 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/danyb0/shadow-ruler/badge)](https://www.codefactor.io/repository/github/danyb0/shadow-ruler)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 #
-[![cover-pic-bot.png](https://i.postimg.cc/GtJ7xfNX/cover-pic-bot.png)](https://postimg.cc/y3xyVL7R)
+[![cover-pic-bot-1.png](https://i.postimg.cc/yxQ9KXSV/cover-pic-bot-1.png)](https://postimg.cc/JHXtcXqg)
 #
 # Setup locale
 * ### Installare Python (se l'avete già installato potete passare al punto successivo):
