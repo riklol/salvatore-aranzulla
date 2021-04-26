@@ -4,8 +4,9 @@
 
 #
 # Setup locale
-* ### Installare Python:
+* ### Installare Python (se l'avete già installato potete passare al punto successivo):
    * #### [Clicca qui per installare Python](https://www.python.org)
+   * #### [Guida all'installazione di Python](https://www.aranzulla.it/come-installare-python-1210886.html)
 * ### Installare le dipendenze:
    * ### `pip install -r requirements.txt`
       [![Screenshot-32.png](https://i.postimg.cc/k5Y9mKts/Screenshot-32.png)](https://postimg.cc/qtKWctw6)
