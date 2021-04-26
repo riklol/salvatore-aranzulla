@@ -1,7 +1,8 @@
 # #Shadow-Ruler
 [![CodeFactor](https://www.codefactor.io/repository/github/danyb0/shadow-ruler/badge)](https://www.codefactor.io/repository/github/danyb0/shadow-ruler)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-
+#
+[![cover-pic-bot-1.png](https://i.postimg.cc/yxQ9KXSV/cover-pic-bot-1.png)](https://postimg.cc/JHXtcXqg)
 #
 # Setup locale
 * ### Installare Python (se l'avete già installato potete passare al punto successivo):
@@ -15,8 +16,7 @@
 #
 # Visualizzare i comandi del bot in chat di Discord:
 ### `!comandi`
-[![Screenshot-33.png](https://i.postimg.cc/GmYqrC85/Screenshot-33.png)](https://postimg.cc/DSvqdRcr)
-### (Le __[ ]__ vanno omesse)
+[![img-comandi-bot.png](https://i.postimg.cc/Hx2fWfLQ/img-comandi-bot.png)](https://postimg.cc/LYJyNQLX)
 
 #
-## Il bot è hostato da [DanyB0](https://github.com/DanyB0) e [Alesar1](https://github.com/Alesar1) (ogni tanto). Qualche volta potrebbe andare offline :sweat_smile:
+## Il bot è hostato da [DanyB0](https://github.com/DanyB0) e [Alesar1](https://github.com/Alesar1) (ogni tanto). Se lo usate per il vostro server Discord qualche volta potrebbe andare offline :sweat_smile:
