@@ -1,17 +1,47 @@
 # bot.py
-# potrei ottimizzare tutto con delle funzioni ma al momento non ne ho voglia
+# potrei ottimizzare tutto con delle funzioni e usando i prefissi x il bot ma al momento non ne ho voglia
 # in futuro probabilmente lo farò
+
 import datetime
 import os
+import threading
 
 import discord
 from dotenv import load_dotenv
+
 
 load_dotenv()
 
 TOKEN = os.environ.get("TOKEN")
 
 client = discord.Client()
+
+
+# controlla che l'ora segnata = ora corrente
+def controllo():
+    a = 0
+    while a == 0:
+        schedule_fl_r_2 = open("schedule.txt", "r")
+        schedule_2 = schedule_fl_r_2.readlines()
+        schedule_fl_r_2.close()
+        # controlla per ogni prenotazione se l'ora corrente è = all'ora indicata
+        # in caso affermativo cancella l'ora con la prenotazione passata
+        for pren in schedule_2:
+            if datetime.datetime.now().strftime("%H:%M") in pren:
+                # elimina la prenotazione passata
+                schedule_2.remove(pren)
+                # riscrive nel file le altre prenotazioni
+                schedule_fl_w_2 = open("schedule.txt", "w")
+                for prenotazione in schedule_2:
+                    schedule_fl_w_2.write(prenotazione)
+                schedule_fl_w_2.close()
+            else:
+                pass
+
+
+# avvio la funzione che controlla l'ora in un thread in background
+controllo_bg = threading.Thread(target=controllo, daemon=True)
+controllo_bg.start()
 
 # cancella la schedule a mezzanotte
 if datetime.datetime.now().strftime("%H:%M:%S") == "24:00:00":
@@ -22,7 +52,7 @@ if datetime.datetime.now().strftime("%H:%M:%S") == "24:00:00":
 
 @client.event
 async def on_ready():
-    print("{0.user} è online!".format(client))
+    print("{0.user} è online!\n".format(client))
 
 
 @client.event
@@ -44,7 +74,7 @@ async def on_message(message):
         await message.delete()
         await message.channel.send("Non mi RickRollerai hahaha")
         await message.channel.send(file=discord.File("imgs/ET.jpg"))
-        print(f"{nome} ha effettuato un tentativo di rickroll alle {orario}")
+        print(f"{nome} ha effettuato un tentativo di rickroll alle {orario}\n")
         return
 
     # GOOGLE
@@ -58,7 +88,7 @@ async def on_message(message):
         query = query.replace(" ", "+")
         await message.channel.send(f"https://google.com/search?q={query.lower()}")
         print(
-            f"{nome} ha effettuato una ricerca generica su Google ({query}) alle {orario}"
+            f"{nome} ha effettuato una ricerca generica su Google ({query}) alle {orario}\n"
         )
         return
 
@@ -72,7 +102,7 @@ async def on_message(message):
         url = "https://"
         await message.channel.send(url + query.lower())
         print(
-            f"{nome} ha effettuato una ricerca specifica su Google ({query}) alle {orario}"
+            f"{nome} ha effettuato una ricerca specifica su Google ({query}) alle {orario}\n"
         )
         return
 
@@ -83,7 +113,7 @@ async def on_message(message):
         await message.channel.send(
             "Ecco i comandi disponibili (per ora): \n\n**Bot**\n- !bot_pic --> immagine profilo del bot\n- !bot_repo --> visualizza repository GitHub del bot\n\n**Google**\n- !googla [query] --> effettua ricerca su Google\n- !cerca [sito] --> cerca il sito specifico su Google\n\n**Avvisa quando online**\n- !prenota [ora] --> prenotati per un orario\n- !annulla_prn [ora] --> annulla prenotazione\n- !schedule --> visualizza elenco prenotazioni"
         )
-        print(f"{nome} ha visualizzato la lista comandi alle {orario}")
+        print(f"{nome} ha visualizzato la lista comandi alle {orario}\n")
         return
 
     # BOT
@@ -92,13 +122,13 @@ async def on_message(message):
     if message.content.startswith("!bot_pic"):
         await message.channel.send("Ecco la mia immagine profilo")
         await message.channel.send(file=discord.File("image.png"))
-        print(f"{nome} ha visualizzato l'immagine profilo del bot alle {orario}")
+        print(f"{nome} ha visualizzato l'immagine profilo del bot alle {orario}\n")
 
     # visualizza repository di GitHub
     if message.content.startswith("!bot_repo"):
         await message.channel.send("Ecco il mio repository di GitHub")
         await message.channel.send("https://github.com/DanyB0/Shadow-Ruler")
-        print(f"{nome} ha visualizzato il repo di GitHub del bot alle {orario}")
+        print(f"{nome} ha visualizzato il repo di GitHub del bot alle {orario}\n")
 
     # SCHEDULE
 
@@ -117,7 +147,7 @@ async def on_message(message):
 
         if len(ora[-4:]) != 4:
             await message.channel.send(
-                "Il formato dell'ora non è corretto.\n(deve essere **[ore]:[minuti (con anche secondi)]**)"
+                "Il formato dell'ora non è corretto.\n(deve essere **[ore]:[minuti]**)"
             )
             return
 
@@ -138,7 +168,7 @@ async def on_message(message):
         await message.channel.send(
             "Ho registrato la prenotazione.\nDigita **!schedule** per visualizzare l'elenco delle prenotazioni."
         )
-        print(f"{nome} ha prenotato una sessione alle {ora}")
+        print(f"{nome} ha prenotato una sessione alle {ora}\n")
         return
 
     # rimuovi prenotazione
@@ -182,7 +212,7 @@ async def on_message(message):
         await message.channel.send(
             "Prenotazione rimossa.\nDigita **!schedule** per visualizzare l'elenco delle prenotazioni."
         )
-        print(f"{nome} ha annullato una sessione alle {ora}")
+        print(f"{nome} ha annullato una sessione alle {ora}\n")
         return
 
     # mostra schedule
@@ -201,7 +231,7 @@ async def on_message(message):
         schedule_fl_r2.close()
         for prenotazione in schedule:
             await message.channel.send(prenotazione)
-        print(f"{nome} ha visualizzato la schedule alle {orario}")
+        print(f"{nome} ha visualizzato la schedule alle {orario}\n")
         return
 
 
