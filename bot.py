@@ -17,6 +17,18 @@ TOKEN = os.environ.get("TOKEN")
 client = discord.Client()
 
 
+# cancella la schedule a mezzanotte
+def mezzanotte():
+    b = 0
+    while b == 0:
+        if datetime.datetime.now().strftime("%H:%M:%S") == "24:00:00":
+            schedule_fl_w_2 = open("schedule.txt", "w")
+            schedule_fl_w_2.write("")
+            schedule_fl_w_2.close()
+        else:
+            pass
+
+
 # controlla che l'ora segnata = ora corrente
 def controllo():
     a = 0
@@ -39,15 +51,12 @@ def controllo():
                 pass
 
 
-# avvio la funzione che controlla l'ora in un thread in background
+# avvio le funzioni che controllano l'ora in due thread in background
 controllo_bg = threading.Thread(target=controllo, daemon=True)
 controllo_bg.start()
 
-# cancella la schedule a mezzanotte
-if datetime.datetime.now().strftime("%H:%M:%S") == "24:00:00":
-    schedule_fl_w_2 = open("schedule.txt", "w")
-    schedule_fl_w_2.write("")
-    schedule_fl_w_2.close()
+mezzanotte_bg = threading.Thread(target=mezzanotte, daemon=True)
+mezzanotte_bg.start()
 
 
 @client.event
