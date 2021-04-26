@@ -13,5 +13,7 @@
 # Visualizzare i comandi del bot in chat di Discord:
 ### `!comandi`
 [![Screenshot-33.png](https://i.postimg.cc/GmYqrC85/Screenshot-33.png)](https://postimg.cc/DSvqdRcr)
+### (Le `[]` vanno omesse)
 
+#
 ## Il bot è hostato da [DanyB0](https://github.com/DanyB0) e [Alesar1](https://github.com/Alesar1) (ogni tanto). Qualche volta potrebbe andare offline :sweat_smile:
