@@ -16,7 +16,7 @@
 #
 # Visualizzare i comandi del bot in chat di Discord:
 ### `!comandi`
-[![68747470733a2f2f692e706f7374696d672e63632f57347259686774732f636f6d616e64692d626f742e706e67.png](https://i.postimg.cc/sxQ1wKth/68747470733a2f2f692e706f7374696d672e63632f57347259686774732f636f6d616e64692d626f742e706e67.png)](https://postimg.cc/jnTsj6qx)
+[![comandi.png](https://i.postimg.cc/0Nkd5M6B/comandi.png)](https://postimg.cc/rDHtQpN1)
 
 #
 ## Il bot è hostato da [DanyB0](https://github.com/DanyB0) e [Alesar1](https://github.com/Alesar1) (ogni tanto). Se lo usate per il vostro server Discord qualche volta potrebbe andare offline (solitamente dalle 24 alle 8) :sweat_smile:
