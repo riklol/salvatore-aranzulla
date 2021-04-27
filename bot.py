@@ -79,6 +79,8 @@ async def on_message(message):
 
     errore = client.get_emoji(833779980294029314)
 
+    ahh = client.get_emoji(829011307957190767)
+
     # RICKROLL
 
     # no rickroll
@@ -128,7 +130,7 @@ async def on_message(message):
     # help comandi
     if message.content.startswith("!comandi"):
         await message.channel.send(
-            "Ecco i comandi disponibili (le [ ] vanno omesse): \n\n**Bot**\n- `!bot_pic` --> immagine profilo del bot\n- `!bot_repo` --> visualizza repository GitHub del bot\n\n**Google**\n- `!googla [query]` --> effettua ricerca su Google\n- `!cerca [sito]` --> cerca il sito specifico su Google\n\n**Prenotazione Online**\n- `!prenota [ora]` --> prenotati per un orario\n- `!annulla_prn [ora]` --> annulla prenotazione\n- `!schedule` --> visualizza elenco prenotazioni"
+            "> Ecco i comandi disponibili (le [ ] vanno omesse): \n> \n> **Bot**\n> - `!bot_pic` --> immagine profilo del bot\n> - `!bot_repo` --> visualizza repository GitHub del bot\n> \n> **Google**\n> - `!googla [query]` --> effettua ricerca su Google\n> - `!cerca [sito]` --> cerca il sito specifico su Google\n> \n> **Prenotazione Online**\n> - `!prenota [ora]` --> prenotati per un orario\n> - `!annulla_prn [ora]` --> annulla prenotazione\n> - `!schedule` --> visualizza elenco prenotazioni"
         )
         print(f"{nome} ha visualizzato la lista comandi alle {orario}\n")
         return
@@ -156,12 +158,24 @@ async def on_message(message):
 
         try:
             # esclude il ":"
-            controlla_ora_1 = int(ora[-4])
-            controlla_ora_2 = int(ora[-2:])
+            controlla_ora_1 = int(ora[-5])
+            controlla_ora_2 = int(ora[-4])
+            controlla_ora_3 = int(ora[-2:])
         except ValueError:
             await message.channel.send(f"{errore} L'orario deve essere un numero")
             return
+        except IndexError:
+            await message.channel.send(f"{errore} Il formato dell'ora deve essere [ORE(2 cifre)]:[MINUTI(2 cifre)]")
+            return
 
+        #controlla che i minuti siano minori di 60
+        if int(ora[-2:]) > 59:
+            await message.channel.send(
+                f"{ahh} Quanti minuti ci sono in 1 ora?"
+            )
+            return
+
+        # controlla che l'ora sia stata scrittat correttamente ([ORA]:[MINUTI])
         if len(ora[-4:]) != 4:
             await message.channel.send(
                 f"{errore} Il formato dell'ora non è corretto.\n(deve essere **[ore]:[minuti]**)"
@@ -175,7 +189,12 @@ async def on_message(message):
 
         # controlla che non ci siano orari duplicati
         if f"{nome}: {ora}\n" in schedule:
-            await message.channel.send(f"{nome} ti sei già segnato per quell'orario!")
+            await message.channel.send(f"{ahh} ti sei già segnato per quell'orario!")
+            return
+
+        # controlla che l'orario per cui ci si vuole prenotare non sia passato
+        if int(ora[0:2]) < int(datetime.datetime.now().strftime("%H")):
+            await message.channel.send(f"{ahh} {nome} Quest'orario è già passato!")
             return
 
         # appende il nome e l'ora nel file
@@ -247,7 +266,7 @@ async def on_message(message):
             pass
         schedule_fl_r2.close()
         for prenotazione in schedule:
-            await message.channel.send(prenotazione)
+            await message.channel.send(f"> {prenotazione}")
         print(f"{nome} ha visualizzato la schedule alle {orario}\n")
         return
 
