@@ -15,6 +15,6 @@ def tutto(lista_ore):
         message.add(f"### Hey {nome},\n ti sei prenotato per una sessione di gioco oggi alle {ora}!\n### Buon Divertimento da Shadow-Ruler.")
         message.style = "h2 { color: #8ccfe2} h3 { color: #171b29}"
 
-        message.send("daniele.beltrami13@gmail.com", "someone@else.com", "Sessione di gioco")
+        message.send("daniele.beltrami13@gmail.com", "Sessione di gioco")
 
         print(f"Inviata email con prenotazione a {nome} alle {ora}")
