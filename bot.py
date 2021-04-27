@@ -4,13 +4,11 @@
 
 import datetime
 import os
+import random
 import threading
 
 import discord
-from dotenv import load_dotenv
-
-import random
-
+from dotenv import load_doten
 
 load_dotenv()
 
