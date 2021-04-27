@@ -11,7 +11,7 @@ import colorama
 import discord
 from dotenv import load_dotenv
 
-import msg
+import mail
 
 colorama.init()
 
@@ -51,7 +51,7 @@ def controllo():
                 for pren in schedule_2:
                        lista_ore.append(pren)
                 # chiama la funzione per inviare i messaggi e passa la lista con le persone a cui inviarli
-                msg.tutto(lista_ore)
+                mail.tutto(lista_ore)
                 # setta la lista_ore come vuota (per non inviare la mail a chi l'ha già ricevuta)
                 lista_ore = []
                 k = threading.Event()
