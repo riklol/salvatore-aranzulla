@@ -8,7 +8,7 @@ import random
 import threading
 
 import discord
-from dotenv import load_doten
+from dotenv import load_dotenv
 
 load_dotenv()
 
@@ -75,9 +75,18 @@ async def on_message(message):
 
     orario = datetime.datetime.now().strftime("%H:%M:%S")
 
+    # emojis
     errore = client.get_emoji(833779980294029314)
-
     ahh = client.get_emoji(829011307957190767)
+    party = client.get_emoji(829011307604869140)
+
+    # super easter egg
+    numero_rand = random.randint(1, 1000)
+    if numero_rand == 13:
+        await message.channel.send(
+            f"{party} Complimenti {nome}! Questo è un messaggio casuale con una probabilità dello 0,001% {party}!",
+            tts=True,
+        )
 
     # RICKROLL
 
@@ -100,7 +109,9 @@ async def on_message(message):
     if message.content.startswith("!googla "):
         query = message.content[8:]
         if "." in query:
-            await message.channel.send(f"{errore} Forse il comando che vuoi usare è **!cerca**")
+            await message.channel.send(
+                f"{errore} Forse il comando che vuoi usare è **!cerca**"
+            )
             return
         query = query.replace(" ", "+")
         await message.channel.send(f"https://google.com/search?q={query.lower()}")
@@ -113,7 +124,9 @@ async def on_message(message):
     if message.content.startswith("!cerca "):
         query = message.content[7:]
         if "." not in query:
-            await message.channel.send(f"{errore} Forse il comando che vuoi usare è **!googla**")
+            await message.channel.send(
+                f"{errore} Forse il comando che vuoi usare è **!googla**"
+            )
             return
         query = query.replace(" ", "")
         url = "https://"
@@ -163,14 +176,14 @@ async def on_message(message):
             await message.channel.send(f"{errore} L'orario deve essere un numero")
             return
         except IndexError:
-            await message.channel.send(f"{errore} Il formato dell'ora deve essere **[ORE(2 cifre)]:[MINUTI(2 cifre)]**")
+            await message.channel.send(
+                f"{errore} Il formato dell'ora deve essere **[ORE(2 cifre)]:[MINUTI(2 cifre)]**"
+            )
             return
 
-        #controlla che i minuti siano minori di 60
+        # controlla che i minuti siano minori di 60
         if int(ora[-2:]) > 59:
-            await message.channel.send(
-                f"{ahh} Quanti minuti ci sono in 1 ora?"
-            )
+            await message.channel.send(f"{ahh} Quanti minuti ci sono in 1 ora?")
             return
 
         # controlla che l'ora sia stata scrittat correttamente ([ORA]:[MINUTI])
@@ -269,6 +282,19 @@ async def on_message(message):
         return
 
 
-lista_giochi_bot = ["Skyrim", "Hollow Knight", "Minecraft", "Fortnite", "Fat Prisoneer Simulator", "osu!", "Undertale", "Assasin's Creed II", "Mini Ninjas", "Heavy Rain", "Time & Eternity", "Shadow of the Colossus"]
+lista_giochi_bot = [
+    "Skyrim",
+    "Hollow Knight",
+    "Minecraft",
+    "Fortnite",
+    "Fat Prisoneer Simulator",
+    "osu!",
+    "Undertale",
+    "Assasin's Creed II",
+    "Mini Ninjas",
+    "Heavy Rain",
+    "Time & Eternity",
+    "Shadow of the Colossus",
+]
 
 client.run(TOKEN)
