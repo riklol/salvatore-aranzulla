@@ -163,7 +163,7 @@ async def on_message(message):
             await message.channel.send(f"{errore} L'orario deve essere un numero")
             return
         except IndexError:
-            await message.channel.send(f"{errore} Il formato dell'ora deve essere [ORE(2 cifre)]:[MINUTI(2 cifre)]")
+            await message.channel.send(f"{errore} Il formato dell'ora deve essere **[ORE(2 cifre)]:[MINUTI(2 cifre)]**")
             return
 
         #controlla che i minuti siano minori di 60
