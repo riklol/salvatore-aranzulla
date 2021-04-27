@@ -90,7 +90,7 @@ async def on_message(message):
             f"{party} Complimenti {nome}! Questo è un messaggio casuale con una probabilità dello 0,001% {party}!",
             tts=True,
         )
-        print(colorama.Fore.GREEN + f"{nome} ha trovato l'Easter Eggu super segretisimo alle {orario}")
+        print(colorama.Fore.GREEN + f"{nome} ha trovato l'Easter Egg super segretisimo alle {orario}")
         print(colorama.Fore.WHITE + "")
 
 
@@ -192,7 +192,7 @@ async def on_message(message):
             await message.channel.send(f"{ahh} Quanti minuti ci sono in 1 ora?")
             return
 
-        # controlla che l'ora sia stata scrittat correttamente ([ORA]:[MINUTI])
+        # controlla che l'ora sia stata scritta correttamente ([ORA]:[MINUTI])
         if len(ora[-4:]) != 4:
             await message.channel.send(
                 f"{errore} Il formato dell'ora non è corretto.\n(deve essere **[ore]:[minuti]**)"
@@ -293,10 +293,10 @@ lista_giochi_bot = [
     "Hollow Knight",
     "Minecraft",
     "Fortnite",
-    "Fat Prisoneer Simulator",
+    "Fat Prisoner Simulator",
     "osu!",
     "Undertale",
-    "Assasin's Creed II",
+    "Assassin's Creed II",
     "Mini Ninjas",
     "Heavy Rain",
     "Time & Eternity",
