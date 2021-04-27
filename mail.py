@@ -18,4 +18,3 @@ def tutto(lista_ore):
         message.send("daniele.beltrami13@gmail.com", "someone@else.com", "Sessione di gioco")
 
         print(f"Inviata email con prenotazione a {nome} alle {ora}")
-    return
