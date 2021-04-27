@@ -7,8 +7,11 @@ import os
 import random
 import threading
 
+import colorama
 import discord
 from dotenv import load_dotenv
+
+colorama.init()
 
 load_dotenv()
 
@@ -61,11 +64,11 @@ mezzanotte_bg.start()
 
 @client.event
 async def on_ready():
-    print("{0.user} è online!".format(client))
+    print(colorama.Fore.GREEN + "{0.user} è online!".format(client))
     gioco_bot = random.choices(lista_giochi_bot)
     # imposta lo stato del bot in modo tale che sembri stia giocando a qualcosa
     await client.change_presence(activity=discord.Game(name=f"{gioco_bot[0]}"))
-    print(f"Il bot sta giocando a {gioco_bot[0]}\n")
+    print(colorama.Fore.GREEN + f"Il bot sta giocando a {gioco_bot[0]}\n")
 
 
 @client.event
@@ -87,6 +90,7 @@ async def on_message(message):
             f"{party} Complimenti {nome}! Questo è un messaggio casuale con una probabilità dello 0,001% {party}!",
             tts=True,
         )
+        print(colorama.Fore.GREEN + f"{nome} ha trovato l'Easter Eggu super segretisimo alle {orario}")
 
     # RICKROLL
 

@@ -1,3 +1,4 @@
+datetime
+colorama
 discord.py
 python-dotenv
-datetime
