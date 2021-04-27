@@ -68,7 +68,7 @@ async def on_ready():
     gioco_bot = random.choices(lista_giochi_bot)
     # imposta lo stato del bot in modo tale che sembri stia giocando a qualcosa
     await client.change_presence(activity=discord.Game(name=f"{gioco_bot[0]}"))
-    print(colorama.Fore.GREEN + f"Il bot sta giocando a {gioco_bot[0]}\n")
+    print(colorama.Fore.WHITE + f"Il bot sta giocando a {gioco_bot[0]}\n")
 
 
 @client.event
@@ -91,6 +91,8 @@ async def on_message(message):
             tts=True,
         )
         print(colorama.Fore.GREEN + f"{nome} ha trovato l'Easter Eggu super segretisimo alle {orario}")
+        print(colorama.Fore.WHITE + "")
+
 
     # RICKROLL
 
