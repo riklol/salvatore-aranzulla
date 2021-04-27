@@ -2,3 +2,4 @@ datetime
 colorama
 discord.py
 python-dotenv
+email_to
