@@ -11,6 +11,8 @@ import colorama
 import discord
 from dotenv import load_dotenv
 
+import msg
+
 colorama.init()
 
 load_dotenv()
@@ -43,6 +45,17 @@ def controllo():
         # in caso affermativo cancella l'ora con la prenotazione passata
         for pren in schedule_2:
             if datetime.datetime.now().strftime("%H:%M") in pren:
+                schedule_fl_r_2 = open("schedule.txt", "r")
+                schedule_2 = schedule_fl_r_2.readlines()
+                schedule_fl_r_2.close()
+                for pren in schedule_2:
+                       lista_ore.append(pren)
+                # chiama la funzione per inviare i messaggi e passa la lista con le persone a cui inviarli
+                msg.tutto(lista_ore)
+                # setta la lista_ore come vuota (per non inviare la mail a chi l'ha già ricevuta)
+                lista_ore = []
+                k = threading.Event()
+                k.wait(60)
                 # elimina la prenotazione passata
                 schedule_2.remove(pren)
                 # riscrive nel file le altre prenotazioni
