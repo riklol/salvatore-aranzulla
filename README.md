@@ -19,4 +19,4 @@
 [![img-comandi-bot.png](https://i.postimg.cc/Hx2fWfLQ/img-comandi-bot.png)](https://postimg.cc/LYJyNQLX)
 
 #
-## Il bot è hostato da [DanyB0](https://github.com/DanyB0) e [Alesar1](https://github.com/Alesar1) (ogni tanto). Se lo usate per il vostro server Discord qualche volta potrebbe andare offline :sweat_smile:
+## Il bot è hostato da [DanyB0](https://github.com/DanyB0) e [Alesar1](https://github.com/Alesar1) (ogni tanto). Se lo usate per il vostro server Discord qualche volta potrebbe andare offline (solitamente dalle 24 alle 8) :sweat_smile:
