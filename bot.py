@@ -9,6 +9,8 @@ import threading
 import discord
 from dotenv import load_dotenv
 
+import random
+
 
 load_dotenv()
 
@@ -61,7 +63,11 @@ mezzanotte_bg.start()
 
 @client.event
 async def on_ready():
-    print("{0.user} è online!\n".format(client))
+    print("{0.user} è online!".format(client))
+    gioco_bot = random.choices(lista_giochi_bot)
+    # imposta lo stato del bot in modo tale che sembri stia giocando a qualcosa
+    await client.change_presence(activity=discord.Game(name=f"{gioco_bot[0]}"))
+    print(f"Il bot sta giocando a {gioco_bot[0]}\n")
 
 
 @client.event
@@ -70,6 +76,8 @@ async def on_message(message):
     nome = message.author.name
 
     orario = datetime.datetime.now().strftime("%H:%M:%S")
+
+    errore = client.get_emoji(833779980294029314)
 
     # RICKROLL
 
@@ -92,7 +100,7 @@ async def on_message(message):
     if message.content.startswith("!googla "):
         query = message.content[8:]
         if "." in query:
-            await message.channel.send("Forse il comando che vuoi usare è **!cerca**")
+            await message.channel.send(f"{errore} Forse il comando che vuoi usare è **!cerca**")
             return
         query = query.replace(" ", "+")
         await message.channel.send(f"https://google.com/search?q={query.lower()}")
@@ -105,7 +113,7 @@ async def on_message(message):
     if message.content.startswith("!cerca "):
         query = message.content[7:]
         if "." not in query:
-            await message.channel.send("Forse il comando che vuoi usare è **!googla**")
+            await message.channel.send(f"{errore} Forse il comando che vuoi usare è **!googla**")
             return
         query = query.replace(" ", "")
         url = "https://"
@@ -151,12 +159,12 @@ async def on_message(message):
             controlla_ora_1 = int(ora[-4])
             controlla_ora_2 = int(ora[-2:])
         except ValueError:
-            await message.channel.send("L'orario deve essere un numero")
+            await message.channel.send(f"{errore} L'orario deve essere un numero")
             return
 
         if len(ora[-4:]) != 4:
             await message.channel.send(
-                "Il formato dell'ora non è corretto.\n(deve essere **[ore]:[minuti]**)"
+                f"{errore} Il formato dell'ora non è corretto.\n(deve essere **[ore]:[minuti]**)"
             )
             return
 
@@ -190,12 +198,12 @@ async def on_message(message):
             controlla_ora_1 = int(ora[-4])
             controlla_ora_2 = int(ora[-2:])
         except ValueError:
-            await message.channel.send("L'orario deve essere un numero")
+            await message.channel.send(f"{errore} L'orario deve essere un numero")
             return
 
         if len(ora[-4:]) != 4:
             await message.channel.send(
-                "Il formato dell'ora non è corretto.\n (deve essere **[ore]:[minuti (con anche secondi)]**)"
+                f"{errore} Il formato dell'ora non è corretto.\n (deve essere **[ore]:[minuti (con anche secondi)]**)"
             )
             return
 
@@ -206,7 +214,7 @@ async def on_message(message):
         # controlla che l'orario che si vuole rimuovere esista
         if f"{nome}: {ora}\n" not in schedule:
             await message.channel.send(
-                f"{nome} non ti sei mai prenotato per quest'orario!"
+                f"{errore} {nome} non ti sei mai prenotato per quest'orario!"
             )
             return
 
@@ -243,5 +251,7 @@ async def on_message(message):
         print(f"{nome} ha visualizzato la schedule alle {orario}\n")
         return
 
+
+lista_giochi_bot = ["Skyrim", "Hollow Knight", "Minecraft", "Fortnite", "Fat Prisoneer Simulator", "osu!", "Undertale", "Assasin's Creed II", "Mini Ninjas", "Heavy Rain", "Time & Eternity", "Shadow of the Colossus"]
 
 client.run(TOKEN)
