@@ -221,7 +221,7 @@ async def on_message(message):
         schedule_fl_w.write(f"{nome}: {ora}\n")
         schedule_fl_w.close()
         await message.channel.send(
-            f"{ok} Ho registrato la prenotazione.\nDigita **!schedule** per visualizzare l'elenco delle prenotazioni."
+            f"Ho registrato la prenotazione {ok}\nDigita **!schedule** per visualizzare l'elenco delle prenotazioni."
         )
         print(f"{nome} ha prenotato una sessione alle {ora}\n")
         return
