@@ -84,6 +84,7 @@ async def on_message(message):
     party = client.get_emoji(829011307604869140)
     ok = client.get_emoji(837074839318822943)
     me = client.get_emoji(837074855735066684)
+    love = client.get_emoji(837074776928288779)
 
     # super easter egg
     numero_rand = random.randint(1, 1000)
@@ -149,7 +150,7 @@ async def on_message(message):
     # help comandi
     if message.content.startswith("!comandi"):
         await message.channel.send(
-            "> Ecco i comandi disponibili (le [ ] vanno omesse): \n> \n> **Bot**\n> - `!bot_pic` --> immagine profilo del bot\n> - `!bot_repo` --> visualizza repository GitHub del bot\n> \n> **Google**\n> - `!googla [query]` --> effettua ricerca su Google\n> - `!cerca [sito]` --> cerca il sito specifico su Google\n> \n> **Prenotazione Online**\n> - `!prenota [ora]` --> prenotati per un orario\n> - `!annulla_prn [ora]` --> annulla prenotazione\n> - `!schedule` --> visualizza elenco prenotazioni"
+            f"> {love}\n> Ecco i comandi disponibili (le [ ] vanno omesse): \n> \n> **Bot**\n> - `!bot_pic` --> immagine profilo del bot\n> - `!bot_repo` --> visualizza repository GitHub del bot\n> \n> **Google**\n> - `!googla [query]` --> effettua ricerca su Google\n> - `!cerca [sito]` --> cerca il sito specifico su Google\n> \n> **Prenotazione Online**\n> - `!prenota [ora]` --> prenotati per un orario\n> - `!annulla_prn [ora]` --> annulla prenotazione\n> - `!schedule` --> visualizza elenco prenotazioni"
         )
         print(f"{nome} ha visualizzato la lista comandi alle {orario}\n")
         return
