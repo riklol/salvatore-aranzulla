@@ -82,6 +82,8 @@ async def on_message(message):
     errore = client.get_emoji(833779980294029314)
     ahh = client.get_emoji(829011307957190767)
     party = client.get_emoji(829011307604869140)
+    ok = client.get_emoji(837074839318822943)
+    me = client.get_emoji(837074855735066684)
 
     # super easter egg
     numero_rand = random.randint(1, 1000)
@@ -162,7 +164,7 @@ async def on_message(message):
 
     # visualizza repository di GitHub
     if message.content.startswith("!bot_repo"):
-        await message.channel.send("Ecco il mio repository di GitHub")
+        await message.channel.send(f"{me} Ecco il mio repository di GitHub")
         await message.channel.send("https://github.com/DanyB0/Shadow-Ruler")
         print(f"{nome} ha visualizzato il repo di GitHub del bot alle {orario}\n")
 
@@ -219,7 +221,7 @@ async def on_message(message):
         schedule_fl_w.write(f"{nome}: {ora}\n")
         schedule_fl_w.close()
         await message.channel.send(
-            "Ho registrato la prenotazione.\nDigita **!schedule** per visualizzare l'elenco delle prenotazioni."
+            f"{ok} Ho registrato la prenotazione.\nDigita **!schedule** per visualizzare l'elenco delle prenotazioni."
         )
         print(f"{nome} ha prenotato una sessione alle {ora}\n")
         return
@@ -263,7 +265,7 @@ async def on_message(message):
             schedule_fl_w.write(prenotazione)
         schedule_fl_w.close()
         await message.channel.send(
-            "Prenotazione rimossa.\nDigita **!schedule** per visualizzare l'elenco delle prenotazioni."
+            f"{ok} Prenotazione rimossa.\nDigita **!schedule** per visualizzare l'elenco delle prenotazioni."
         )
         print(f"{nome} ha annullato una sessione alle {ora}\n")
         return
