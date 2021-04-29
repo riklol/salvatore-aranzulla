@@ -64,7 +64,7 @@ mezzanotte_bg.start()
 
 @client.event
 async def on_ready():
-    print(colorama.Fore.GREEN + "{0.user} è online!".format(client))
+    print(colorama.Fore.GREEN + "\n{0.user} è online!".format(client))
     gioco_bot = random.choices(lista_giochi_bot)
     # imposta lo stato del bot in modo tale che sembri stia giocando a qualcosa
     await client.change_presence(activity=discord.Game(name=f"{gioco_bot[0]}"))
