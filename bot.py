@@ -85,6 +85,7 @@ async def on_message(message):
     ok = client.get_emoji(837074839318822943)
     me = client.get_emoji(837074855735066684)
     love = client.get_emoji(837074776928288779)
+    succo = client.get_emoji(829011307750883369)
 
     # super easter egg
     numero_rand = random.randint(1, 1000)
@@ -289,6 +290,12 @@ async def on_message(message):
             await message.channel.send(f"> {prenotazione}")
         print(f"{nome} ha visualizzato la schedule alle {orario}\n")
         return
+
+    # QUESTO COMANDO É PIU' CHE ALTRO PER ME
+    # visualizza la mia (DanyB0) playlist di canzoni
+    if message.content.startswith("!playlist"):
+        await message.channel.send(f"Ecco il link della playlist di DanyB0 {succo}")
+        await message.channel.send("https://www.youtube.com/watch?v=7Oxy8FWONh8&list=PL2-B3ZPANK8XVZ-pgK74up4fQWqo5nykG")
 
 
 lista_giochi_bot = [
