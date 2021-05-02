@@ -38,7 +38,7 @@ schedule = []
 
 
 # cancella la schedule a mezzanotte
-def mezzanotte():
+def mezzanotte(schedule):
     b = 0
     while b == 0:
         if datetime.datetime.now().strftime("%H:%M:%S") == "24:00:00":
@@ -48,7 +48,7 @@ def mezzanotte():
 
 
 # controlla che l'ora segnata = ora corrente
-def controllo():
+def controllo(schedule):
     a = 0
     while a == 0:
         # controlla per ogni prenotazione se l'ora corrente è = all'ora indicata
@@ -57,17 +57,15 @@ def controllo():
             if datetime.datetime.now().strftime("%H:%M") in pren:
                 # elimina la prenotazione passata
                 schedule.remove(pren)
-                print("eliminata")
-                print(schedule)
             else:
                 pass
 
 
 # avvio le funzioni che controllano l'ora in due thread in background
-controllo_bg = threading.Thread(target=controllo, daemon=True)
+controllo_bg = threading.Thread(target=controllo, daemon=True, args=(schedule,))
 controllo_bg.start()
 
-mezzanotte_bg = threading.Thread(target=mezzanotte, daemon=True)
+mezzanotte_bg = threading.Thread(target=mezzanotte, daemon=True, args=(schedule,))
 mezzanotte_bg.start()
 
 
@@ -103,9 +101,11 @@ async def on_message(message):
             f"{party} Complimenti {nome}! Questo è un messaggio casuale con una probabilità dello 0,001% {party}!",
             tts=True,
         )
-        print(colorama.Fore.GREEN + f"{nome} ha trovato l'Easter Egg super segretisimo alle {orario}")
+        print(
+            colorama.Fore.GREEN
+            + f"{nome} ha trovato l'Easter Egg super segretisimo alle {orario}"
+        )
         print(colorama.Fore.WHITE + "")
-
 
     # RICKROLL
 
@@ -230,7 +230,7 @@ async def on_message(message):
             f"Ho registrato la prenotazione {ok}\nDigita **!schedule** per visualizzare l'elenco delle prenotazioni."
         )
         print(f"{nome} ha prenotato una sessione alle {ora}\n")
-        return
+        return schedule
 
     # rimuovi prenotazione
     if message.content.startswith("!annulla_prn "):
@@ -268,7 +268,7 @@ async def on_message(message):
             f"{ok} Prenotazione rimossa.\nDigita **!schedule** per visualizzare l'elenco delle prenotazioni."
         )
         print(f"{nome} ha annullato una sessione alle {ora}\n")
-        return
+        return schedule
 
     # mostra schedule
     if message.content.startswith("!schedule"):
@@ -290,6 +290,9 @@ async def on_message(message):
     # visualizza la mia (DanyB0) playlist di canzoni
     if message.content.startswith("!playlist"):
         await message.channel.send(f"Ecco il link della playlist di DanyB0 {succo}")
-        await message.channel.send("https://www.youtube.com/watch?v=7Oxy8FWONh8&list=PL2-B3ZPANK8XVZ-pgK74up4fQWqo5nykG")
+        await message.channel.send(
+            "https://www.youtube.com/watch?v=7Oxy8FWONh8&list=PL2-B3ZPANK8XVZ-pgK74up4fQWqo5nykG"
+        )
+
 
 client.run(TOKEN)
