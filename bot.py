@@ -15,9 +15,26 @@ colorama.init()
 
 load_dotenv()
 
+client = discord.Client()
+
 TOKEN = os.environ.get("TOKEN")
 
-client = discord.Client()
+lista_giochi_bot = [
+    "Skyrim",
+    "Hollow Knight",
+    "Minecraft",
+    "Fortnite",
+    "Fat Prisoner Simulator",
+    "osu!",
+    "Undertale",
+    "Assassin's Creed II",
+    "Mini Ninjas",
+    "Heavy Rain",
+    "Time & Eternity",
+    "Shadow of the Colossus",
+]
+
+schedule = []
 
 
 # cancella la schedule a mezzanotte
@@ -25,9 +42,7 @@ def mezzanotte():
     b = 0
     while b == 0:
         if datetime.datetime.now().strftime("%H:%M:%S") == "24:00:00":
-            schedule_fl_w_2 = open("schedule.txt", "w")
-            schedule_fl_w_2.write("")
-            schedule_fl_w_2.close()
+            schedule = []
         else:
             pass
 
@@ -36,20 +51,15 @@ def mezzanotte():
 def controllo():
     a = 0
     while a == 0:
-        schedule_fl_r_2 = open("schedule.txt", "r")
-        schedule_2 = schedule_fl_r_2.readlines()
-        schedule_fl_r_2.close()
         # controlla per ogni prenotazione se l'ora corrente è = all'ora indicata
         # in caso affermativo cancella l'ora con la prenotazione passata
-        for pren in schedule_2:
+        for pren in schedule:
             if datetime.datetime.now().strftime("%H:%M") in pren:
                 # elimina la prenotazione passata
-                schedule_2.remove(pren)
+                schedule.remove(pren)
                 # riscrive nel file le altre prenotazioni
-                schedule_fl_w_2 = open("schedule.txt", "w")
-                for prenotazione in schedule_2:
-                    schedule_fl_w_2.write(prenotazione)
-                schedule_fl_w_2.close()
+                for prenotazione in schedule:
+                    schedule.append(prenotazione)
             else:
                 pass
 
@@ -177,6 +187,8 @@ async def on_message(message):
 
         ora = message.content[9:]
 
+        schedule.sort()
+
         try:
             # esclude il ":"
             controlla_ora_1 = int(ora[-5])
@@ -203,11 +215,6 @@ async def on_message(message):
             )
             return
 
-        schedule_fl_r = open("schedule.txt", "r")
-        schedule = schedule_fl_r.readlines()
-        schedule.sort()
-        schedule_fl_r.close()
-
         # controlla che non ci siano orari duplicati
         if f"{nome}: {ora}\n" in schedule:
             await message.channel.send(f"{ahh} ti sei già segnato per quell'orario!")
@@ -219,9 +226,7 @@ async def on_message(message):
             return
 
         # appende il nome e l'ora nel file
-        schedule_fl_w = open("schedule.txt", "a")
-        schedule_fl_w.write(f"{nome}: {ora}\n")
-        schedule_fl_w.close()
+        schedule.append(f"{nome}: {ora}\n")
         await message.channel.send(
             f"Ho registrato la prenotazione {ok}\nDigita **!schedule** per visualizzare l'elenco delle prenotazioni."
         )
@@ -247,10 +252,6 @@ async def on_message(message):
             )
             return
 
-        schedule_fl_r = open("schedule.txt", "r")
-        schedule = schedule_fl_r.readlines()
-        schedule_fl_r.close()
-
         # controlla che l'orario che si vuole rimuovere esista
         if f"{nome}: {ora}\n" not in schedule:
             await message.channel.send(
@@ -262,10 +263,8 @@ async def on_message(message):
         schedule.remove(f"{nome}: {ora}\n")
 
         # riscrive nel file le altre prenotazioni
-        schedule_fl_w = open("schedule.txt", "w")
         for prenotazione in schedule:
-            schedule_fl_w.write(prenotazione)
-        schedule_fl_w.close()
+            schedule.append(prenotazione)
         await message.channel.send(
             f"{ok} Prenotazione rimossa.\nDigita **!schedule** per visualizzare l'elenco delle prenotazioni."
         )
@@ -274,8 +273,6 @@ async def on_message(message):
 
     # mostra schedule
     if message.content.startswith("!schedule"):
-        schedule_fl_r2 = open("schedule.txt", "r")
-        schedule = schedule_fl_r2.readlines()
         if schedule == []:
             await message.channel.send(
                 "Attualmente non ci sono prenotazioni.\nPer prenotarti per un orario digita **!prenota [ora]**"
@@ -285,7 +282,6 @@ async def on_message(message):
             schedule.remove("\n")
         except ValueError:
             pass
-        schedule_fl_r2.close()
         for prenotazione in schedule:
             await message.channel.send(f"> {prenotazione}")
         print(f"{nome} ha visualizzato la schedule alle {orario}\n")
@@ -296,21 +292,5 @@ async def on_message(message):
     if message.content.startswith("!playlist"):
         await message.channel.send(f"Ecco il link della playlist di DanyB0 {succo}")
         await message.channel.send("https://www.youtube.com/watch?v=7Oxy8FWONh8&list=PL2-B3ZPANK8XVZ-pgK74up4fQWqo5nykG")
-
-
-lista_giochi_bot = [
-    "Skyrim",
-    "Hollow Knight",
-    "Minecraft",
-    "Fortnite",
-    "Fat Prisoner Simulator",
-    "osu!",
-    "Undertale",
-    "Assassin's Creed II",
-    "Mini Ninjas",
-    "Heavy Rain",
-    "Time & Eternity",
-    "Shadow of the Colossus",
-]
 
 client.run(TOKEN)
