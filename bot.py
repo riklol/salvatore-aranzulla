@@ -57,9 +57,6 @@ def controllo():
             if datetime.datetime.now().strftime("%H:%M") in pren:
                 # elimina la prenotazione passata
                 schedule.remove(pren)
-                # riscrive nel file le altre prenotazioni
-                for prenotazione in schedule:
-                    schedule.append(prenotazione)
             else:
                 pass
 
