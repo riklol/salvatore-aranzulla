@@ -102,7 +102,6 @@ PyMsgBox==1.0.9
 PyNaCl==1.4.0
 pyparsing==2.4.7
 pyperclip==1.8.2
-pypiwin32==223
 pyppeteer==0.2.5
 PyPrind==2.11.2
 PyQt5==5.15.4
