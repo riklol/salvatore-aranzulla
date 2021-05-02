@@ -1,1 +1,1 @@
-worker: python bot.py
+worker: python C:\Users\danie\Desktop\Shadow-Ruler\bot.py
