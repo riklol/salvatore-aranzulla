@@ -22,6 +22,7 @@ crayons==0.4.0
 cssselect==1.1.0
 cssutils==2.2.0
 cycler==0.10.0
+DateTime==4.3
 decorator==4.4.2
 discord==1.0.1
 discord.py==1.7.1
