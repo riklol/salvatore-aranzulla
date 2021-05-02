@@ -57,6 +57,8 @@ def controllo():
             if datetime.datetime.now().strftime("%H:%M") in pren:
                 # elimina la prenotazione passata
                 schedule.remove(pren)
+                print("eliminata")
+                print(schedule)
             else:
                 pass
 
