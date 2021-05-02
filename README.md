@@ -20,3 +20,7 @@
 [![comandi.png](https://i.postimg.cc/FR0YZjGT/comandi.png)](https://postimg.cc/bDNYYS7n)
 
 #
+
+# !!!
+## I requirements sono sbagliati
+# !!!
