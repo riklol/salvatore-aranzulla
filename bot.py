@@ -36,6 +36,8 @@ lista_giochi_bot = [
 
 schedule = []
 
+print(datetime.datetime.now().strftime("%H:%M:%S"))
+
 
 # cancella la schedule a mezzanotte
 def mezzanotte(schedule):
