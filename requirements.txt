@@ -120,8 +120,6 @@ pytube==10.7.2
 PyTweening==1.0.3
 pytz==2020.4
 PyWavelets==1.1.1
-pywin32==228
-pywin32-ctypes==0.2.0
 pywiz==0.0.13
 PyYAML==5.3.1
 regex==2020.11.13
