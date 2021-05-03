@@ -36,7 +36,9 @@ lista_giochi_bot = [
 
 schedule = []
 
-print(datetime.datetime.now().strftime("%H:%M:%S"))
+lista_playlists = {}
+
+print("bot avviato alle: " + datetime.datetime.now().strftime("%H:%M:%S"))
 
 
 # cancella la schedule a mezzanotte
@@ -127,7 +129,7 @@ async def on_message(message):
     # GOOGLE
 
     # cerca su Google (pagina principale)
-    if message.content.startswith("!googla "):
+    if message.content.lower().startswith("!googla "):
         query = message.content[8:]
         if "." in query:
             await message.channel.send(
@@ -142,7 +144,7 @@ async def on_message(message):
         return
 
     # cerca su Google (nome sito)
-    if message.content.startswith("!cerca "):
+    if message.content.lower().startswith("!cerca "):
         query = message.content[7:]
         if "." not in query:
             await message.channel.send(
@@ -160,9 +162,9 @@ async def on_message(message):
     # HELP
 
     # help comandi
-    if message.content.startswith("!comandi"):
+    if message.content.lower().startswith("!comandi"):
         await message.channel.send(
-            f"> {love}\n> Ecco i comandi disponibili (le [ ] vanno omesse): \n> \n> **Bot**\n> - `!bot_pic` --> immagine profilo del bot\n> - `!bot_repo` --> visualizza repository GitHub del bot\n> \n> **Google**\n> - `!googla [query]` --> effettua ricerca su Google\n> - `!cerca [sito]` --> cerca il sito specifico su Google\n> \n> **Prenotazione Online**\n> - `!prenota [ora]` --> prenotati per un orario\n> - `!annulla_prn [ora]` --> annulla prenotazione\n> - `!schedule` --> visualizza elenco prenotazioni"
+            f"> {love}\n> Ecco i comandi disponibili (le [ ] vanno omesse):\n> \n> **Bot**\n> - `!bot_pic` --> immagine profilo del bot\n> - `!bot_repo` --> visualizza repository GitHub del bot\n> \n> **Google**\n> - `!googla [query]` --> effettua ricerca su Google\n> - `!cerca [sito]` --> cerca il sito specifico su Google\n> \n> **Schedule**\n> - `!prenota [ora]` --> prenotati per un orario\n> - `!annulla_prn [ora]` --> annulla prenotazione\n> - `!schedule` --> visualizza elenco prenotazioni\n> \n> **Registrazione Playlist YouTube**\n> - `!registra_playlist [URL playlist]` --> registra la playlist\n> - `!rimuovi_playlist` --> rimuove la playlist\n> - `!playlist` --> visualizza l'url della playlist salvata\n"
         )
         print(f"{nome} ha visualizzato la lista comandi alle {orario}\n")
         return
@@ -170,13 +172,13 @@ async def on_message(message):
     # BOT
 
     # mostra foto profilo
-    if message.content.startswith("!bot_pic"):
+    if message.content.lower().startswith("!bot_pic"):
         await message.channel.send("Ecco la mia immagine profilo")
         await message.channel.send(file=discord.File("image.png"))
         print(f"{nome} ha visualizzato l'immagine profilo del bot alle {orario}\n")
 
     # visualizza repository di GitHub
-    if message.content.startswith("!bot_repo"):
+    if message.content.lower().startswith("!bot_repo"):
         await message.channel.send(f"{me} Ecco il mio repository di GitHub")
         await message.channel.send("https://github.com/DanyB0/Shadow-Ruler")
         print(f"{nome} ha visualizzato il repo di GitHub del bot alle {orario}\n")
@@ -184,7 +186,7 @@ async def on_message(message):
     # SCHEDULE
 
     # prenota sessione online
-    if message.content.startswith("!prenota "):
+    if message.content.lower().startswith("!prenota "):
 
         ora = message.content[9:]
 
@@ -235,7 +237,7 @@ async def on_message(message):
         return schedule
 
     # rimuovi prenotazione
-    if message.content.startswith("!annulla_prn "):
+    if message.content.lower().startswith("!annulla_prn "):
 
         ora = message.content[13:]
 
@@ -273,7 +275,7 @@ async def on_message(message):
         return schedule
 
     # mostra schedule
-    if message.content.startswith("!schedule"):
+    if message.content.lower().startswith("!schedule"):
         if schedule == []:
             await message.channel.send(
                 "Attualmente non ci sono prenotazioni.\nPer prenotarti per un orario digita **!prenota [ora]**"
@@ -288,13 +290,52 @@ async def on_message(message):
         print(f"{nome} ha visualizzato la schedule alle {orario}\n")
         return
 
-    # QUESTO COMANDO É PIU' CHE ALTRO PER ME
-    # visualizza la mia (DanyB0) playlist di canzoni
-    if message.content.startswith("!playlist"):
-        await message.channel.send(f"Ecco il link della playlist di DanyB0 {succo}")
-        await message.channel.send(
-            "https://www.youtube.com/watch?v=7Oxy8FWONh8&list=PL2-B3ZPANK8XVZ-pgK74up4fQWqo5nykG"
-        )
+    # PLAYLIST
+    # registra la playlist dell'utente
+    if message.content.lower().startswith("!registra_playlist "):
+        playlist = message.content[19:]
+        yt = message.content[19:42]
+        if yt != "https://www.youtube.com":
+            await message.channel.send(f"{errore} L'URL non è corretto")
+            return
+        else:
+            lista_playlists[nome] = playlist
+            await message.channel.send(f"{ok} La playlist è stata registrata")
+            return
+
+    # rimuove la playlist dell'utente
+    if message.content.lower().startswith("!rimuovi_playlist"):
+        try:
+            lista_playlists[nome] = ""
+            await message.channel.send(f"{ok} La playlist è stata eliminata")
+            return
+        except discord.errors.HTTPException:
+            await message.channel.send(
+                f"{errore} Non hai mai registrato una playlist! Digita **!registra_playlist** per registrarne una"
+            )
+            return
+        except KeyError:
+            await message.channel.send(
+                f"{errore} Non hai mai registrato una playlist! Digita **!registra_playlist** per registrarne una"
+            )
+            return
+
+    # visualizza la mia playlist dell'utente
+    if message.content.lower().startswith("!playlist"):
+        try:
+            await message.channel.send(f"Ecco il link della playlist di {nome} {succo}")
+            await message.channel.send(lista_playlists[nome])
+            return
+        except discord.errors.HTTPException:
+            await message.channel.send(
+                f"{errore} Non hai mai registrato una playlist! Digita **!registra_playlist** per registrarne una"
+            )
+            return
+        except KeyError:
+            await message.channel.send(
+                f"{errore} Non hai mai registrato una playlist! Digita **!registra_playlist** per registrarne una"
+            )
+            return
 
 
 client.run(TOKEN)
