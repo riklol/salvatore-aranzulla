@@ -306,13 +306,8 @@ async def on_message(message):
     # rimuove la playlist dell'utente
     if message.content.lower().startswith("!rimuovi_playlist"):
         try:
-            lista_playlists[nome] = ""
+            play = lista_playlists[nome]
             await message.channel.send(f"{ok} La playlist è stata eliminata")
-            return
-        except discord.errors.HTTPException:
-            await message.channel.send(
-                f"{errore} Non hai mai registrato una playlist! Digita **!registra_playlist** per registrarne una"
-            )
             return
         except KeyError:
             await message.channel.send(
@@ -326,11 +321,6 @@ async def on_message(message):
             play = lista_playlists[nome]
             await message.channel.send(f"Ecco il link della playlist di {nome} {succo}")
             await message.channel.send(play)
-            return
-        except discord.errors.HTTPException:
-            await message.channel.send(
-                f"{errore} Non hai mai registrato una playlist! Digita **!registra_playlist** per registrarne una"
-            )
             return
         except KeyError:
             await message.channel.send(
