@@ -20,7 +20,3 @@
 [![Screenshot-58.png](https://i.postimg.cc/SNWZ1qT7/Screenshot-58.png)](https://postimg.cc/ppLYpNtp)
 
 #
-
-# !!!
-## I requirements sono sbagliati
-# !!!
