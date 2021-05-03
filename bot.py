@@ -36,7 +36,7 @@ lista_giochi_bot = [
 
 schedule = []
 
-lista_playlists = {}
+lista_playlist = {}
 
 print("bot avviato alle: " + datetime.datetime.now().strftime("%H:%M:%S"))
 
@@ -84,6 +84,8 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
+
+    global lista_playlist
 
     nome = message.author.name
 
@@ -290,7 +292,8 @@ async def on_message(message):
         print(f"{nome} ha visualizzato la schedule alle {orario}\n")
         return
 
-    # PLAYLIST
+    # PLAYLISTS
+
     # registra la playlist dell'utente
     if message.content.lower().startswith("!registra_playlist "):
         playlist = message.content[19:]
@@ -298,15 +301,14 @@ async def on_message(message):
         if yt != "https://www.youtube.com":
             await message.channel.send(f"{errore} L'URL non è corretto")
             return
-        else:
-            lista_playlists[nome] = playlist
-            await message.channel.send(f"{ok} La playlist è stata registrata")
-            return
+        lista_playlist[nome] = playlist
+        await message.channel.send(f"{ok} La playlist è stata registrata")
+        return
 
     # rimuove la playlist dell'utente
     if message.content.lower().startswith("!rimuovi_playlist"):
         try:
-            lista_playlists = lista_playlists.pop(nome, f"{nome} non in dict")
+            lista_playlist = lista_playlist.pop(nome, f"{nome} non in dict")
             await message.channel.send(f"{ok} La playlist è stata eliminata")
             return
         except KeyError:
@@ -318,7 +320,7 @@ async def on_message(message):
     # visualizza la mia playlist dell'utente
     if message.content.lower().startswith("!playlist"):
         try:
-            play = lista_playlists[nome]
+            play = lista_playlist[nome]
             await message.channel.send(f"Ecco il link della playlist di {nome} {succo}")
             await message.channel.send(play)
             return
