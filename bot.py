@@ -323,8 +323,9 @@ async def on_message(message):
     # visualizza la mia playlist dell'utente
     if message.content.lower().startswith("!playlist"):
         try:
+            play = lista_playlists[nome]
             await message.channel.send(f"Ecco il link della playlist di {nome} {succo}")
-            await message.channel.send(lista_playlists[nome])
+            await message.channel.send(play)
             return
         except discord.errors.HTTPException:
             await message.channel.send(
