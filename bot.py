@@ -306,7 +306,7 @@ async def on_message(message):
     # rimuove la playlist dell'utente
     if message.content.lower().startswith("!rimuovi_playlist"):
         try:
-            play = lista_playlists[nome]
+            lista_playlists = lista_playlists.pop(nome, f"{nome} non in dict")
             await message.channel.send(f"{ok} La playlist è stata eliminata")
             return
         except KeyError:
