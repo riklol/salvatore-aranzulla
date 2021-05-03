@@ -301,6 +301,9 @@ async def on_message(message):
         if yt != "https://www.youtube.com":
             await message.channel.send(f"{errore} L'URL non è corretto")
             return
+        if nome in lista_playlist:
+            await message.channel.send(f"{ahh} {nome}! Hai già registrato una playlist! Per vederla digita **!playlist**. Se la vuoi rimuovere invece digita **!rimuovi_playlist**")
+            return
         lista_playlist[nome] = playlist
         await message.channel.send(f"{ok} La playlist è stata registrata")
         return
@@ -308,7 +311,7 @@ async def on_message(message):
     # rimuove la playlist dell'utente
     if message.content.lower().startswith("!rimuovi_playlist"):
         try:
-            lista_playlist = lista_playlist.pop(nome, f"{nome} non in dict")
+            del lista_playlist[nome]
             await message.channel.send(f"{ok} La playlist è stata eliminata")
             return
         except KeyError:
