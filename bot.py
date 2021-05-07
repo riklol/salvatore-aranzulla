@@ -1,7 +1,3 @@
-# bot.py
-# potrei ottimizzare tutto con delle funzioni e usando i prefissi x il bot ma al momento non ne ho voglia
-# in futuro probabilmente lo farò
-
 import datetime
 import os
 import random
@@ -19,6 +15,7 @@ client = discord.Client()
 
 TOKEN = os.environ.get("TOKEN")
 
+# list of games which will be the playing status of the bot
 lista_giochi_bot = [
     "Skyrim",
     "Hollow Knight",
@@ -38,10 +35,11 @@ schedule = []
 
 lista_playlist = {}
 
+# print the time the bot is been activated
 print("bot avviato alle: " + datetime.datetime.now().strftime("%H:%M:%S"))
 
 
-# cancella la schedule a mezzanotte
+# delete the schedule at midnight
 def mezzanotte(schedule):
     b = 0
     while b == 0:
@@ -51,12 +49,11 @@ def mezzanotte(schedule):
             pass
 
 
-# controlla che l'ora segnata = ora corrente
+# controls that current hour = signed hour
 def controllo(schedule):
     a = 0
     while a == 0:
-        # controlla per ogni prenotazione se l'ora corrente è = all'ora indicata
-        # in caso affermativo cancella l'ora con la prenotazione passata
+        # if current hour = signed hour delete the prenotation
         for pren in schedule:
             if datetime.datetime.now().strftime("%H:%M") in pren:
                 # elimina la prenotazione passata
@@ -65,7 +62,7 @@ def controllo(schedule):
                 pass
 
 
-# avvio le funzioni che controllano l'ora in due thread in background
+# functions that control the hour in 2 threads
 controllo_bg = threading.Thread(target=controllo, daemon=True, args=(schedule,))
 controllo_bg.start()
 
@@ -77,7 +74,7 @@ mezzanotte_bg.start()
 async def on_ready():
     print(colorama.Fore.GREEN + "\n{0.user} è online!".format(client))
     gioco_bot = random.choices(lista_giochi_bot)
-    # imposta lo stato del bot in modo tale che sembri stia giocando a qualcosa
+    # set the bot status
     await client.change_presence(activity=discord.Game(name=f"{gioco_bot[0]}"))
     print(colorama.Fore.WHITE + f"Il bot sta giocando a {gioco_bot[0]}\n")
 
@@ -130,7 +127,7 @@ async def on_message(message):
 
     # GOOGLE
 
-    # cerca su Google (pagina principale)
+    # search on Google (query)
     if message.content.lower().startswith("!googla "):
         query = message.content[8:]
         if "." in query:
@@ -145,7 +142,7 @@ async def on_message(message):
         )
         return
 
-    # cerca su Google (nome sito)
+    # search on Google (URL)
     if message.content.lower().startswith("!cerca "):
         query = message.content[7:]
         if "." not in query:
@@ -163,7 +160,7 @@ async def on_message(message):
 
     # HELP
 
-    # help comandi
+    # help commands
     if message.content.lower().startswith("!comandi"):
         await message.channel.send(
             f"> {love}\n> Ecco i comandi disponibili (le [ ] vanno omesse):\n> \n> **Bot**\n> - `!bot_pic` --> immagine profilo del bot\n> - `!bot_repo` --> visualizza repository GitHub del bot\n> \n> **Google**\n> - `!googla [query]` --> effettua ricerca su Google\n> - `!cerca [sito]` --> cerca il sito specifico su Google\n> \n> **Schedule**\n> - `!prenota [ora]` --> prenotati per un orario\n> - `!annulla_prn [ora]` --> annulla prenotazione\n> - `!schedule` --> visualizza elenco prenotazioni\n> \n> **Registrazione Playlist YouTube**\n> - `!registra_playlist [URL playlist]` --> registra la playlist\n> - `!rimuovi_playlist` --> rimuove la playlist\n> - `!playlist` --> visualizza l'url della playlist salvata\n"
@@ -173,13 +170,13 @@ async def on_message(message):
 
     # BOT
 
-    # mostra foto profilo
+    # view profile image
     if message.content.lower().startswith("!bot_pic"):
         await message.channel.send("Ecco la mia immagine profilo")
         await message.channel.send(file=discord.File("image.png"))
         print(f"{nome} ha visualizzato l'immagine profilo del bot alle {orario}\n")
 
-    # visualizza repository di GitHub
+    # view GitHub repo
     if message.content.lower().startswith("!bot_repo"):
         await message.channel.send(f"{me} Ecco il mio repository di GitHub")
         await message.channel.send("https://github.com/DanyB0/Shadow-Ruler")
@@ -187,7 +184,7 @@ async def on_message(message):
 
     # SCHEDULE
 
-    # prenota sessione online
+    # booking an online session
     if message.content.lower().startswith("!prenota "):
 
         ora = message.content[9:]
@@ -208,19 +205,19 @@ async def on_message(message):
             )
             return
 
-        # controlla che i minuti siano minori di 60
+        # controls that the mins are < 60
         if int(ora[-2:]) > 59:
             await message.channel.send(f"{ahh} Quanti minuti ci sono in 1 ora?")
             return
 
-        # controlla che l'ora sia stata scritta correttamente ([ORA]:[MINUTI])
+        # controls that the hour has been wrote correctly ([ORA]:[MINUTI])
         if len(ora[-4:]) != 4:
             await message.channel.send(
                 f"{errore} Il formato dell'ora non è corretto.\n(deve essere **[ore]:[minuti]**)"
             )
             return
 
-        # controlla che non ci siano orari duplicati
+        # controls that there arn't duplicated bookings
         if f"{nome}: {ora}\n" in schedule:
             await message.channel.send(f"{ahh} ti sei già segnato per quell'orario!")
             return
@@ -230,7 +227,7 @@ async def on_message(message):
             await message.channel.send(f"{ahh} {nome} Quest'orario è già passato!")
             return
 
-        # appende il nome e l'ora nel file
+        # appends the name and the hour in the file
         schedule.append(f"{nome}: {ora}\n")
         await message.channel.send(
             f"Ho registrato la prenotazione {ok}\nDigita **!schedule** per visualizzare l'elenco delle prenotazioni."
@@ -238,7 +235,7 @@ async def on_message(message):
         print(f"{nome} ha prenotato una sessione alle {ora}\n")
         return schedule
 
-    # rimuovi prenotazione
+    # remove booking
     if message.content.lower().startswith("!annulla_prn "):
 
         ora = message.content[13:]
@@ -257,17 +254,17 @@ async def on_message(message):
             )
             return
 
-        # controlla che l'orario che si vuole rimuovere esista
+        # controls that the hour that the user wants to eliminate exists
         if f"{nome}: {ora}\n" not in schedule:
             await message.channel.send(
                 f"{errore} {nome} non ti sei mai prenotato per quest'orario!"
             )
             return
 
-        # elimina la prenotazione
+        # remove the booking
         schedule.remove(f"{nome}: {ora}\n")
 
-        # riscrive nel file le altre prenotazioni
+        # rewrite in the file the other bookings
         for prenotazione in schedule:
             schedule.append(prenotazione)
         await message.channel.send(
@@ -276,7 +273,7 @@ async def on_message(message):
         print(f"{nome} ha annullato una sessione alle {ora}\n")
         return schedule
 
-    # mostra schedule
+    # view schedule
     if message.content.lower().startswith("!schedule"):
         if schedule == []:
             await message.channel.send(
@@ -294,7 +291,7 @@ async def on_message(message):
 
     # PLAYLISTS
 
-    # registra la playlist dell'utente
+    # register the user's playlist
     if message.content.lower().startswith("!registra_playlist "):
         playlist = message.content[19:]
         yt = message.content[19:42]
@@ -308,7 +305,7 @@ async def on_message(message):
         await message.channel.send(f"{ok} La playlist è stata registrata")
         return
 
-    # rimuove la playlist dell'utente
+    # remove user's playlist
     if message.content.lower().startswith("!rimuovi_playlist"):
         try:
             del lista_playlist[nome]
@@ -320,7 +317,7 @@ async def on_message(message):
             )
             return
 
-    # visualizza la mia playlist dell'utente
+    # view user's playlist
     if message.content.lower().startswith("!playlist"):
         try:
             play = lista_playlist[nome]
