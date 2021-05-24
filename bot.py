@@ -124,7 +124,7 @@ async def on_message(message):
     # help commands
     if message.content.lower().startswith("!comandi"):
         await message.channel.send(
-            f"> {love}\n> Ecco i comandi disponibili (le [ ] vanno omesse):\n> \n> **Bot**\n> - `!bot_pic` --> immagine profilo del bot\n> - `!bot_repo` --> visualizza repository GitHub del bot\n> \n> **Google**\n> - `!googla [query]` --> effettua ricerca su Google\n> - `!cerca [sito]` --> cerca il sito specifico su Google\n> \n> **Schedule**\n> - `!prenota [ora]` --> prenotati per un orario\n> - `!annulla_prn [ora]` --> annulla prenotazione\n> - `!schedule` --> visualizza elenco prenotazioni\n> \n> **Registrazione Playlist YouTube**\n> - `!registra_playlist [URL playlist]` --> registra la playlist\n> - `!rimuovi_playlist` --> rimuove la playlist\n> - `!playlist` --> visualizza l'url della playlist salvata\n"
+            f"> {love}\n> Ecco i comandi disponibili (le [ ] vanno omesse):\n> \n> **Bot**\n> - `!bot_pic` --> immagine profilo del bot\n> - `!bot_repo` --> visualizza repository GitHub del bot\n> \n> **Google**\n> - `!googla [query]` --> effettua ricerca su Google\n> - `!cerca [sito]` --> cerca il sito specifico su Google\n"
         )
         print(f"{nome} ha visualizzato la lista comandi alle {orario}\n")
         return
