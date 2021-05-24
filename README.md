@@ -4,7 +4,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 #
 [![cover-pic-bot-1.png](https://i.postimg.cc/yxQ9KXSV/cover-pic-bot-1.png)](https://postimg.cc/JHXtcXqg)
-#
+# Questa è la versione del bot hostata su heroku
 # Setup locale
 * ### Installare Python (se l'avete già installato potete passare al punto successivo):
    * #### [Clicca qui per installare Python](https://www.python.org)
