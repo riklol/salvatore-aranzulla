@@ -13,7 +13,7 @@
    * ### `pip install -r requirements.txt`
       [![Screenshot-32.png](https://i.postimg.cc/k5Y9mKts/Screenshot-32.png)](https://postimg.cc/qtKWctw6)
 * ### Create a .env file in the bot folder and write your bot token
-   ### [How to create a bot in Discord](https://discordpy.readthedocs.io/en/stable/discord.html)
+   ### [How to create a Discord bot](https://discordpy.readthedocs.io/en/stable/discord.html)
    [![Cattura.png](https://i.postimg.cc/SRYxq62v/Cattura.png)](https://postimg.cc/8fDSmrbR)
    
 # Bot commands
