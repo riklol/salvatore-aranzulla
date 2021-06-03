@@ -164,51 +164,51 @@ async def on_message(message):
         if r_p_s_b == "carta":
             if r_p_s_u == "carta":
                 await message.channel.send(
-                    f"{succo}\n{nome}: **{r_p_s_u}**\nBot: **{r_p_s_b}**\nEsito: **PAREGGIO**"
+                    f"> {succo}\n> {nome}: **{r_p_s_u}**\n> Bot: **{r_p_s_b}**\n> Esito: **PAREGGIO**"
                 )
                 print("Esito partita: PAREGGIO\n")
             if r_p_s_u == "forbice":
                 await message.channel.send(
-                    f"{succo}\n{nome}: **{r_p_s_u}**\nBot: **{r_p_s_b}**\nEsito: **{nome} VINCE!**"
+                    f"> {succo}\n> {nome}: **{r_p_s_u}**\n> Bot: **{r_p_s_b}**\n> Esito: **{nome} VINCE!**"
                 )
                 print(f"Esito partita: {nome} VINCE!\n")
             if r_p_s_u == "sasso":
                 await message.channel.send(
-                    f"{succo}\n{nome}: **{r_p_s_u}**\nBot: **{r_p_s_b}**\nEsito: **IL BOT VINCE!**"
+                    f"> {succo}\n> {nome}: **{r_p_s_u}**\n> Bot: **{r_p_s_b}**\n> Esito: **IL BOT VINCE!**"
                 )
                 print("Esito partita: IL BOT VINCE!\n")
 
         if r_p_s_b == "forbice":
             if r_p_s_u == "carta":
                 await message.channel.send(
-                    f"{succo}\n{nome}: **{r_p_s_u}**\nBot: **{r_p_s_b}**\nEsito: **IL BOT VINCE!**"
+                    f"> {succo}\n> {nome}: **{r_p_s_u}**\n> Bot: **{r_p_s_b}**\n> Esito: **IL BOT VINCE!**"
                 )
                 print("Esito partita: IL BOT VINCE!\n")
             if r_p_s_u == "forbice":
                 await message.channel.send(
-                    f"{succo}\n{nome}: **{r_p_s_u}**\nBot: **{r_p_s_b}**\nEsito: **PAREGGIO**"
+                    f"> {succo}\n> {nome}: **{r_p_s_u}**\n> Bot: **{r_p_s_b}**\n> Esito: **PAREGGIO**"
                 )
                 print("Esito partita: PAREGGIO\n")
             if r_p_s_u == "sasso":
                 await message.channel.send(
-                    f"{succo}\n{nome}: **{r_p_s_u}**\nBot: **{r_p_s_b}**\nEsito: **{nome} VINCE!**"
+                    f"> {succo}\n> {nome}: **{r_p_s_u}**\n> Bot: **{r_p_s_b}**\n> Esito: **{nome} VINCE!**"
                 )
                 print(f"Esito partita: {nome} VINCE!\n")
 
         if r_p_s_b == "sasso":
             if r_p_s_u == "carta":
                 await message.channel.send(
-                    f"{succo}\n {nome}: **{r_p_s_u}**\nBot: **{r_p_s_b}**\nEsito: **{nome} VINCE!**"
+                    f"> {succo}\n> {nome}: **{r_p_s_u}**\n> Bot: **{r_p_s_b}**\n> Esito: **{nome} VINCE!**"
                 )
                 print(f"Esito partita: {nome} VINCE!\n")
             if r_p_s_u == "forbice":
                 await message.channel.send(
-                    f"{succo}\n{nome}: **{r_p_s_u}**\nBot: **{r_p_s_b}**\nEsito: **IL BOT VINCE!**"
+                    f"> {succo}\n> {nome}: **{r_p_s_u}**\n> Bot: **{r_p_s_b}**\n> Esito: **IL BOT VINCE!**"
                 )
                 print("Esito partita: IL BOT VINCE!\n")
             if r_p_s_u == "sasso":
                 await message.channel.send(
-                    f"{succo}\n{nome}: **{r_p_s_u}**\nBot: **{r_p_s_b}**\nEsito: **PAREGGIO**"
+                    f"> {succo}\n> {nome}: **{r_p_s_u}**\n> Bot: **{r_p_s_b}**\n> Esito: **PAREGGIO**"
                 )
                 print("Esito partita: PAREGGIO\n")
         return
