@@ -17,6 +17,6 @@
 #
 # Visualizzare i comandi del bot in chat di Discord:
 ### `!comandi`
-[![Screenshot-58.png](https://i.postimg.cc/SNWZ1qT7/Screenshot-58.png)](https://postimg.cc/ppLYpNtp)
+[![Cattura.png](https://i.postimg.cc/tTPcj7Rz/Cattura.png)](https://postimg.cc/3481j8vy)
 
 #
