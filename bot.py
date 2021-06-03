@@ -59,6 +59,8 @@ async def on_message(message):
     me = client.get_emoji(837074855735066684)
     love = client.get_emoji(837074776928288779)
     succo = client.get_emoji(829011307750883369)
+    danyb0 = client.get_emoji(850099185993777179)
+    alesar = client.get_emoji(850099186003083304)
 
     # super easter egg
     numero_rand = random.randint(1, 1000)
@@ -164,60 +166,68 @@ async def on_message(message):
         if r_p_s_b == "carta":
             if r_p_s_u == "carta":
                 await message.channel.send(
-                    f"> {succo}\n> {nome}: **{r_p_s_u}**\n> Bot: **{r_p_s_b}**\n> Esito: **PAREGGIO**"
+                    f"{succo}\n{nome}: **{r_p_s_u}**\nBot: **{r_p_s_b}**\nEsito: **PAREGGIO**"
                 )
                 print("Esito partita: PAREGGIO\n")
             if r_p_s_u == "forbice":
                 await message.channel.send(
-                    f"> {succo}\n> {nome}: **{r_p_s_u}**\n> Bot: **{r_p_s_b}**\n> Esito: **{nome} VINCE!**"
+                    f"{succo}\n{nome}: **{r_p_s_u}**\nBot: **{r_p_s_b}**\nEsito: **{nome} VINCE!**"
                 )
                 print(f"Esito partita: {nome} VINCE!\n")
             if r_p_s_u == "sasso":
                 await message.channel.send(
-                    f"> {succo}\n> {nome}: **{r_p_s_u}**\n> Bot: **{r_p_s_b}**\n> Esito: **IL BOT VINCE!**"
+                    f"{succo}\n{nome}: **{r_p_s_u}**\nBot: **{r_p_s_b}**\nEsito: **IL BOT VINCE!**"
                 )
                 print("Esito partita: IL BOT VINCE!\n")
 
         if r_p_s_b == "forbice":
             if r_p_s_u == "carta":
                 await message.channel.send(
-                    f"> {succo}\n> {nome}: **{r_p_s_u}**\n> Bot: **{r_p_s_b}**\n> Esito: **IL BOT VINCE!**"
+                    f"{succo}\n{nome}: **{r_p_s_u}**\nBot: **{r_p_s_b}**\nEsito: **IL BOT VINCE!**"
                 )
                 print("Esito partita: IL BOT VINCE!\n")
             if r_p_s_u == "forbice":
                 await message.channel.send(
-                    f"> {succo}\n> {nome}: **{r_p_s_u}**\n> Bot: **{r_p_s_b}**\n> Esito: **PAREGGIO**"
+                    f"{succo}\n{nome}: **{r_p_s_u}**\nBot: **{r_p_s_b}**\nEsito: **PAREGGIO**"
                 )
                 print("Esito partita: PAREGGIO\n")
             if r_p_s_u == "sasso":
                 await message.channel.send(
-                    f"> {succo}\n> {nome}: **{r_p_s_u}**\n> Bot: **{r_p_s_b}**\n> Esito: **{nome} VINCE!**"
+                    f"{succo}\n{nome}: **{r_p_s_u}**\nBot: **{r_p_s_b}**\nEsito: **{nome} VINCE!**"
                 )
                 print(f"Esito partita: {nome} VINCE!\n")
 
         if r_p_s_b == "sasso":
             if r_p_s_u == "carta":
                 await message.channel.send(
-                    f"> {succo}\n> {nome}: **{r_p_s_u}**\n> Bot: **{r_p_s_b}**\n> Esito: **{nome} VINCE!**"
+                    f"{succo}\n {nome}: **{r_p_s_u}**\nBot: **{r_p_s_b}**\nEsito: **{nome} VINCE!**"
                 )
                 print(f"Esito partita: {nome} VINCE!\n")
             if r_p_s_u == "forbice":
                 await message.channel.send(
-                    f"> {succo}\n> {nome}: **{r_p_s_u}**\n> Bot: **{r_p_s_b}**\n> Esito: **IL BOT VINCE!**"
+                    f"{succo}\n{nome}: **{r_p_s_u}**\nBot: **{r_p_s_b}**\nEsito: **IL BOT VINCE!**"
                 )
                 print("Esito partita: IL BOT VINCE!\n")
             if r_p_s_u == "sasso":
                 await message.channel.send(
-                    f"> {succo}\n> {nome}: **{r_p_s_u}**\n> Bot: **{r_p_s_b}**\n> Esito: **PAREGGIO**"
+                    f"{succo}\n{nome}: **{r_p_s_u}**\nBot: **{r_p_s_b}**\nEsito: **PAREGGIO**"
                 )
                 print("Esito partita: PAREGGIO\n")
+        return
+
+    #CREDITS
+    # show credits
+    if message.content.lower().startswith("!credits"):
+        await message.channel.send(
+            f"> **Thanks to:**\n> DanyB0  {danyb0}\n> alesar03 {alesar}"
+        )
         return
 
     # HELP
     # help commands
     if message.content.lower().startswith("!comandi"):
         await message.channel.send(
-            f"> {succo}\n> Ecco i comandi disponibili (le [ ] vanno omesse):\n> \n> **Bot**\n> - `!bot_pic` --> immagine profilo del bot\n> - `!bot_repo` --> visualizza repository GitHub del bot\n> \n> **Google**\n> - `!googla [query]` --> effettua ricerca su Google\n> - `!cerca [sito]` --> cerca il sito specifico su Google\n> \n> **Giochi**\n> - `!flip [--hck]` --> testa o croce (--hck inverte l'estrazione)\n> - `!rps [carta/forbice/sasso]` --> giochi a carta, forbice, sasso vs il bot"
+            f"> {succo}\n> **Ecco i comandi disponibili (le [ ] vanno omesse)**:\n> \n> **Bot**\n> - `!bot_pic` --> immagine profilo del bot\n> - `!bot_repo` --> visualizza repository GitHub del bot\n> \n> **Google**\n> - `!googla [query]` --> effettua ricerca su Google\n> - `!cerca [sito]` --> cerca il sito specifico su Google\n> \n> **Giochi**\n> - `!flip [--hck]` --> testa o croce (--hck inverte l'estrazione)\n> - `!rps [carta/forbice/sasso]` --> giochi a carta, forbice, sasso vs il bot\n> \n> **Crediti**\n> - `!credits` --> mostra i riconoscimenti"
         )
         print(f"{nome} ha visualizzato la lista comandi alle {orario}\n")
         return
