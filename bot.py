@@ -1,7 +1,6 @@
 import datetime
 import os
 import random
-import threading
 
 import colorama
 import discord
@@ -31,6 +30,9 @@ lista_giochi_bot = [
     "Shadow of the Colossus",
 ]
 
+coin_flip = ["testa", "croce"]
+
+
 @client.event
 async def on_ready():
     print(colorama.Fore.GREEN + "\n{0.user} è online!".format(client))
@@ -42,8 +44,6 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-
-    global lista_playlist
 
     nome = message.author.name
 
@@ -72,7 +72,6 @@ async def on_message(message):
         print(colorama.Fore.WHITE + "")
 
     # RICKROLL
-
     # no rickroll
     if (
         "dQw4w9WgXcQ" in message.content
@@ -87,7 +86,6 @@ async def on_message(message):
         return
 
     # GOOGLE
-
     # search on Google (query)
     if message.content.lower().startswith("!googla "):
         query = message.content[8:]
@@ -119,18 +117,7 @@ async def on_message(message):
         )
         return
 
-    # HELP
-
-    # help commands
-    if message.content.lower().startswith("!comandi"):
-        await message.channel.send(
-            f"> {love}\n> Ecco i comandi disponibili (le [ ] vanno omesse):\n> \n> **Bot**\n> - `!bot_pic` --> immagine profilo del bot\n> - `!bot_repo` --> visualizza repository GitHub del bot\n> \n> **Google**\n> - `!googla [query]` --> effettua ricerca su Google\n> - `!cerca [sito]` --> cerca il sito specifico su Google\n"
-        )
-        print(f"{nome} ha visualizzato la lista comandi alle {orario}\n")
-        return
-
     # BOT
-
     # view profile image
     if message.content.lower().startswith("!bot_pic"):
         await message.channel.send("Ecco la mia immagine profilo")
@@ -143,5 +130,31 @@ async def on_message(message):
         await message.channel.send("https://github.com/DanyB0/Shadow-Ruler")
         print(f"{nome} ha visualizzato il repo di GitHub del bot alle {orario}\n")
 
-        
+    # GAMES
+    # coin flip
+    if message.content.lower().startswith("!flip"):
+        side = random.choices(coin_flip)[0]
+        print(
+            f"Esito: {side} (se il messaggio dopo è diverso è stata usata l'opzione --hck)"
+        )
+        # if the option --hck is used switch the results
+        if message.content.lower()[6:] == "--hck":
+            if side == "testa":
+                side = "croce"
+            else:
+                side = "testa"
+        await message.channel.send(f"{succo} **{side}**")
+        print(f"{nome} ha lanciato una moneta con esito {side} alle {orario}\n")
+        return
+
+    # HELP
+    # help commands
+    if message.content.lower().startswith("!comandi"):
+        await message.channel.send(
+            f"> {love}\n> Ecco i comandi disponibili (le [ ] vanno omesse):\n> \n> **Bot**\n> - `!bot_pic` --> immagine profilo del bot\n> - `!bot_repo` --> visualizza repository GitHub del bot\n> \n> **Google**\n> - `!googla [query]` --> effettua ricerca su Google\n> - `!cerca [sito]` --> cerca il sito specifico su Google\n"
+        )
+        print(f"{nome} ha visualizzato la lista comandi alle {orario}\n")
+        return
+
+
 client.run(TOKEN)
