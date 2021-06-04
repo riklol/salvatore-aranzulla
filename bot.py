@@ -1,9 +1,11 @@
 import datetime
+import json
 import os
 import random
 
 import colorama
 import discord
+import requests
 from dotenv import load_dotenv
 
 colorama.init()
@@ -63,7 +65,7 @@ async def on_message(message):
     alesar = client.get_emoji(850099186003083304)
 
     # super easter egg
-    numero_rand = random.randint(1, 100000)
+    numero_rand = random.randint(1, 1000)
     if numero_rand == 13:
         await message.channel.send(
             f"{party} Complimenti {nome}! Questo è un messaggio casuale con una probabilità dello 0,001% {party}!",
@@ -215,7 +217,15 @@ async def on_message(message):
                 print("Esito partita: PAREGGIO\n")
         return
 
-    #CREDITS
+    # display neko image
+    if message.content.lower().startswith("!neko"):
+        # take the neko image
+        url_neko_pic = requests.get("https://nekos.life/api/v2/img/neko").json()["url"]
+        await message.channel.send(f"{url_neko_pic}")
+        print(f"{nome} ha visualizzato una neko alle {orario}")
+        return
+
+    # CREDITS
     # show credits
     if message.content.lower().startswith("!credits"):
         await message.channel.send(
@@ -227,7 +237,7 @@ async def on_message(message):
     # help commands
     if message.content.lower().startswith("!comandi"):
         await message.channel.send(
-            f"> {succo}\n> **Ecco i comandi disponibili (le [ ] vanno omesse)**:\n> \n> **Bot**\n> - `!bot_pic` --> immagine profilo del bot\n> - `!bot_repo` --> visualizza repository GitHub del bot\n> \n> **Google**\n> - `!googla [query]` --> effettua ricerca su Google\n> - `!cerca [sito]` --> cerca il sito specifico su Google\n> \n> **Giochi**\n> - `!flip [--hck]` --> testa o croce (--hck inverte l'estrazione)\n> - `!rps [carta/forbice/sasso]` --> giochi a carta, forbice, sasso vs il bot\n> \n> **Crediti**\n> - `!credits` --> mostra i riconoscimenti"
+            f"> {succo}\n> **Ecco i comandi disponibili (le [ ] vanno omesse)**:\n> \n> **Bot**\n> - `!bot_pic` --> immagine profilo del bot\n> - `!bot_repo` --> visualizza repository GitHub del bot\n> \n> **Google**\n> - `!googla [query]` --> effettua ricerca su Google\n> - `!cerca [sito]` --> cerca il sito specifico su Google\n> \n> **Giochi**\n> - `!flip [--hck]` --> testa o croce (--hck inverte l'estrazione)\n> - `!rps [carta/forbice/sasso]` --> giochi a carta, forbice, sasso vs il bot\n> - `!neko` --> neko image ;)\n> \n> **Crediti**\n> - `!credits` --> mostra i riconoscimenti"
         )
         print(f"{nome} ha visualizzato la lista comandi alle {orario}\n")
         return
