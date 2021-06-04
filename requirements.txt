@@ -3,3 +3,4 @@ DateTime==4.3
 discord==1.0.1
 discord.py==1.7.1
 python-dotenv==0.17.0
+requests
