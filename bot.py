@@ -36,6 +36,10 @@ coin_flip = ["testa", "croce"]
 
 rock_paper = ["carta", "forbice", "sasso"]
 
+# get the periodic table as json
+table_req = requests.get("https://neelpatel05.pythonanywhere.com/").text
+table = json.loads(table_req)
+
 
 @client.event
 async def on_ready():
@@ -63,6 +67,8 @@ async def on_message(message):
     succo = client.get_emoji(829011307750883369)
     danyb0 = client.get_emoji(850099185993777179)
     alesar = client.get_emoji(850099186003083304)
+
+    message_list = []
 
     # super easter egg
     numero_rand = random.randint(1, 1000)
@@ -217,12 +223,37 @@ async def on_message(message):
                 print("Esito partita: PAREGGIO\n")
         return
 
-    # display neko image
+    # UTILITY
+    # (display neko image)
     if message.content.lower().startswith("!neko"):
         # take the neko image
         url_neko_pic = requests.get("https://nekos.life/api/v2/img/neko").json()["url"]
         await message.channel.send(f"{url_neko_pic}")
-        print(f"{nome} ha visualizzato una neko alle {orario}")
+        print(f"{nome} ha visualizzato una neko alle {orario}\n")
+        return
+
+    # periodic table
+    if message.content.lower().startswith("!elem"):
+        symbol = message.content[6:8].capitalize()
+        # replace the white space with anything
+        if " " in symbol:
+            symbol = symbol.replace(" ", "")
+        # search trough the table the element
+        for element_dict in table:
+            if symbol in element_dict.values():
+                # display the caratheristics
+                for attribute in element_dict:
+                    message_list.append(
+                        f"**{attribute}**: *{element_dict.get(attribute)}*\n"
+                    )
+            # format the message
+            string = ("> ").join(message_list)
+        # error messsage
+        if message_list == []:
+            string = f"{errore} Non ci sono elementi con quel simbolo!"
+        # send the message
+        await message.channel.send(f"> {string}")
+        print(f"{nome} ha cercato l'elemento {symbol} alle {orario}\n")
         return
 
     # CREDITS
@@ -237,7 +268,7 @@ async def on_message(message):
     # help commands
     if message.content.lower().startswith("!comandi"):
         await message.channel.send(
-            f"> {succo}\n> **Ecco i comandi disponibili (le [ ] vanno omesse)**:\n> \n> **Bot**\n> - `!bot_pic` --> immagine profilo del bot\n> - `!bot_repo` --> visualizza repository GitHub del bot\n> \n> **Google**\n> - `!googla [query]` --> effettua ricerca su Google\n> - `!cerca [sito]` --> cerca il sito specifico su Google\n> \n> **Giochi**\n> - `!flip [--hck]` --> testa o croce (--hck inverte l'estrazione)\n> - `!rps [carta/forbice/sasso]` --> giochi a carta, forbice, sasso vs il bot\n> - `!neko` --> neko image ;)\n> \n> **Crediti**\n> - `!credits` --> mostra i riconoscimenti"
+            f"> {succo}\n> **Ecco i comandi disponibili (le [ ] vanno omesse)**:\n> \n> **Bot**\n> - `!bot_pic` --> immagine profilo del bot\n> - `!bot_repo` --> visualizza repository GitHub del bot\n> \n> **Google**\n> - `!googla [query]` --> effettua ricerca su Google\n> - `!cerca [sito]` --> cerca il sito specifico su Google\n> \n> **Giochi**\n> - `!flip [--hck]` --> testa o croce (--hck inverte l'estrazione)\n> - `!rps [carta/forbice/sasso]` --> giochi a carta, forbice, sasso vs il bot\n> \n> **UTILITY**\n> - `!neko` --> neko image ;)\n> - `!elem [simbolo]` --> mostra elemento chimico\n> \n> **Crediti**\n> - `!credits` --> mostra i riconoscimenti"
         )
         print(f"{nome} ha visualizzato la lista comandi alle {orario}\n")
         return
