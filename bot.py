@@ -268,7 +268,7 @@ async def on_message(message):
     # help commands
     if message.content.lower().startswith("!comandi"):
         await message.channel.send(
-            f"> {succo}\n> **Ecco i comandi disponibili (le [ ] vanno omesse)**:\n> \n> **Bot**\n> - `!bot_pic` --> immagine profilo del bot\n> - `!bot_repo` --> visualizza repository GitHub del bot\n> \n> **Google**\n> - `!googla [query]` --> effettua ricerca su Google\n> - `!cerca [sito]` --> cerca il sito specifico su Google\n> \n> **Giochi**\n> - `!flip [--hck]` --> testa o croce (--hck inverte l'estrazione)\n> - `!rps [carta/forbice/sasso]` --> giochi a carta, forbice, sasso vs il bot\n> \n> **UTILITY**\n> - `!neko` --> neko image ;)\n> - `!elem [simbolo]` --> mostra elemento chimico\n> \n> **Crediti**\n> - `!credits` --> mostra i riconoscimenti"
+            f"> {succo}\n> **Ecco i comandi disponibili (le [ ] vanno omesse)**:\n> \n> **Bot**\n> - `!bot_pic` --> immagine profilo del bot\n> - `!bot_repo` --> visualizza repository GitHub del bot\n> \n> **Google**\n> - `!googla [query]` --> effettua ricerca su Google\n> - `!cerca [sito]` --> cerca il sito specifico su Google\n> \n> **Giochi**\n> - `!flip [--hck]` --> testa o croce (--hck inverte l'estrazione)\n> - `!rps [carta/forbice/sasso]` --> giochi a carta, forbice, sasso vs il bot\n> \n> **Utility**\n> - `!neko` --> neko image ;)\n> - `!elem [simbolo]` --> mostra elemento chimico\n> \n> **Crediti**\n> - `!credits` --> mostra i riconoscimenti"
         )
         print(f"{nome} ha visualizzato la lista comandi alle {orario}\n")
         return
