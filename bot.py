@@ -71,10 +71,10 @@ async def on_message(message):
     message_list = []
 
     # super easter egg
-    numero_rand = random.randint(1, 10000)
+    numero_rand = random.randint(1, 1000)
     if numero_rand == 13:
         await message.channel.send(
-            f"{party} Complimenti {nome}! Questo è un messaggio casuale con una probabilità dello 0,01% {party}!",
+            f"{party} Complimenti {nome}! Questo è un messaggio casuale con una probabilità dello 0,001% {party}!",
             tts=True,
         )
         print(
@@ -232,6 +232,47 @@ async def on_message(message):
         print(f"{nome} ha visualizzato una neko alle {orario}\n")
         return
 
+    # (display image from rule34)
+    if message.content.lower().startswith("!r34"):
+        img_list = []
+        # take the tag image
+        tag = message.content.lower()[4:]
+        teg = tag.replace(" ", "")
+        if not tag:
+            try:
+                # take all the images with the given tag
+                r = requests.get(
+                f"https://rule34.xxx/index.php?page=dapi&s=post&q=index&json=1"
+                ).json()
+            except json.decoder.JSONDecodeError:
+                await message.channel.send(f"{errore} Il tag non esiste!")
+                return
+            # append the links to the images int the list
+            for elem in r:
+                img_list.append(elem["file_url"])
+            # casual number
+            n = random.randint(0, len(r))
+            await message.channel.send(f"{img_list[n]}")
+            print(f"{nome} ha visualizzato un'immagine da r34 con tag '{tag}' alle {orario}\n")
+            return
+        # if the user specify a tag
+        try:
+            # take all the images with the given tag
+            r = requests.get(
+            f"https://rule34.xxx/index.php?page=dapi&s=post&q=index&tags={tag}&json=1"
+            ).json()
+        except json.decoder.JSONDecodeError:
+            await message.channel.send(f"{errore} Il tag non esiste!")
+            return
+        # append the links to the images int the list
+        for elem in r:
+            img_list.append(elem["file_url"])
+        # casual number
+        n = random.randint(0, len(r))
+        await message.channel.send(f"{img_list[n]}")
+        print(f"{nome} ha visualizzato un'immagine da r34 con tag '{tag}' alle {orario}\n")
+        return
+
     # periodic table
     if message.content.lower().startswith("!elem"):
         symbol = message.content[6:8].capitalize()
@@ -268,7 +309,7 @@ async def on_message(message):
     # help commands
     if message.content.lower().startswith("!comandi"):
         await message.channel.send(
-            f"> {succo}\n> **Ecco i comandi disponibili (le [ ] vanno omesse)**:\n> \n> **Bot**\n> - `!bot_pic` --> immagine profilo del bot\n> - `!bot_repo` --> visualizza repository GitHub del bot\n> \n> **Google**\n> - `!googla [query]` --> effettua ricerca su Google\n> - `!cerca [sito]` --> cerca il sito specifico su Google\n> \n> **Giochi**\n> - `!flip [--hck]` --> testa o croce (--hck inverte l'estrazione)\n> - `!rps [carta/forbice/sasso]` --> giochi a carta, forbice, sasso vs il bot\n> \n> **Utility**\n> - `!neko` --> neko image ;)\n> - `!elem [simbolo]` --> mostra elemento chimico\n> \n> **Crediti**\n> - `!credits` --> mostra i riconoscimenti"
+            f"> {succo}\n> **Ecco i comandi disponibili (le [ ] vanno omesse)**:\n> \n> **Bot**\n> - `!bot_pic` --> immagine profilo del bot\n> - `!bot_repo` --> visualizza repository GitHub del bot\n> \n> **Google**\n> - `!googla [query]` --> effettua ricerca su Google\n> - `!cerca [sito]` --> cerca il sito specifico su Google\n> \n> **Giochi**\n> - `!flip [--hck]` --> testa o croce (--hck inverte l'estrazione)\n> - `!rps [carta/forbice/sasso]` --> giochi a carta, forbice, sasso vs il bot\n> \n> **UTILITY**\n> - `!neko` --> neko image ;)\n> - `!elem [simbolo]` --> mostra elemento chimico\n> - feature nascosta (34)\n> \n> **Crediti**\n> - `!credits` --> mostra i riconoscimenti"
         )
         print(f"{nome} ha visualizzato la lista comandi alle {orario}\n")
         return
