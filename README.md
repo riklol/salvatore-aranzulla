@@ -18,6 +18,6 @@
    
 # Bot commands
 ### `!comandi`
-[![Cattura.png](https://i.postimg.cc/xTrqP7bk/Cattura.png)](https://postimg.cc/0rf8kVnx)
+[![Cattura.png](https://i.postimg.cc/vB1yJs04/Cattura.png)](https://postimg.cc/TLXBbZMx)
 
 #
