@@ -37,8 +37,8 @@ coin_flip = ["testa", "croce"]
 rock_paper = ["carta", "forbice", "sasso"]
 
 # get the periodic table as json
-table_req = requests.get("https://neelpatel05.pythonanywhere.com/").text
-table = json.loads(table_req)
+#table_req = requests.get("https://neelpatel05.pythonanywhere.com/").text
+#table = json.loads(table_req)
 
 
 @client.event
@@ -273,29 +273,29 @@ async def on_message(message):
         print(f"{nome} ha visualizzato un'immagine da r34 con tag '{tag}' alle {orario}\n")
         return
 
-    # periodic table
-    if message.content.lower().startswith("!elem"):
-        symbol = message.content[6:8].capitalize()
-        # replace the white space with anything
-        if " " in symbol:
-            symbol = symbol.replace(" ", "")
-        # search trough the table the element
-        for element_dict in table:
-            if symbol in element_dict.values():
-                # display the caratheristics
-                for attribute in element_dict:
-                    message_list.append(
-                        f"**{attribute}**: *{element_dict.get(attribute)}*\n"
-                    )
-            # format the message
-            string = ("> ").join(message_list)
-        # error messsage
-        if message_list == []:
-            string = f"{errore} Non ci sono elementi con quel simbolo!"
-        # send the message
-        await message.channel.send(f"> {string}")
-        print(f"{nome} ha cercato l'elemento {symbol} alle {orario}\n")
-        return
+    # # periodic table
+    # if message.content.lower().startswith("!elem"):
+    #     symbol = message.content[6:8].capitalize()
+    #     # replace the white space with anything
+    #     if " " in symbol:
+    #         symbol = symbol.replace(" ", "")
+    #     # search trough the table the element
+    #     for element_dict in table:
+    #         if symbol in element_dict.values():
+    #             # display the caratheristics
+    #             for attribute in element_dict:
+    #                 message_list.append(
+    #                     f"**{attribute}**: *{element_dict.get(attribute)}*\n"
+    #                 )
+    #         # format the message
+    #         string = ("> ").join(message_list)
+    #     # error messsage
+    #     if message_list == []:
+    #         string = f"{errore} Non ci sono elementi con quel simbolo!"
+    #     # send the message
+    #     await message.channel.send(f"> {string}")
+    #     print(f"{nome} ha cercato l'elemento {symbol} alle {orario}\n")
+    #     return
 
     # CREDITS
     # show credits
