@@ -37,8 +37,8 @@ coin_flip = ["testa", "croce"]
 rock_paper = ["carta", "forbice", "sasso"]
 
 # get the periodic table as json
-#table_req = requests.get("https://neelpatel05.pythonanywhere.com/").text
-#table = json.loads(table_req)
+# table_req = requests.get("https://neelpatel05.pythonanywhere.com/").text
+# table = json.loads(table_req)
 
 
 @client.event
@@ -104,7 +104,7 @@ async def on_message(message):
     # GOOGLE
     # search on Google (query)
     if msg.lower().startswith("!googla "):
-        query =msg[8:]
+        query = msg[8:]
         if "." in query:
             await message.channel.send(
                 f"{errore} Forse il comando che vuoi usare è **!cerca**"
@@ -246,7 +246,7 @@ async def on_message(message):
             try:
                 # take all the images with the given tag
                 r = requests.get(
-                f"https://rule34.xxx/index.php?page=dapi&s=post&q=index&json=1"
+                    f"https://rule34.xxx/index.php?page=dapi&s=post&q=index&json=1"
                 ).json()
             except json.decoder.JSONDecodeError:
                 await message.channel.send(f"{errore} Il tag non esiste!")
@@ -257,13 +257,15 @@ async def on_message(message):
             # casual number
             n = random.randint(0, len(r))
             await message.channel.send(f"{img_list[n]}")
-            print(f"{nome} ha visualizzato un'immagine da r34 con tag '{tag}' alle {orario}\n")
+            print(
+                f"{nome} ha visualizzato un'immagine da r34 con tag '{tag}' alle {orario}\n"
+            )
             return
         # if the user specify a tag
         try:
             # take all the images with the given tag
             r = requests.get(
-            f"https://rule34.xxx/index.php?page=dapi&s=post&q=index&tags={tag}&json=1"
+                f"https://rule34.xxx/index.php?page=dapi&s=post&q=index&tags={tag}&json=1"
             ).json()
         except json.decoder.JSONDecodeError:
             await message.channel.send(f"{errore} Il tag non esiste!")
@@ -274,7 +276,9 @@ async def on_message(message):
         # casual number
         n = random.randint(0, len(r))
         await message.channel.send(f"{img_list[n]}")
-        print(f"{nome} ha visualizzato un'immagine da r34 con tag '{tag}' alle {orario}\n")
+        print(
+            f"{nome} ha visualizzato un'immagine da r34 con tag '{tag}' alle {orario}\n"
+        )
         return
 
     # # periodic table
@@ -310,7 +314,7 @@ async def on_message(message):
         return
 
     # HELP
-    # help 
+    # help
     if msg.lower().startswith("!comandi"):
         await message.channel.send(
             f"> {succo}\n> **Ecco i comandi disponibili (le [ ] vanno omesse)**:\n> \n> **Bot**\n> - `!bot_repo` --> visualizza repository GitHub del bot\n> \n> **Google**\n> - `!googla [query]` --> effettua ricerca su Google\n> - `!cerca [sito]` --> cerca il sito specifico su Google\n> \n> **Giochi**\n> - `!flip [--hck]` --> testa o croce (--hck inverte l'estrazione)\n> - `!rps [carta/forbice/sasso]` --> giochi a carta, forbice, sasso vs il bot\n> \n> **UTILITY**\n> - `!neko` --> neko image ;)\n> - feature nascosta (34)\n> \n> **Crediti**\n> - `!credits` --> mostra i riconoscimenti"
