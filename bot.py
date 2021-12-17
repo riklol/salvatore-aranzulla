@@ -55,6 +55,10 @@ async def on_message(message):
 
     nome = message.author.name
 
+    msg = message.content
+    if " " in msg:
+        msg = msg.replace(" ", "")
+
     orario = datetime.datetime.now().strftime("%H:%M:%S")
 
     # emojis
@@ -86,10 +90,10 @@ async def on_message(message):
     # RICKROLL
     # no rickroll
     if (
-        "dQw4w9WgXcQ" in message.content
-        or "oHg5SJYRHA0" in message.content
-        or "j5a0jTc9S10" in message.content
-        or "never gonna give you up" in message.content.lower()
+        "dQw4w9WgXcQ" in msg
+        or "oHg5SJYRHA0" in msg
+        or "j5a0jTc9S10" in msg
+        or "never gonna give you up" in msg.lower()
     ):
         await message.delete()
         await message.channel.send("Non mi RickRollerai hahaha")
@@ -99,8 +103,8 @@ async def on_message(message):
 
     # GOOGLE
     # search on Google (query)
-    if message.content.lower().startswith("!googla "):
-        query = message.content[8:]
+    if msg.lower().startswith("!googla "):
+        query =msg[8:]
         if "." in query:
             await message.channel.send(
                 f"{errore} Forse il comando che vuoi usare è **!cerca**"
@@ -114,8 +118,8 @@ async def on_message(message):
         return
 
     # search on Google (URL)
-    if message.content.lower().startswith("!cerca "):
-        query = message.content[7:]
+    if msg.lower().startswith("!cerca "):
+        query = msg[7:]
         if "." not in query:
             await message.channel.send(
                 f"{errore} Forse il comando che vuoi usare è **!googla**"
@@ -131,26 +135,26 @@ async def on_message(message):
 
     # BOT
     # view profile image
-    if message.content.lower().startswith("!bot_pic"):
+    if msg.lower().startswith("!bot_pic"):
         await message.channel.send("Ecco la mia immagine profilo")
         await message.channel.send(file=discord.File("image.png"))
         print(f"{nome} ha visualizzato l'immagine profilo del bot alle {orario}\n")
 
     # view GitHub repo
-    if message.content.lower().startswith("!bot_repo"):
+    if msg.lower().startswith("!bot_repo"):
         await message.channel.send(f"{me} Ecco il mio repository di GitHub")
         await message.channel.send("https://github.com/DanyB0/Shadow-Ruler")
         print(f"{nome} ha visualizzato il repo di GitHub del bot alle {orario}\n")
 
     # GAMES
     # coin flip
-    if message.content.lower().startswith("!flip"):
+    if msg.lower().startswith("!flip"):
         side = random.choices(coin_flip)[0]
         print(
             f"Esito: {side} (se il messaggio dopo è diverso è stata usata l'opzione --hck)"
         )
         # if the option --hck is used switch the results
-        if message.content.lower()[6:] == "--hck":
+        if msg.lower()[6:] == "--hck":
             if side == "testa":
                 side = "croce"
             else:
@@ -160,9 +164,9 @@ async def on_message(message):
         return
 
     # rock paper scissors
-    if message.content.lower().startswith("!rps"):
+    if msg.lower().startswith("!rps"):
         r_p_s_b = random.choices(rock_paper)[0]
-        r_p_s_u = message.content.lower()[5:]
+        r_p_s_u = msg.lower()[5:]
         if r_p_s_u not in rock_paper:
             await message.channel.send(
                 f"{errore} Devi scegliere un'opzione tra **carta, forbice, sasso**"
@@ -225,7 +229,7 @@ async def on_message(message):
 
     # UTILITY
     # (display neko image)
-    if message.content.lower().startswith("!neko"):
+    if msg.lower().startswith("!neko"):
         # take the neko image
         url_neko_pic = requests.get("https://nekos.life/api/v2/img/neko").json()["url"]
         await message.channel.send(f"{url_neko_pic}")
@@ -233,10 +237,10 @@ async def on_message(message):
         return
 
     # (display image from rule34)
-    if message.content.lower().startswith("!r34"):
+    if msg.lower().startswith("!r34"):
         img_list = []
         # take the tag image
-        tag = message.content.lower()[4:]
+        tag = msg.lower()[4:]
         teg = tag.replace(" ", "")
         if not tag:
             try:
@@ -274,8 +278,8 @@ async def on_message(message):
         return
 
     # # periodic table
-    # if message.content.lower().startswith("!elem"):
-    #     symbol = message.content[6:8].capitalize()
+    # if msg.lower().startswith("!elem"):
+    #     symbol = msg[6:8].capitalize()
     #     # replace the white space with anything
     #     if " " in symbol:
     #         symbol = symbol.replace(" ", "")
@@ -299,17 +303,17 @@ async def on_message(message):
 
     # CREDITS
     # show credits
-    if message.content.lower().startswith("!credits"):
+    if msg.lower().startswith("!credits"):
         await message.channel.send(
             f"> **Thanks to:**\n> DanyB0  {danyb0}\n> alesar03 {alesar}"
         )
         return
 
     # HELP
-    # help commands
-    if message.content.lower().startswith("!comandi"):
+    # help 
+    if msg.lower().startswith("!comandi"):
         await message.channel.send(
-            f"> {succo}\n> **Ecco i comandi disponibili (le [ ] vanno omesse)**:\n> \n> **Bot**\n> - `!bot_pic` --> immagine profilo del bot\n> - `!bot_repo` --> visualizza repository GitHub del bot\n> \n> **Google**\n> - `!googla [query]` --> effettua ricerca su Google\n> - `!cerca [sito]` --> cerca il sito specifico su Google\n> \n> **Giochi**\n> - `!flip [--hck]` --> testa o croce (--hck inverte l'estrazione)\n> - `!rps [carta/forbice/sasso]` --> giochi a carta, forbice, sasso vs il bot\n> \n> **UTILITY**\n> - `!neko` --> neko image ;)\n> - `!elem [simbolo]` --> mostra elemento chimico\n> - feature nascosta (34)\n> \n> **Crediti**\n> - `!credits` --> mostra i riconoscimenti"
+            f"> {succo}\n> **Ecco i comandi disponibili (le [ ] vanno omesse)**:\n> \n> **Bot**\n> - `!bot_repo` --> visualizza repository GitHub del bot\n> \n> **Google**\n> - `!googla [query]` --> effettua ricerca su Google\n> - `!cerca [sito]` --> cerca il sito specifico su Google\n> \n> **Giochi**\n> - `!flip [--hck]` --> testa o croce (--hck inverte l'estrazione)\n> - `!rps [carta/forbice/sasso]` --> giochi a carta, forbice, sasso vs il bot\n> \n> **UTILITY**\n> - `!neko` --> neko image ;)\n> - feature nascosta (34)\n> \n> **Crediti**\n> - `!credits` --> mostra i riconoscimenti"
         )
         print(f"{nome} ha visualizzato la lista comandi alle {orario}\n")
         return
