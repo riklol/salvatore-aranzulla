@@ -75,10 +75,10 @@ async def on_message(message):
     message_list = []
 
     # super easter egg
-    numero_rand = random.randint(1, 1000)
+    numero_rand = random.randint(1, 10000)
     if numero_rand == 13:
         await message.channel.send(
-            f"{party} Complimenti {nome}! Questo è un messaggio casuale con una probabilità dello 0,001% {party}!",
+            f"{party} Complimenti {nome}! Questo è un messaggio casuale con una probabilità dello 0,01% {party}!",
             tts=True,
         )
         print(
