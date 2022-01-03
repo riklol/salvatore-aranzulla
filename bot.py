@@ -166,7 +166,8 @@ async def on_message(message):
     # rock paper scissors
     if msg.lower().startswith("!rps"):
         r_p_s_b = random.choices(rock_paper)[0]
-        r_p_s_u = msg.lower()[5:]
+        r_p_s_u = msg.lower()[4:]
+        print(r_p_s_u)
         if r_p_s_u not in rock_paper:
             await message.channel.send(
                 f"{errore} Devi scegliere un'opzione tra **carta, forbice, sasso**"
