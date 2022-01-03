@@ -213,7 +213,7 @@ async def on_message(message):
         if r_p_s_b == "sasso":
             if r_p_s_u == "carta":
                 await message.channel.send(
-                    f"{succo}\n {nome}: **{r_p_s_u}**\nBot: **{r_p_s_b}**\nEsito: **{nome} VINCE!**"
+                    f"{succo}\n{nome}: **{r_p_s_u}**\nBot: **{r_p_s_b}**\nEsito: **{nome} VINCE!**"
                 )
                 print(f"Esito partita: {nome} VINCE!\n")
             if r_p_s_u == "forbice":
