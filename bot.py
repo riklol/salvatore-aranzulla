@@ -155,23 +155,23 @@ async def on_message(message):
             argument = argument.replace(" ", "")
         if argument == "--notts" or argument == "-notts":
             await message.channel.send(
-                f"> In the black night\n \
-                > when there's no light\n \
-                > he'll raise from his coffin\n \
-                > asking you:\n \
-                > 'do you want some coffe?'\n \
-                >                     **Shadow Ruler**"
+                "> In the black night\n \
+                 > when there's no light\n \
+                 > he'll raise from his coffin\n \
+                 > asking you:\n \
+                 > 'do you want some coffe?'\n \
+                 >                     **Shadow Ruler**"
             )
             print(f"{nome} ha visualizzato la poesia del bot alle {orario}\n")
             return
         else:
             await message.channel.send(
                 "> In the black night\n \
-                > when there's no light\n \
-                > he'll raise from his coffin\n \
-                > asking you:\n \
-                > 'do you want some coffe?'\n \
-                >                     **Shadow Ruler**", tts=True
+                 > when there's no light\n \
+                 > he'll raise from his coffin\n \
+                 > asking you:\n \
+                 > 'do you want some coffe?'\n \
+                 >                     **Shadow Ruler**", tts=True
             )
             print(f"{nome} ha ascoltato il bot recitare la poesia alle {orario}\n")
             return
