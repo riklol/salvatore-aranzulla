@@ -166,7 +166,7 @@ async def on_message(message):
             return
         else:
             await message.channel.send(
-                f"> In the black night\n \
+                "> In the black night\n \
                 > when there's no light\n \
                 > he'll raise from his coffin\n \
                 > asking you:\n \
