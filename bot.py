@@ -146,6 +146,36 @@ async def on_message(message):
         await message.channel.send("https://github.com/DanyB0/Shadow-Ruler")
         print(f"{nome} ha visualizzato il repo di GitHub del bot alle {orario}\n")
 
+    # POETRY
+    # A completely useless feature
+    if msg.lower().startswith("!poetry"):
+        argument = msg[7:].lower()
+        print(argument)
+        if " " in argument:
+            argument = argument.replace(" ", "")
+        if argument == "--notts" or argument == "-notts":
+            await message.channel.send(
+                f"> In the black night\n \
+                > when there's no light\n \
+                > he'll raise from his coffin\n \
+                > asking you:\n \
+                > 'do you want some coffe?'\n \
+                >                     **Shadow Ruler**"
+            )
+            print(f"{nome} ha visualizzato la poesia del bot alle {orario}\n")
+            return
+        else:
+            await message.channel.send(
+                f"> In the black night\n \
+                > when there's no light\n \
+                > he'll raise from his coffin\n \
+                > asking you:\n \
+                > 'do you want some coffe?'\n \
+                >                     **Shadow Ruler**", tts=True
+            )
+            print(f"{nome} ha ascoltato il bot recitare la poesia alle {orario}\n")
+            return
+
     # GAMES
     # coin flip
     if msg.lower().startswith("!flip"):
@@ -318,7 +348,7 @@ async def on_message(message):
     # help
     if msg.lower().startswith("!comandi"):
         await message.channel.send(
-            f"> {succo}\n> **Ecco i comandi disponibili (le [ ] vanno omesse)**:\n> \n> **Bot**\n> - `!bot_repo` --> repository GitHub del bot\n> - `!bot_pic` --> immagine profilo del bot\n> \n> **Google**\n> - `!googla [query]` --> effettua ricerca su Google\n> - `!cerca [sito]` --> cerca il sito specifico su Google\n> \n> **Giochi**\n> - `!flip [--hck]` --> testa o croce (--hck inverte l'estrazione)\n> - `!rps [carta/forbice/sasso]` --> giochi a carta, forbice, sasso vs il bot\n> \n> **Utility**\n> - `!neko` --> neko image ;)\n> - feature nascosta (34)\n> \n> **Crediti**\n> - `!credits` --> mostra i riconoscimenti"
+            f"> {succo}\n> **Ecco i comandi disponibili (le [ ] vanno omesse)**:\n> \n> **Bot**\n> - `!bot_repo` --> repository GitHub del bot\n> - `!bot_pic` --> immagine profilo del bot\n> - `!poetry [--notts]` --> ascolta una fantastica poesia\n> \n> **Google**\n> - `!googla [query]` --> effettua ricerca su Google\n> - `!cerca [sito]` --> cerca il sito specifico su Google\n> \n> **Giochi**\n> - `!flip [--hck]` --> testa o croce (--hck inverte l'estrazione)\n> - `!rps [carta/forbice/sasso]` --> giochi a carta, forbice, sasso vs il bot\n> \n> **Utility**\n> - `!neko` --> neko image ;)\n> - feature nascosta (34)\n> \n> **Crediti**\n> - `!credits` --> mostra i riconoscimenti"
         )
         print(f"{nome} ha visualizzato la lista comandi alle {orario}\n")
         return
