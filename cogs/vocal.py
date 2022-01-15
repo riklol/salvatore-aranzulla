@@ -1,3 +1,4 @@
+import asyncio
 import re
 import urllib.request
 
@@ -6,7 +7,6 @@ from discord import FFmpegPCMAudio, TextChannel
 from discord.ext import commands
 from discord.utils import get
 from youtube_dl import YoutubeDL
-import asyncio
 
 client = commands.Bot(command_prefix="!")
 
@@ -32,7 +32,11 @@ class Music(commands.Cog):
     # command to play sound from a youtube URL
     @commands.command()
     async def play(self, ctx, *, search):
-        YDL_OPTIONS = {"format": "bestaudio", "noplaylist": False, "quiet":True,}
+        YDL_OPTIONS = {
+            "format": "bestaudio",
+            "noplaylist": False,
+            "quiet": True,
+        }
         FFMPEG_OPTIONS = {
             "before_options": "-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5",
             "options": "-vn",
@@ -71,23 +75,25 @@ class Music(commands.Cog):
                 for i, item in enumerate(video):
                     URL = video[i]["url"]
                     queue.append(URL)
-                    link = video[i]['webpage_url']    
+                    link = video[i]["webpage_url"]
                     links.append(link)
 
                 # play every song in queue
                 for i in range(len(queue)):
-                    while i+1 <= len(queue):
+                    while i + 1 <= len(queue):
                         if not ctx.voice_client.is_playing():
                             print(f"\n\n\n{i}")
                             print(f"\n{queue[i]}\n\n\n")
-                            ctx.voice_client.play(FFmpegPCMAudio(queue[i], **FFMPEG_OPTIONS))
+                            ctx.voice_client.play(
+                                FFmpegPCMAudio(queue[i], **FFMPEG_OPTIONS)
+                            )
                             await ctx.send("**Now playing:\n**")
                             await ctx.send(links[i])
                             i += 1
                         else:
                             await asyncio.sleep(0.5)
                     break
-            
+
             # if there isn't a playlist
             else:
                 URL = info["url"]
@@ -95,13 +101,12 @@ class Music(commands.Cog):
                 await ctx.send("**Now playing:\n**")
                 await ctx.send(url)
 
-    
     # skip the current song
     @commands.command()
     async def skip(self, ctx):
         ctx.voice_client.stop()
         await ctx.send("**Skipping...**")
-    
+
     # resume voice if it is paused
     @commands.command()
     async def resume(self, ctx):
