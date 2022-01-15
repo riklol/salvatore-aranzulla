@@ -30,8 +30,8 @@ class Music(commands.Cog):
 
     # command to play sound from a youtube URL
     @commands.command()
-    async def play(self, ctx, search):
-        YDL_OPTIONS = {"format": "bestaudio", "noplaylist": "True"}
+    async def play(self, ctx, *, search):
+        YDL_OPTIONS = {"format": "bestaudio", "noplaylist": "False"}
         FFMPEG_OPTIONS = {
             "before_options": "-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5",
             "options": "-vn",
@@ -43,6 +43,9 @@ class Music(commands.Cog):
             f"https://www.youtube.com/results?search_query={yt_search}"
         )
         video_ids = re.findall(r"watch\?v=(\S{11})", html.read().decode())
+        
+        print(f"https://www.youtube.com/results?search_query={yt_search}")
+        print(video_ids)
 
         url = f"http://www.youtube.com/watch?v={video_ids[0]}"
 
