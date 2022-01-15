@@ -16,8 +16,9 @@ class Music(commands.Cog):
         self.bot = bot
 
     # command for bot to join the channel of the user, if the bot has already joined and is in a different channel, it will move to the channel the user is in
-    @commands.command()
+    @commands.command(name="join")
     async def join(self, ctx):
+        """Join a vocal chat."""
         channel = ctx.message.author.voice.channel
         voice = get(client.voice_clients, guild=ctx.guild)
         if voice and voice.is_connected():
@@ -25,13 +26,15 @@ class Music(commands.Cog):
         else:
             voice = await channel.connect()
 
-    @commands.command()
+    @commands.command(name="leave")
     async def leave(self, ctx):
+        """leave a vocal chat."""
         await ctx.voice_client.disconnect()
 
     # command to play sound from a youtube URL
-    @commands.command()
+    @commands.command(name="play")
     async def play(self, ctx, *, search):
+        """Play a song or a playlist."""
         YDL_OPTIONS = {
             "format": "bestaudio",
             "noplaylist": False,
@@ -102,25 +105,29 @@ class Music(commands.Cog):
                 await ctx.send(url)
 
     # skip the current song
-    @commands.command()
+    @commands.command(name="skip")
     async def skip(self, ctx):
+        """Skip song in playlist."""
         ctx.voice_client.stop()
         await ctx.send("**Skipping...**")
 
-    # resume voice if it is paused
-    @commands.command()
-    async def resume(self, ctx):
-        ctx.voice_client.resume()
-
     # pause voice if it' i's playing
-    @commands.command()
+    @commands.command(name="pause")
     async def pause(self, ctx):
+        """Pause song."""
         ctx.voice_client.pause()
         await ctx.send("**Music paused**")
 
+    # resume voice if it is paused
+    @commands.command(name="resume")
+    async def resume(self, ctx):
+        """Resume paused song."""
+        ctx.voice_client.resume()
+
     # stop voice
-    @commands.command()
+    @commands.command(name="stop")
     async def stop(self, ctx):
+        """Stop song."""
         ctx.voice_client.stop()
         await ctx.send("**Stopping...**")
 

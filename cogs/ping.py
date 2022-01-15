@@ -7,7 +7,7 @@ class Ping(commands.Cog):
 
     @commands.command(name="ping")
     async def ping(self, ctx: commands.Context):
-        """Get the bot's current websocket latency."""
+        """Get the bot's current ping."""
         await ctx.send(f"{round(self.bot.latency * 1000)}ms")
 
 

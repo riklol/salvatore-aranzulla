@@ -7,7 +7,7 @@ class Hlp(commands.Cog):
 
     @commands.command(name="hlp")
     async def hlp(self, ctx: commands.Context):
-        """print commands"""
+        """show commands"""
         await ctx.send("never gonna give you up... ♪♫")
 
 
