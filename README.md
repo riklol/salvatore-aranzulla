@@ -17,7 +17,7 @@
    [![Cattura.png](https://i.postimg.cc/SRYxq62v/Cattura.png)](https://postimg.cc/8fDSmrbR)
    
 # Bot commands
-### `!comandi`
-[![image.png](https://i.postimg.cc/kgG97gZr/image.png)](https://postimg.cc/N53Z4BBb)
+### `!hlp`
+To add...
 
 #
