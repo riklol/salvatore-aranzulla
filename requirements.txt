@@ -1,6 +1,6 @@
-colorama==0.4.4
-DateTime==4.3
 discord==1.0.1
 discord.py==1.7.1
+hentai==3.2.9
 python-dotenv==0.17.0
 requests==2.26.0
+urllib3==1.26.8
