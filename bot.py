@@ -14,10 +14,11 @@ intents.members = True
 bot = commands.Bot(command_prefix="!", intents=intents)
 
 # load the functions
-bot.load_extension("src.ping")
-bot.load_extension("src.neko")
-bot.load_extension("src.nhnt")
-bot.load_extension("src.vocal")
-bot.load_extension("src.hlp")
+bot.load_extension("cogs.credits")
+bot.load_extension("cogs.ping")
+bot.load_extension("cogs.neko")
+bot.load_extension("cogs.nhnt")
+bot.load_extension("cogs.vocal")
+bot.load_extension("cogs.hlp")
 
 bot.run(TOKEN)
