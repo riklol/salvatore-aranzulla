@@ -4,3 +4,4 @@ hentai==3.2.9
 python-dotenv==0.17.0
 requests==2.26.0
 urllib3==1.26.8
+youtube_dl
