@@ -53,7 +53,7 @@ class Music(commands.Cog):
         ):
             url = search
         else:
-            yt_search = search.replace(" ", "+")
+            yt_search = search.replace(" ", "+").encode('utf-8')
 
             html = urllib.request.urlopen(
                 f"https://www.youtube.com/results?search_query={yt_search}"

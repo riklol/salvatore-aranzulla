@@ -19,6 +19,5 @@ bot.load_extension("cogs.ping")
 bot.load_extension("cogs.neko")
 bot.load_extension("cogs.nhnt")
 bot.load_extension("cogs.vocal")
-bot.load_extension("cogs.hlp")
 
 bot.run(TOKEN)
