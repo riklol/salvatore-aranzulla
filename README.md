@@ -4,11 +4,8 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 #
 [![cover-pic-bot-1.png](https://i.postimg.cc/yxQ9KXSV/cover-pic-bot-1.png)](https://postimg.cc/JHXtcXqg)
-# This is the heroku-hosted version
+
 # Local setup
-* ### Install Python (if you already have it skip this point):
-   * #### [Click here to install Python](https://www.python.org)
-   * #### [How to install Python](https://www.aranzulla.it/come-installare-python-1210886.html)
 * ### Install the dependencies:
    * ### `pip install -r requirements.txt`
       [![Screenshot-32.png](https://i.postimg.cc/k5Y9mKts/Screenshot-32.png)](https://postimg.cc/qtKWctw6)
