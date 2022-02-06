@@ -12,7 +12,7 @@ class Credits(commands.Cog):
         """Show the credits."""
         danyb0, alesar = get_emojis()
         await ctx.send(
-            f"> **Thanks to:**\n> DanyB0#6791 {<a:whyyyyyy:850099185993777179>}\n> alesar03#4718 {<a:tritos_pinkkirby:850099186003083304>}"
+            "> **Thanks to:**\n> DanyB0#6791 https://cdn.discordapp.com/emojis/850099185993777179.gif?size=48&quality=lossless\n> alesar03#4718 https://cdn.discordapp.com/emojis/930873952576864297.gif?size=48&quality=lossless"
         )
 
         
