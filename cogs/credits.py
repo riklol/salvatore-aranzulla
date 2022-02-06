@@ -10,8 +10,9 @@ class Credits(commands.Cog):
     @commands.command(name="credits")
     async def credits(self, ctx: commands.Context):
         """Show the credits."""
+        danyb0 = "<a:whyyyyyy:850099185993777179>"
         await ctx.send(
-            "> **Thanks to:**\n> DanyB0#6791 https://cdn.discordapp.com/emojis/850099185993777179.gif?size=48&quality=lossless\n> alesar03#4718 https://cdn.discordapp.com/emojis/930873952576864297.gif?size=48&quality=lossless"
+            f"> **Thanks to:**\n> DanyB0#6791  {danyb0}\n> alesar03#4718"
         )
 
         
