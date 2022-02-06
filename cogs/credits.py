@@ -11,7 +11,7 @@ class Credits(commands.Cog):
     async def credits(self, ctx: commands.Context):
         """Show the credits."""
         danyb0, alesar = get_emojis()
-        await message.channel.send(
+        await ctx.send(
             f"> **Thanks to:**\n> DanyB0#6791 {danyb0}\n> alesar03#4718 {alesar}"
         )
 
