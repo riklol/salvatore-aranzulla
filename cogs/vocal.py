@@ -35,6 +35,16 @@ class Music(commands.Cog):
     @commands.command(name="play")
     async def play(self, ctx, *, search):
         """Play a song or a playlist."""
+
+        # get the role (used to play a song)
+        # if a user doesn't have the DJ role he/she can't play a song
+        guild = client.get_guild(808435876811243551)
+        role = discord.utils.get(ctx.guild.roles, name="DJ")
+        role = str(role)
+        if "DJ" not in [y.name for y in ctx.message.author.roles]:
+            await ctx.send("Qui qualcuno non ha i **PERMESSI** hehe (e non sono io)")
+            return
+
         YDL_OPTIONS = {
             "format": "bestaudio",
             "noplaylist": False,
@@ -90,8 +100,7 @@ class Music(commands.Cog):
                             ctx.voice_client.play(
                                 FFmpegPCMAudio(queue[i], **FFMPEG_OPTIONS)
                             )
-                            await ctx.send("**Now playing:\n**")
-                            await ctx.send(links[i])
+                            await ctx.send(f"**> Now playing:\n{links[i]}**")
                             i += 1
                         else:
                             await asyncio.sleep(0.5)
@@ -108,6 +117,14 @@ class Music(commands.Cog):
     @commands.command(name="skip")
     async def skip(self, ctx):
         """Skip song in playlist."""
+        # get the role (used to play a song)
+        # if a user doesn't have the DJ role he/she can't play a song
+        guild = client.get_guild(808435876811243551)
+        role = discord.utils.get(ctx.guild.roles, name="DJ")
+        role = str(role)
+        if "DJ" not in [y.name for y in ctx.message.author.roles]:
+            await ctx.send("Qui qualcuno non ha i **PERMESSI** hehe (e non sono io)")
+            return
         ctx.voice_client.stop()
         await ctx.send("**Skipping...**")
 
@@ -115,6 +132,14 @@ class Music(commands.Cog):
     @commands.command(name="pause")
     async def pause(self, ctx):
         """Pause song."""
+        # get the role (used to play a song)
+        # if a user doesn't have the DJ role he/she can't play a song
+        guild = client.get_guild(808435876811243551)
+        role = discord.utils.get(ctx.guild.roles, name="DJ")
+        role = str(role)
+        if "DJ" not in [y.name for y in ctx.message.author.roles]:
+            await ctx.send("Qui qualcuno non ha i **PERMESSI** hehe (e non sono io)")
+            return
         ctx.voice_client.pause()
         await ctx.send("**Music paused**")
 
@@ -122,12 +147,28 @@ class Music(commands.Cog):
     @commands.command(name="resume")
     async def resume(self, ctx):
         """Resume paused song."""
+        # get the role (used to play a song)
+        # if a user doesn't have the DJ role he/she can't play a song
+        guild = client.get_guild(808435876811243551)
+        role = discord.utils.get(ctx.guild.roles, name="DJ")
+        role = str(role)
+        if "DJ" not in [y.name for y in ctx.message.author.roles]:
+            await ctx.send("Qui qualcuno non ha i **PERMESSI** hehe (e non sono io)")
+            return
         ctx.voice_client.resume()
 
     # stop voice
     @commands.command(name="stop")
     async def stop(self, ctx):
         """Stop song."""
+        # get the role (used to play a song)
+        # if a user doesn't have the DJ role he/she can't play a song
+        guild = client.get_guild(808435876811243551)
+        role = discord.utils.get(ctx.guild.roles, name="DJ")
+        role = str(role)
+        if "DJ" not in [y.name for y in ctx.message.author.roles]:
+            await ctx.send("Qui qualcuno non ha i **PERMESSI** hehe (e non sono io)")
+            return
         ctx.voice_client.stop()
         await ctx.send("**Stopping...**")
 
