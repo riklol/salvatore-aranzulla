@@ -3,7 +3,7 @@
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 #
-[![cover-pic-bot-1.png](https://i.postimg.cc/yxQ9KXSV/cover-pic-bot-1.png)](https://postimg.cc/JHXtcXqg)
+[![cover-pic-bot-1.png](https://i.postimg.cc/yxQ9KXSV/cover-pic-bot-1.png)](https://i.postimg.cc/yxQ9KXSV/cover-pic-bot-1.png)
 
 # Commands
 | **COMMAND** |        **ARGUMENTS**       |                           **DESCRIPTION**                          |
