@@ -3,6 +3,7 @@ import re
 import urllib.request
 
 import discord
+import requests
 from discord import FFmpegPCMAudio, TextChannel
 from discord.ext import commands
 from discord.utils import get
@@ -63,11 +64,11 @@ class Music(commands.Cog):
         ):
             url = search
         else:
-            yt_search = search.replace(" ", "+").encode('utf-8')
+            yt_search = search.replace(" ", "+").encode("utf-8")
 
             html = urllib.request.urlopen(
                 f"https://www.youtube.com/results?search_query={yt_search}"
-            ) # nosec (it can't open a local file because the url is the one above, so the linter should not raise a warning)
+            )  # nosec (it can't open a local file because the url is the one above, so the linter should not raise a warning)
             video_ids = re.findall(r"watch\?v=(\S{11})", html.read().decode())
 
             print(f"https://www.youtube.com/results?search_query={yt_search}")
@@ -171,6 +172,27 @@ class Music(commands.Cog):
             return
         ctx.voice_client.stop()
         await ctx.send("**Stopping...**")
+
+    # get the song lyrics
+    @commands.command(name="lyrics")
+    async def lyrics(self, ctx, *, search):
+        """Get the song lyrics."""
+        if "-" in search:
+            artist = search[: search.index("-")]
+            title = search[search.index("-") + 1 :]
+        else:
+            await ctx.send("Metti '-' tra l'artista e la canzone")
+
+        r = requests.get(f"https://api.lyrics.ovh/v1/{artist}/{title}")
+        lyrics = r.json()
+
+        try:
+            data = lyrics["lyrics"]
+        except:
+            await ctx.send("Non ho trovato nessun testo :(")
+
+        else:
+            await ctx.send(data)
 
 
 def setup(bot: commands.Bot):
