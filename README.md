@@ -14,6 +14,7 @@
 | _!stop_     |                            |                         Stop a playing song                        |
 | _!play_     |       song name/link       |                   Play a song in vc from YouTube                   |
 | _!leave_    |                            |                        Leave the voice chat                        |
+| _!lyrics_   |       artist - song        |                        Get the song lyrics                         |
 | ----------- | -------------------------- | ------------------------------------------------------------------ |
 |  **Anime**  |                            |                                                                    |
 | _!neko_     |                            |                          Get a neko image                          |
