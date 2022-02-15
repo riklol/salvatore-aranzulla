@@ -1,4 +1,4 @@
-''' NHENTAI COMMANDS '''
+""" NHENTAI COMMANDS """
 
 import random
 

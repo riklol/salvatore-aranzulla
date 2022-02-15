@@ -11,10 +11,8 @@ class Credits(commands.Cog):
     async def credits(self, ctx: commands.Context):
         """Show the credits."""
         danyb0 = "<a:whyyyyyy:850099185993777179>"
-        await ctx.send(
-            f"> **Thanks to:**\n> DanyB0#6791  {danyb0}\n> alesar03#4718"
-        )
+        await ctx.send(f"> **Thanks to:**\n> DanyB0#6791  {danyb0}\n> alesar03#4718")
 
-        
+
 def setup(bot: commands.Bot):
     bot.add_cog(Credits(bot))
