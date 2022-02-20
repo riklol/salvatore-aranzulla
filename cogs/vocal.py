@@ -22,10 +22,13 @@ class Music(commands.Cog):
         """Join a vocal chat."""
         channel = ctx.message.author.voice.channel
         voice = get(client.voice_clients, guild=ctx.guild)
-        if voice and voice.is_connected():
-            await voice.move_to(channel)
-        else:
-            voice = await channel.connect()
+        try:
+            if voice and voice.is_connected():
+                await voice.move_to(channel)
+            else:
+                voice = await channel.connect()
+        except ClientException:
+            pass
 
     @commands.command(name="leave")
     async def leave(self, ctx):
@@ -129,7 +132,7 @@ class Music(commands.Cog):
         ctx.voice_client.stop()
         await ctx.send("**Skipping...**")
 
-    # pause voice if it' i's playing
+    # pause voice if it' it's playing
     @commands.command(name="pause")
     async def pause(self, ctx):
         """Pause song."""
