@@ -96,7 +96,7 @@ class Music(commands.Cog):
                     links.append(link)
 
                 # play every song in queue
-                for i in range(len(queue)):
+                for i, song in enumerate(queue):
                     while i + 1 <= len(queue):
                         if not ctx.voice_client.is_playing():
                             print(f"\n\n\n{i}")
