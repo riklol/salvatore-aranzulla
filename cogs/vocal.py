@@ -186,16 +186,25 @@ class Music(commands.Cog):
         else:
             await ctx.send("Metti '-' tra l'artista e la canzone")
 
-        r = requests.get(f"https://api.lyrics.ovh/v1/{artist}/{title}")
-        lyrics = r.json()
-
         try:
-            data = lyrics["lyrics"]
+            r = requests.get(f"https://api.lyrics.ovh/v1/{artist}/{title}")
+            lyrics = r.json()
         except:
-            await ctx.send("Non ho trovato nessun testo :(")
+            pass
 
-        else:
-            await ctx.send(data)
+        # if the lyrics are longer than 2000 characters split the messages 
+        # (the max message lenght on discord is 2000 characters)
+        try:
+            data = str(lyrics["lyrics"])
+            if len(data) > 2000:
+                data1 = data[:round(len(data)/2)]
+                data2 = data[round(len(data)/2):]
+                await ctx.send(data1)
+                await ctx.send(data2)
+            else:
+                await ctx.send(data)
+        except:
+            await ctx.send("I couldn't find anything :(")
 
 
 def setup(bot: commands.Bot):
