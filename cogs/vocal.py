@@ -204,7 +204,7 @@ class Music(commands.Cog):
             else:
                 await ctx.send(data)
         except:
-            await ctx.send("I couldn't find anything :(")
+            await ctx.send("Non ho trovato nessun testo :(")
 
 
 def setup(bot: commands.Bot):
