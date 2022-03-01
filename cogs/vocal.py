@@ -104,7 +104,7 @@ class Music(commands.Cog):
                             ctx.voice_client.play(
                                 FFmpegPCMAudio(queue[i], **FFMPEG_OPTIONS)
                             )
-                            await ctx.send(f"**> Now playing:\n{links[i]}**")
+                            await ctx.send(f"**> Now playing:\n**> {links[i]}")
                             i += 1
                         else:
                             await asyncio.sleep(0.5)
@@ -114,8 +114,7 @@ class Music(commands.Cog):
             else:
                 URL = info["url"]
                 ctx.voice_client.play(FFmpegPCMAudio(URL, **FFMPEG_OPTIONS))
-                await ctx.send("**Now playing:\n**")
-                await ctx.send(url)
+                await ctx.send(f"**> Now playing:\n**> {url}")
 
     # skip the current song
     @commands.command(name="skip")
