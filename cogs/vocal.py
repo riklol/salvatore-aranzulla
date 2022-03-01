@@ -104,7 +104,7 @@ class Music(commands.Cog):
                             ctx.voice_client.play(
                                 FFmpegPCMAudio(queue[i], **FFMPEG_OPTIONS)
                             )
-                            await ctx.send(f"**> Now playing:**\n> {links[i]}")
+                            await ctx.send(f"**> Now playing:** {links[i]}")
                             i += 1
                         else:
                             await asyncio.sleep(0.5)
@@ -114,7 +114,7 @@ class Music(commands.Cog):
             else:
                 URL = info["url"]
                 ctx.voice_client.play(FFmpegPCMAudio(URL, **FFMPEG_OPTIONS))
-                await ctx.send(f"**> Now playing:**\n> {url}")
+                await ctx.send(f"**> Now playing:** {url}")
 
     # skip the current song
     @commands.command(name="skip")
@@ -191,13 +191,13 @@ class Music(commands.Cog):
         except:
             pass
 
-        # if the lyrics are longer than 2000 characters split the messages 
+        # if the lyrics are longer than 2000 characters split the messages
         # (the max message lenght on discord is 2000 characters)
         try:
             data = str(lyrics["lyrics"])
             if len(data) > 2000:
-                data1 = data[:round(len(data)/2)]
-                data2 = data[round(len(data)/2):]
+                data1 = data[: round(len(data) / 2)]
+                data2 = data[round(len(data) / 2) :]
                 await ctx.send(data1)
                 await ctx.send(data2)
             else:
