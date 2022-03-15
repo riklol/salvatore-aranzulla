@@ -195,6 +195,8 @@ class Music(commands.Cog):
         # (the max message lenght on discord is 2000 characters)
         try:
             data = str(lyrics["lyrics"])
+            if "\n\n" in data:
+                data = data.replace("\n\n", "\n")
             if len(data) > 2000:
                 data1 = data[: round(len(data) / 2)]
                 data2 = data[round(len(data) / 2) :]
