@@ -26,7 +26,7 @@
 | _!credits_  |                            |                          Show the credits                          |
 
 # Local setup
-- #### install the requirements
+- #### Install the requirements
   ```bash
   pip install -r requirements.txt
   ```
