@@ -30,6 +30,7 @@
   ```bash
   pip install -r requirements.txt
   ```
+  For playing songs [FFmpeg](https://ffmpeg.org/) needs to be installed.
   
 * #### Create a .env file in the bot folder and write your bot token [(How to create a Discord bot)](https://discordpy.readthedocs.io/en/stable/discord.html)
    [![Cattura.png](https://i.postimg.cc/SRYxq62v/Cattura.png)](https://postimg.cc/8fDSmrbR)
