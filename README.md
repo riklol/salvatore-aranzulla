@@ -1,4 +1,4 @@
-# Salvatore-Aranzulla
+# ![Senza nome](https://user-images.githubusercontent.com/66164380/164801108-02bfda88-eae3-4162-b140-716405886277.png) Salvatore-Aranzulla
 [![CodeFactor](https://www.codefactor.io/repository/github/danyb0/salvatore-aranzulla/badge)](https://www.codefactor.io/repository/github/danyb0/salvatore-aranzulla)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![version](https://img.shields.io/github/v/release/DanyB0/salvatore-aranzulla?color=orange)](https://github.com/DanyB0/salvatore-aranzulla/releases)
