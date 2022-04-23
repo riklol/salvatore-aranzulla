@@ -7,9 +7,9 @@ from discord.ext import commands
 from discord.ext.commands import Bot
 from hentai import Format, Hentai, Utils
 
-bot = Bot("!")
+import src
 
-BASE_URL = "https://nhentai.net/g/"
+bot = Bot("!")
 
 
 class Nhentai(commands.Cog):
@@ -32,6 +32,9 @@ class Nhentai(commands.Cog):
 
         # Send the doujin link
         await ctx.send(f"https://nhentai.net/g/{doujin_id}")
+        src.write_logs(
+            "Weeb", f"Sent {doujin_id} doujin link (https://nhentai.net/g/{doujin_id})"
+        )
 
     @commands.command(name="rhent")
     async def rhent(self, ctx: commands.Context):
@@ -45,6 +48,11 @@ class Nhentai(commands.Cog):
 
         # Send the doujin link
         await ctx.send(f"https://nhentai.net/g/{doujin.id}")
+        src.write_logs(
+            channel, 
+            "Weeb",
+            f"Randomly sent {doujin_id} doujin link (https://nhentai.net/g/{doujin_id})",
+        )
 
 
 # get the server and channel info

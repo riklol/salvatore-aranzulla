@@ -1,2 +1,1 @@
-from .constants import *
-from .logs import *
+from .logs import write_logs

@@ -9,6 +9,8 @@ from discord.ext import commands
 from discord.utils import get
 from youtube_dl import YoutubeDL
 
+import src
+
 client = commands.Bot(command_prefix="!")
 
 
@@ -16,10 +18,11 @@ class Music(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
 
-    # command for bot to join the channel of the user, if the bot has already joined and is in a different channel, it will move to the channel the user is in
+    # command for bot to join the channel of the user, if the bot has already joined and is in a different it will move to the channel the user is in
     @commands.command(name="join")
     async def join(self, ctx):
         """Join a vocal chat."""
+        
         channel = ctx.message.author.voice.channel
         voice = get(client.voice_clients, guild=ctx.guild)
         try:
@@ -29,17 +32,19 @@ class Music(commands.Cog):
                 voice = await channel.connect()
         except ClientException:
             pass
+        src.write_logs("Music", "Bot joined voice chat")
 
     @commands.command(name="leave")
     async def leave(self, ctx):
         """leave a vocal chat."""
+        
         await ctx.voice_client.disconnect()
+        src.write_logs("Music", "Bot left voice chat")
 
     # command to play sound from a youtube URL
     @commands.command(name="play")
     async def play(self, ctx, *, search):
-        """Play a song or a playlist."""
-
+        """Play a song or a playlist."""      
         # get the role (used to play a song)
         # if a user doesn't have the DJ role he/she can't play a song
         guild = client.get_guild(808435876811243551)
@@ -105,6 +110,7 @@ class Music(commands.Cog):
                                 FFmpegPCMAudio(queue[i], **FFMPEG_OPTIONS)
                             )
                             await ctx.send(f"**> Now playing:** {links[i]}")
+                            src.write_logs("Music", f"Played a song ({links[i]})")
                             i += 1
                         else:
                             await asyncio.sleep(0.5)
@@ -115,11 +121,12 @@ class Music(commands.Cog):
                 URL = info["url"]
                 ctx.voice_client.play(FFmpegPCMAudio(URL, **FFMPEG_OPTIONS))
                 await ctx.send(f"**> Now playing:** {url}")
+                src.write_logs("Music", f"Played a song ({url})")
 
     # skip the current song
     @commands.command(name="skip")
     async def skip(self, ctx):
-        """Skip song in playlist."""
+        """Skip song in playlist."""       
         # get the role (used to play a song)
         # if a user doesn't have the DJ role he/she can't play a song
         guild = client.get_guild(808435876811243551)
@@ -130,11 +137,12 @@ class Music(commands.Cog):
             return
         ctx.voice_client.stop()
         await ctx.send("**Skipping...**")
+        src.write_logs("Music", "Skipped a song")
 
     # pause voice if it' it's playing
     @commands.command(name="pause")
     async def pause(self, ctx):
-        """Pause song."""
+        """Pause song."""       
         # get the role (used to play a song)
         # if a user doesn't have the DJ role he/she can't play a song
         guild = client.get_guild(808435876811243551)
@@ -145,6 +153,7 @@ class Music(commands.Cog):
             return
         ctx.voice_client.pause()
         await ctx.send("**Music paused**")
+        src.write_logs("Music", "Paused a song")
 
     # resume voice if it is paused
     @commands.command(name="resume")
@@ -159,6 +168,7 @@ class Music(commands.Cog):
             await ctx.send("Qui qualcuno non ha i **PERMESSI** hehe (e non sono io)")
             return
         ctx.voice_client.resume()
+        src.write_logs("Music", "Resumed a song")
 
     # stop voice
     @commands.command(name="stop")
@@ -174,6 +184,7 @@ class Music(commands.Cog):
             return
         ctx.voice_client.stop()
         await ctx.send("**Stopping...**")
+        src.write_logs(channelm, "Music", "Stopped a song")
 
     # get the song lyrics
     @commands.command(name="lyrics")
@@ -206,6 +217,7 @@ class Music(commands.Cog):
                 await ctx.send(data)
         except:
             await ctx.send("Non ho trovato nessun testo :(")
+        src.write_logs("Music", f"Searched lyrics for {artist} - {title}")
 
 
 def setup(bot: commands.Bot):

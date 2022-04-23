@@ -5,22 +5,26 @@ import discord
 from discord import Intents
 from discord.ext import commands
 
-import src
+import src.constants
 
 # first log file
 if not os.path.exists("logs"):
     os.mkdir("logs")
 os.chdir("logs")
 
-date = datetime.datetime.now().strftime("%Y-%m-%d")
-hour = datetime.datetime.now().strftime("%H.%M.%S")
 
-with open(f"{date}_{hour}.txt", "w") as lg:
-    # the "." triggered me lol
-    hour = hour.replace(".", ":")
-    lg.write(f"-----FILE DI LOG-----\nDATA = {date}\nORA = {hour}")
 
-os.chdir(src.BASE_DIR)
+if not os.path.exists(f"{src.constants.date}.txt"):
+    
+    with open(f"{src.constants.date}.txt", "w") as lg:
+        # the "." triggered me lol
+        lg.write(
+            f"---------FILE DI LOG---------\nDATA CREAZIONE = {src.constants.date}\nORA CREAZIONE = {src.constants.hour}\n-----------------------------\n"
+        )
+else:
+    pass
+
+os.chdir(src.constants.BASE_DIR)
 
 intents = Intents.default()
 intents.members = True
@@ -44,4 +48,4 @@ bot.load_extension("cogs.nhnt")
 bot.load_extension("cogs.vocal")
 
 # run the bot
-bot.run(src.TOKEN)
+bot.run(src.constants.TOKEN)

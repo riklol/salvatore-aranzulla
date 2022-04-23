@@ -1,5 +1,7 @@
 from discord.ext import commands
 
+import src
+
 
 class Ping(commands.Cog):
     def __init__(self, bot: commands.Bot):
@@ -9,6 +11,7 @@ class Ping(commands.Cog):
     async def ping(self, ctx: commands.Context):
         """Get the bot's current ping."""
         await ctx.send(f"{round(self.bot.latency * 1000)}ms")
+        src.write_logs("Other", "Requested Bot ping")
 
 
 def setup(bot: commands.Bot):

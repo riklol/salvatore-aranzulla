@@ -1,6 +1,8 @@
 import discord
 from discord.ext import commands
 
+import src
+
 client = commands.Bot(command_prefix="!")
 
 
@@ -20,6 +22,7 @@ class Credits(commands.Cog):
         embed.add_field(name="DanyB0#6791", value="lol")
         embed.add_field(name="alesar03#4718", value="lmao")
         await ctx.send(embed=embed)
+        src.write_logs("Weeb", "Sent credits")
 
 
 def setup(bot: commands.Bot):
