@@ -3,10 +3,9 @@
 import json
 
 import requests
+import src
 from discord.ext import commands
 from discord.ext.commands import Bot
-
-import src
 
 
 class NekoImage(commands.Cog):

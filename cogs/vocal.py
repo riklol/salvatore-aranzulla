@@ -4,12 +4,11 @@ import urllib.request
 
 import discord
 import requests
+import src
 from discord import FFmpegPCMAudio, TextChannel
 from discord.ext import commands
 from discord.utils import get
 from youtube_dl import YoutubeDL
-
-import src
 
 client = commands.Bot(command_prefix="!")
 
@@ -22,7 +21,7 @@ class Music(commands.Cog):
     @commands.command(name="join")
     async def join(self, ctx):
         """Join a vocal chat."""
-        
+
         channel = ctx.message.author.voice.channel
         voice = get(client.voice_clients, guild=ctx.guild)
         try:
@@ -37,14 +36,14 @@ class Music(commands.Cog):
     @commands.command(name="leave")
     async def leave(self, ctx):
         """leave a vocal chat."""
-        
+
         await ctx.voice_client.disconnect()
         src.write_logs("Music", "Bot left voice chat")
 
     # command to play sound from a youtube URL
     @commands.command(name="play")
     async def play(self, ctx, *, search):
-        """Play a song or a playlist."""      
+        """Play a song or a playlist."""
         # get the role (used to play a song)
         # if a user doesn't have the DJ role he/she can't play a song
         guild = client.get_guild(808435876811243551)
@@ -126,7 +125,7 @@ class Music(commands.Cog):
     # skip the current song
     @commands.command(name="skip")
     async def skip(self, ctx):
-        """Skip song in playlist."""       
+        """Skip song in playlist."""
         # get the role (used to play a song)
         # if a user doesn't have the DJ role he/she can't play a song
         guild = client.get_guild(808435876811243551)
@@ -142,7 +141,7 @@ class Music(commands.Cog):
     # pause voice if it' it's playing
     @commands.command(name="pause")
     async def pause(self, ctx):
-        """Pause song."""       
+        """Pause song."""
         # get the role (used to play a song)
         # if a user doesn't have the DJ role he/she can't play a song
         guild = client.get_guild(808435876811243551)

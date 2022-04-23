@@ -13,9 +13,8 @@ if not os.path.exists("logs"):
 os.chdir("logs")
 
 
-
 if not os.path.exists(f"{src.constants.date}.txt"):
-    
+
     with open(f"{src.constants.date}.txt", "w") as lg:
         # the "." triggered me lol
         lg.write(

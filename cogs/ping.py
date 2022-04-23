@@ -1,6 +1,5 @@
-from discord.ext import commands
-
 import src
+from discord.ext import commands
 
 
 class Ping(commands.Cog):

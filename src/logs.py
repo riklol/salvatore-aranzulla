@@ -2,6 +2,7 @@
 
 import datetime
 import os
+
 import src
 
 
@@ -10,6 +11,6 @@ def write_logs(cat, action):
 
     date = datetime.datetime.now().strftime("%Y-%m-%d")
     hour = datetime.datetime.now().strftime("%H:%M:%S")
-    
+
     with open(f"logs/{date}.txt", "a") as log_f:
         log_f.write(f"{date} {hour} - {cat} - {action}\n")

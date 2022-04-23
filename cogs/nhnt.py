@@ -3,11 +3,10 @@
 import random
 
 import requests
+import src
 from discord.ext import commands
 from discord.ext.commands import Bot
 from hentai import Format, Hentai, Utils
-
-import src
 
 bot = Bot("!")
 
@@ -49,7 +48,7 @@ class Nhentai(commands.Cog):
         # Send the doujin link
         await ctx.send(f"https://nhentai.net/g/{doujin.id}")
         src.write_logs(
-            channel, 
+            channel,
             "Weeb",
             f"Randomly sent {doujin_id} doujin link (https://nhentai.net/g/{doujin_id})",
         )
