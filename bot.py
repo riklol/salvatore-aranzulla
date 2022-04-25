@@ -21,7 +21,7 @@ if not os.path.exists(f"{date}.txt"):
 else:
     pass
 
-os.chdir(utils.globals.BASE_DIR)
+os.chdir(utils.BASE_DIR)
 
 intents = Intents.default()
 intents.members = True
@@ -45,4 +45,4 @@ bot.load_extension("cogs.nhnt")
 bot.load_extension("cogs.vocal")
 
 # run the bot
-bot.run(utils.globals.TOKEN)
+bot.run(utils.TOKEN)
