@@ -5,15 +5,18 @@ from discord.ext import commands
 
 import utils
 
+# takes the date and the hour
+date, hour = utils.globals.dt_hr()
+
 # first log file
 if not os.path.exists("logs"):
     os.mkdir("logs")
 os.chdir("logs")
 
-if not os.path.exists(f"{utils.globals.date}.txt"):
-    with open(f"{utils.globals.date}.txt", "w") as lg:
+if not os.path.exists(f"{date}.txt"):
+    with open(f"{date}.txt", "w") as lg:
         lg.write(
-            f"---------FILE DI LOG---------\nDATA CREAZIONE = {utils.globals.date}\nORA CREAZIONE = {utils.globals.hour}\n-----------------------------\n"
+            f"---------FILE DI LOG---------\nDATA CREAZIONE = {date}\nORA CREAZIONE = {hour}\n-----------------------------\n"
         )
 else:
     pass
