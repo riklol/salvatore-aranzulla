@@ -21,8 +21,9 @@ def check_log():
 # write the logs
 def write_logs(cat, action):
 
-    date = datetime.datetime.now().strftime("%Y-%m-%d")
-    hour = datetime.datetime.now().strftime("%H:%M:%S")
+    date, hour = utils.globals.dt_hr()
+
+    check_log()
 
     with open(f"logs/{date}.txt", "a") as log_f:
         log_f.write(f"{date} {hour} - {cat} - {action}\n")
