@@ -4,11 +4,12 @@ import urllib.request
 
 import discord
 import requests
-import src
-from discord import FFmpegPCMAudio, TextChannel
+from discord import FFmpegPCMAudio
 from discord.ext import commands
 from discord.utils import get
 from youtube_dl import YoutubeDL
+
+import utils
 
 client = commands.Bot(command_prefix="!")
 
@@ -31,14 +32,14 @@ class Music(commands.Cog):
                 voice = await channel.connect()
         except ClientException:
             pass
-        src.write_logs("Music", "Bot joined voice chat")
+        utils.write_logs("Music", "Bot joined voice chat")
 
     @commands.command(name="leave")
     async def leave(self, ctx):
         """leave a vocal chat."""
 
         await ctx.voice_client.disconnect()
-        src.write_logs("Music", "Bot left voice chat")
+        utils.write_logs("Music", "Bot left voice chat")
 
     # command to play sound from a youtube URL
     @commands.command(name="play")
@@ -46,7 +47,6 @@ class Music(commands.Cog):
         """Play a song or a playlist."""
         # get the role (used to play a song)
         # if a user doesn't have the DJ role he/she can't play a song
-        guild = client.get_guild(808435876811243551)
         role = discord.utils.get(ctx.guild.roles, name="DJ")
         role = str(role)
         if "DJ" not in [y.name for y in ctx.message.author.roles]:
@@ -83,8 +83,6 @@ class Music(commands.Cog):
 
             url = f"http://www.youtube.com/watch?v={video_ids[0]}"
 
-        voice = discord.voice_client.VoiceClient
-
         with YoutubeDL(YDL_OPTIONS) as ydl:
             info = ydl.extract_info(url, download=False)
             if "entries" in info:
@@ -109,7 +107,7 @@ class Music(commands.Cog):
                                 FFmpegPCMAudio(queue[i], **FFMPEG_OPTIONS)
                             )
                             await ctx.send(f"**> Now playing:** {links[i]}")
-                            src.write_logs("Music", f"Played a song ({links[i]})")
+                            utils.write_logs("Music", f"Played a song ({links[i]})")
                             i += 1
                         else:
                             await asyncio.sleep(0.5)
@@ -120,7 +118,7 @@ class Music(commands.Cog):
                 URL = info["url"]
                 ctx.voice_client.play(FFmpegPCMAudio(URL, **FFMPEG_OPTIONS))
                 await ctx.send(f"**> Now playing:** {url}")
-                src.write_logs("Music", f"Played a song ({url})")
+                utils.write_logs("Music", f"Played a song ({url})")
 
     # skip the current song
     @commands.command(name="skip")
@@ -128,7 +126,6 @@ class Music(commands.Cog):
         """Skip song in playlist."""
         # get the role (used to play a song)
         # if a user doesn't have the DJ role he/she can't play a song
-        guild = client.get_guild(808435876811243551)
         role = discord.utils.get(ctx.guild.roles, name="DJ")
         role = str(role)
         if "DJ" not in [y.name for y in ctx.message.author.roles]:
@@ -136,7 +133,7 @@ class Music(commands.Cog):
             return
         ctx.voice_client.stop()
         await ctx.send("**Skipping...**")
-        src.write_logs("Music", "Skipped a song")
+        utils.write_logs("Music", "Skipped a song")
 
     # pause voice if it' it's playing
     @commands.command(name="pause")
@@ -144,7 +141,6 @@ class Music(commands.Cog):
         """Pause song."""
         # get the role (used to play a song)
         # if a user doesn't have the DJ role he/she can't play a song
-        guild = client.get_guild(808435876811243551)
         role = discord.utils.get(ctx.guild.roles, name="DJ")
         role = str(role)
         if "DJ" not in [y.name for y in ctx.message.author.roles]:
@@ -152,7 +148,7 @@ class Music(commands.Cog):
             return
         ctx.voice_client.pause()
         await ctx.send("**Music paused**")
-        src.write_logs("Music", "Paused a song")
+        utils.write_logs("Music", "Paused a song")
 
     # resume voice if it is paused
     @commands.command(name="resume")
@@ -160,14 +156,13 @@ class Music(commands.Cog):
         """Resume paused song."""
         # get the role (used to play a song)
         # if a user doesn't have the DJ role he/she can't play a song
-        guild = client.get_guild(808435876811243551)
         role = discord.utils.get(ctx.guild.roles, name="DJ")
         role = str(role)
         if "DJ" not in [y.name for y in ctx.message.author.roles]:
             await ctx.send("Qui qualcuno non ha i **PERMESSI** hehe (e non sono io)")
             return
         ctx.voice_client.resume()
-        src.write_logs("Music", "Resumed a song")
+        utils.write_logs("Music", "Resumed a song")
 
     # stop voice
     @commands.command(name="stop")
@@ -175,7 +170,6 @@ class Music(commands.Cog):
         """Stop song."""
         # get the role (used to play a song)
         # if a user doesn't have the DJ role he/she can't play a song
-        guild = client.get_guild(808435876811243551)
         role = discord.utils.get(ctx.guild.roles, name="DJ")
         role = str(role)
         if "DJ" not in [y.name for y in ctx.message.author.roles]:
@@ -183,7 +177,7 @@ class Music(commands.Cog):
             return
         ctx.voice_client.stop()
         await ctx.send("**Stopping...**")
-        src.write_logs(channelm, "Music", "Stopped a song")
+        utils.write_logs("Music", "Stopped a song")
 
     # get the song lyrics
     @commands.command(name="lyrics")
@@ -216,7 +210,7 @@ class Music(commands.Cog):
                 await ctx.send(data)
         except:
             await ctx.send("Non ho trovato nessun testo :(")
-        src.write_logs("Music", f"Searched lyrics for {artist} - {title}")
+        utils.write_logs("Music", f"Searched lyrics for {artist} - {title}")
 
 
 def setup(bot: commands.Bot):

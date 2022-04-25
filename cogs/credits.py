@@ -1,6 +1,7 @@
 import discord
-import src
 from discord.ext import commands
+
+import utils
 
 client = commands.Bot(command_prefix="!")
 
@@ -12,7 +13,7 @@ class Credits(commands.Cog):
     @commands.command(name="credits")
     async def credits(self, ctx: commands.Context):
         """Show the credits."""
-        danyb0 = "<a:whyyyyyy:850099185993777179>"
+        # danyb0 = "<a:whyyyyyy:850099185993777179>"
         embed = discord.Embed(
             title="Thanks to",
             url="https://github.com/DanyB0/salvatore-aranzulla",
@@ -21,7 +22,7 @@ class Credits(commands.Cog):
         embed.add_field(name="DanyB0#6791", value="lol")
         embed.add_field(name="alesar03#4718", value="lmao")
         await ctx.send(embed=embed)
-        src.write_logs("Weeb", "Sent credits")
+        utils.write_logs("Weeb", "Sent credits")
 
 
 def setup(bot: commands.Bot):

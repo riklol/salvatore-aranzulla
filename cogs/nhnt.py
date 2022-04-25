@@ -1,12 +1,9 @@
-""" NHENTAI COMMANDS """
-
-import random
-
 import requests
-import src
 from discord.ext import commands
 from discord.ext.commands import Bot
-from hentai import Format, Hentai, Utils
+from hentai import Hentai, Utils
+
+import utils
 
 bot = Bot("!")
 
@@ -23,7 +20,6 @@ class Nhentai(commands.Cog):
         # Check that the doujin exists and the ID is a number
         try:
             doujin_id = int(doujin_id)
-            doujin = Hentai(doujin_id)
         except ValueError:
             await ctx.send("The ID must be a number")
         except requests.exceptions.HTTPError:
@@ -31,7 +27,7 @@ class Nhentai(commands.Cog):
 
         # Send the doujin link
         await ctx.send(f"https://nhentai.net/g/{doujin_id}")
-        src.write_logs(
+        utils.write_logs(
             "Weeb", f"Sent {doujin_id} doujin link (https://nhentai.net/g/{doujin_id})"
         )
 
@@ -47,10 +43,10 @@ class Nhentai(commands.Cog):
 
         # Send the doujin link
         await ctx.send(f"https://nhentai.net/g/{doujin.id}")
-        src.write_logs(
+        utils.write_logs(
             channel,
             "Weeb",
-            f"Randomly sent {doujin_id} doujin link (https://nhentai.net/g/{doujin_id})",
+            f"Randomly sent {rand_hnt} doujin link (https://nhentai.net/g/{doujin_id})",
         )
 
 
