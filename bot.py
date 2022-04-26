@@ -34,6 +34,7 @@ async def on_ready():
     # send a message on the console and in a specific channel when the bot is online
     channel = bot.get_channel(941372997674106951)
     print("\nSalvatore è online!\n")
+    utils.write_logs("Start", "Bot started")
     await channel.send("\nSono online!")
 
 
