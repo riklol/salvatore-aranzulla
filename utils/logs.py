@@ -10,7 +10,7 @@ import utils
 def check_log():
     date, hour = utils.dt_hr()
     if not os.path.exists(f"logs/{date}.txt"):
-        with open(f"{date}.txt", "w") as lg:
+        with open(f"logs/{date}.txt", "w") as lg:
             lg.write(
                 f"---------FILE DI LOG---------\nDATA CREAZIONE = {date}\nORA CREAZIONE = {hour}\n-----------------------------\n"
             )
@@ -21,7 +21,7 @@ def check_log():
 # write the logs
 def write_logs(cat, action):
 
-    date, hour = utils.globals.dt_hr()
+    date, hour = utils.dt_hr()
 
     check_log()
 

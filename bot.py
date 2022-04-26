@@ -6,7 +6,7 @@ from discord.ext import commands
 import utils
 
 # takes the date and the hour
-date, hour = utils.globals.dt_hr()
+date, hour = utils.dt_hr()
 
 # first log file
 if not os.path.exists("logs"):
