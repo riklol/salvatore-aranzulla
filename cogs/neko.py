@@ -1,10 +1,9 @@
-""" NEKO COMMANDS """
-
 import json
 
 import requests
-import src
 from discord.ext import commands
+
+import utils
 
 
 class NekoImage(commands.Cog):
@@ -16,7 +15,7 @@ class NekoImage(commands.Cog):
         """Send a neko image."""
         url_neko_pic = requests.get("https://nekos.life/api/v2/img/neko").json()["url"]
         await ctx.send(f"{url_neko_pic}")
-        src.write_logs("Weeb", f"Sent neko pic ({url_neko_pic})")
+        utils.write_logs("Weeb", f"Sent neko pic ({url_neko_pic})")
 
 
 def setup(bot: commands.Bot):
