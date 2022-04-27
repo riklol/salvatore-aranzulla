@@ -15,5 +15,5 @@ BASE_DIR = os.getcwd()
 # date, hour
 def dt_hr():
     date = datetime.datetime.now().strftime("%Y-%m-%d")
-    hour = datetime.datetime.now().strftime("%H:%M:%S")
+    hour = datetime.datetime.now().astimezone().strftime("%H:%M:%S %Z")
     return date, hour
