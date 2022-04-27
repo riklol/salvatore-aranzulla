@@ -78,9 +78,6 @@ class Music(commands.Cog):
             )  # nosec (it can't open a local file because the url is the one above, so the linter should not raise a warning)
             video_ids = re.findall(r"watch\?v=(\S{11})", html.read().decode())
 
-            print(f"https://www.youtube.com/results?search_query={yt_search}")
-            print(video_ids)
-
             url = f"http://www.youtube.com/watch?v={video_ids[0]}"
 
         with YoutubeDL(YDL_OPTIONS) as ydl:
