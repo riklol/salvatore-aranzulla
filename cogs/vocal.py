@@ -101,8 +101,6 @@ class Music(commands.Cog):
                 for i, song in enumerate(queue):
                     while i + 1 <= len(queue):
                         if not ctx.voice_client.is_playing():
-                            print(f"\n\n\n{i}")
-                            print(f"\n{queue[i]}\n\n\n")
                             ctx.voice_client.play(
                                 FFmpegPCMAudio(queue[i], **FFMPEG_OPTIONS)
                             )
