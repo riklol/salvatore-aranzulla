@@ -28,7 +28,7 @@
 | _!credits_  |                            |                          Show the credits                          |
 
 # Installing
-### Windows
+## Windows
 - Clone the repository
   ```bash
   git clone https://github.com/DanyB0/salvatore-aranzulla.git
@@ -44,7 +44,7 @@
   ```bash
   TOKEN="BOT_TOKEN"
   ```
-### Linux or WSL
+## Linux or WSL
 - Clone the repository
   ```bash
   $ git clone https://github.com/DanyB0/salvatore-aranzulla.git
