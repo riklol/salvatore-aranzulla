@@ -34,7 +34,7 @@ class Music(commands.Cog):
         except ClientException:
             pass
 
-        await ctx.send(f"Joined {channel}")
+        await ctx.send(f"**Joined** {channel}")
         utils.write_logs("Music", "Bot joined voice chat")
 
     @commands.command(name="leave")
@@ -42,7 +42,7 @@ class Music(commands.Cog):
         """leave a vocal chat."""
         channel = ctx.message.author.voice.channel
         await ctx.voice_client.disconnect()
-        await ctx.send(f"Left {channel}")
+        await ctx.send(f"**Left** {channel}")
         utils.write_logs("Music", "Bot left voice chat")
 
     # command to play sound from a youtube URL
