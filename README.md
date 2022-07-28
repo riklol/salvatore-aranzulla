@@ -1,6 +1,6 @@
 # ![Senza nome](https://user-images.githubusercontent.com/66164380/164801108-02bfda88-eae3-4162-b140-716405886277.png) Salvatore-Aranzulla
 [![CodeFactor](https://www.codefactor.io/repository/github/danyb0/salvatore-aranzulla/badge)](https://www.codefactor.io/repository/github/danyb0/salvatore-aranzulla)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![License: Beerware](https://img.shields.io/badge/License-Beerware-yellow)](./LICENSE)
 [![version](https://img.shields.io/github/v/release/DanyB0/salvatore-aranzulla?color=orange)](https://github.com/DanyB0/salvatore-aranzulla/releases)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 #
@@ -59,3 +59,11 @@
 - Run the `install.sh` script
 - Run the `start.sh` script
 - For updating the bot you can run the `update.sh` script
+
+# Team
+<a href="https://github.com/DanyB0/salvatore-aranzulla/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=DanyB0/salvatore-aranzulla" />
+</a>
+
+# License
+[Beerware License](./LICENSE)
