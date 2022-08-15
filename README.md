@@ -1,5 +1,5 @@
 # ![Senza nome](https://user-images.githubusercontent.com/66164380/164801108-02bfda88-eae3-4162-b140-716405886277.png) Salvatore-Aranzulla
-[![CodeFactor](https://www.codefactor.io/repository/github/danyb0/salvatore-aranzulla/badge)](https://www.codefactor.io/repository/github/danyb0/salvatore-aranzulla)
+[![CodeFactor](https://www.codefactor.io/repository/github/wlafdev/salvatore-aranzulla/badge)](https://www.codefactor.io/repository/github/wlafdev/salvatore-aranzulla)
 [![License: Beerware](https://img.shields.io/badge/License-Beerware-yellow)](./LICENSE)
 [![version](https://img.shields.io/github/v/release/DanyB0/salvatore-aranzulla?color=orange)](https://github.com/DanyB0/salvatore-aranzulla/releases)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
