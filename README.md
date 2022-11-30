@@ -15,13 +15,10 @@
 | _!pause_    |                            |                         Pause a playing song                       |
 | _!resume_   |                            |                         Resume a paused song                       |
 | _!stop_     |                            |                         Stop a playing song                        |
-| _!leave_    |                            |                        Leave the voice chat                        |
-| _!lyrics_   |       artist - song        |                        Get the song lyrics                         |
+| _!leave_    |                            |                        Leave the voice chat                        |               
 | ----------- | -------------------------- | ------------------------------------------------------------------ |
 |  **Weeb**   |                            |                                                                    |
-| _!neko_     |                            |                          Get a neko image                          |
-| _!idhent_   | hentai ID (6 digit number) | Search for the given hentai on [nhentai.net](https://nhentai.net/) |
-| _!rhent_    |                            |    Get a random hentai from [nhentai.net](https://nhentai.net/)    |
+| _!neko_     |                            |                          Get a neko image                          | 
 | ----------- | -------------------------- | ------------------------------------------------------------------ |
 |  **Other**  |                            |                                                                    |
 | _!ping_     |                            |                      Get the current bot ping                      |
