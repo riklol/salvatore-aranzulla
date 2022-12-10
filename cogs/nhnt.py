@@ -1,3 +1,7 @@
+'''
+THIS FILE IS UNUSED BUT WE DIDN'T WANT TO DELETE IT
+'''
+
 import requests
 from discord.ext import commands
 from discord.ext.commands import Bot
