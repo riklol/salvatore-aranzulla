@@ -42,7 +42,7 @@ async def on_ready():
 bot.load_extension("cogs.credits")
 bot.load_extension("cogs.ping")
 bot.load_extension("cogs.neko")
-bot.load_extension("cogs.nhnt")
+# bot.load_extension("cogs.nhnt")
 bot.load_extension("cogs.vocal")
 
 # run the bot
