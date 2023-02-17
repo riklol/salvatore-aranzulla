@@ -1,8 +1,7 @@
 datetime>=4.4
-discord>=1.0.1
-discord.py [voice]>=1.7.1
+discord.py [voice]==1.7.3
 hentai>=3.2.9
 python-dotenv>=0.17.0
 requests>=2.26.0
 urllib3>=1.26.8
-youtube-dl>=2021.12.17
+yt_dlp>=2023.2.17
