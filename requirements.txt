@@ -1,5 +1,5 @@
 datetime==5.1
-discord.py [voice]==1.7.3
+discord.py [voice]==2.2.2
 python-dotenv==1.0.0
 requests==2.26.0
 urllib3==1.26.8
