@@ -1,4 +1,4 @@
-datetime==4.4
+datetime==5.1
 discord.py [voice]==1.7.3
 python-dotenv==0.17.0
 requests==2.26.0
