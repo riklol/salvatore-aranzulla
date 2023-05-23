@@ -1,6 +1,6 @@
 datetime==5.1
 discord.py [voice]==1.7.3
 python-dotenv==1.0.0
-requests==2.28.2
+requests==2.31.0
 urllib3==1.26.8
 yt_dlp==2023.3.4
